@@ -47,9 +47,6 @@ class StarterSite extends TimberSite {
 		wp_enqueue_style( 'slick-theme', get_template_directory_uri() . '/static/slick/slick-theme.css');
 		wp_enqueue_style( 'site', get_template_directory_uri() . '/static/css/app.css');
 
-		// designer overrides
-		wp_enqueue_style( 'robs', get_template_directory_uri() . '/static/css/robs.css');
-
 		// add_filter('timber_compile_result', function($output) {
 		// 	return str_replace('http://www.joeybadass.com', 'https://www.joeybadass.com', $output);
 		// });
