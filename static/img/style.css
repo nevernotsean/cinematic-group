@@ -1,0 +1,387 @@
+/*
+Theme Name: Cinematic
+Theme URI: http://www.fishbucket.com
+Description: 2015 style
+Version: 1.0
+Author: Fishbucket, Inc.
+Author URI: http://www.fishbucket.com
+Template: stanleywp
+*/
+
+@import url("../stanleywp/style.css");
+
+@font-face {
+    font-family: 'franchise_freebold';
+    src: url('fonts/franchise-free-bold-webfont.eot');
+    src: url('fonts/franchise-free-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/franchise-free-bold-webfont.woff2') format('woff2'),
+         url('fonts/franchise-free-bold-webfont.woff') format('woff'),
+         url('fonts/franchise-free-bold-webfont.ttf') format('truetype'),
+         url('fonts/franchise-free-bold-webfont.svg#franchise_freebold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* sticky footer */
+	* {
+		margin: 0;
+	}
+	html, body {
+		height: 100%;
+	}
+	#wrapper {
+		min-height: 100%;
+		height: auto !important;
+		height: 100%;
+		margin: 0 auto -80px;
+		padding: 0;
+	/*	max-width: 1610px;*/
+	}
+	#footer, .push {
+		height: 80px;
+	}
+
+
+/* general */
+	body, p {
+		font-family: "HelveticaNeue", "Helvetica Neue", "HelveticaNeueRoman", "HelveticaNeue-Roman", "Helvetica Neue Roman", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif; 
+		font-weight:400; 
+		font-stretch:normal;
+		font-size:14px;
+		line-height: 26px;
+	}
+	a {
+		font-family: "HelveticaNeueMedium", "HelveticaNeue-Medium", "Helvetica Neue Medium", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosRegular', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+		font-weight:500; 
+		color: #000;
+	}
+	#ww { background-color: #fff; padding-bottom: 0px; padding-top: 0px; }
+	:focus { outline: transparent auto 0px;	}
+	.table { margin-bottom: 0; }
+
+/* header */
+	#logo img { 
+		width: 100%;
+		height: auto;
+	}
+	.nav>li:first-child>a {
+		padding-left: 0;
+	}
+	.navbar-inverse {
+		background-color: #fff;
+		border: none;
+  		padding: 30px 0 20px;
+  	}
+	.navbar-inverse .navbar-nav > li > a {
+		font-family: "franchise_freebold", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+		color: #666;
+		font-size: 28px;
+		padding-top: 35px;
+	}
+	/* force nav */
+	.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus,
+	.single-muso-album .nav-releases > a,
+	.single-news .nav-news > a,
+	.single-features .nav-features > a {
+		color: #000 !important;
+	}
+	header nav .form-inline {
+		float: right;
+	}
+	.form-control {
+		background-color: #bcbdc0;
+		-webkit-border-radius: 17px;
+		-moz-border-radius: 17px;
+		border-radius: 17px;
+		color: #fff;
+	}
+	.form-control:focus {
+		border-color: #ddd;
+		background-color: #909194;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	.navbar-inverse .navbar-toggle .icon-bar {
+		background-color: #000;
+	}
+	.nav li:hover ul {
+		display: block;
+	}
+	b.caret { display: none; }
+	.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+		background-color: transparent;
+	}
+	.dropdown-menu {
+		border: none;
+	}
+	.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+		background-color: #ccc;
+	}
+	
+/* social */
+	#menu-social-menu li, .artist-social li {
+		float: right;
+		width: 34px;
+		height: 30px;
+		opacity: .8;
+		list-style: none;
+	}
+	#menu-social-menu li:hover, .artist-social li:hover {
+		opacity: 1;
+	}
+	#menu-social-menu a, .artist-social a {
+		background-size: 30px;
+		border-left: none;
+		padding: 0;
+		height: 30px;
+		background-repeat: no-repeat !important;
+		background-position: center center;
+		text-indent:-9999px;
+		overflow:hidden;
+		display: block;
+	}
+	li.facebook a {
+		background-image: url(images/social/facebook.png);
+	}
+	li.twitter a {
+		background-image: url(images/social/twitter.png);
+	}
+	li.instagram a {
+		background-image: url(images/social/instagram.png);
+	}
+	li.youtube a {
+		background-image: url(images/social/youtube.png);
+	}
+	li.tumblr a {
+		background-image: url(images/social/tumblr.png);
+	}
+	li.soundcloud a {
+		background-image: url(images/social/soundcloud.png);
+	}
+	li.apple a {
+		background-image: url(images/social/apple.png);
+	}
+	li.spotify a {
+		background-image: url(images/social/spotify.png);
+	}
+	li.website a {
+		background-image: url(images/social/website.png);
+	}
+	
+	.artist-social li {
+		float: left;
+	}
+	.artist-social li.facebook a {
+		background-image: url(images/social-black/facebook.png);
+	}
+	.artist-social li.twitter a {
+		background-image: url(images/social-black/twitter.png);
+	}
+	.artist-social li.instagram a {
+		background-image: url(images/social-black/instagram.png);
+	}
+	.artist-social li.youtube a {
+		background-image: url(images/social-black/youtube.png);
+	}
+	.artist-social li.tumblr a {
+		background-image: url(images/social-black/tumblr.png);
+	}
+	.artist-social li.soundcloud a {
+		background-image: url(images/social-black/soundcloud.png);
+	}
+	.artist-social li.apple a {
+		background-image: url(images/social-black/apple.png);
+	}
+	.artist-social li.spotify a {
+		background-image: url(images/social-black/spotify.png);
+	}
+	.artist-social li.website a {
+		background-image: url(images/social-black/website.png);
+	}
+	.form-inline .form-control {
+		margin-top: 27px;
+	}
+	
+/* footer */
+	#footer {
+		background-color: #242021;
+		padding: 20px 0;
+	}
+	#footer .textwidget {
+		font-size: 10px;
+	}
+	
+/* posts */
+	.post-title, .post-title a, .page-about .post-entry p, .page-shop .post-entry p {
+		margin: 0;
+		font-family: "franchise_freebold", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosBold', "Helvetica", "Tahoma", "Geneva", "Arial", sans-serif;
+		color: #000;
+		text-transform: uppercase;
+		font-size: 32px;
+		letter-spacing: .02em;
+	}
+	.zoomOverlay {
+		background-color: transparent !important;
+		background-image:none;
+	}
+	article.post {
+		margin-bottom: 50px;
+	}
+	header+section.post-meta {
+		margin-top: -5px;
+		font-style: italic;
+	}
+	.addtoany_content_bottom {
+		float: right;
+		margin: 0;
+	}
+	a.readmore {
+		display: block;
+		margin-top: 30px;
+		margin-bottom: -45px;
+		height: 0;
+	}
+	.post-entry > a + p {
+		margin-top: 10px;
+	}
+	
+/* roster */
+	ul.artist-social {
+		position: relative;
+		left: 50%;
+		float: left;
+	}
+	ul.artist-social li {
+		float: left;
+		display: block;
+		position: relative;
+		right: 50%;
+	}
+	.rosterslot {
+		height: 12em;
+/*		display: inline-block;
+		vertical-align: middle;
+*/		text-align: center;
+	}
+	.rosterslot img {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+/*	.rosterlink {
+		vertical-align: middle;
+		display: inline-block;
+	}
+	.rosterlink:before {
+		content: "";
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+*/
+
+/* pages */
+	.page h1 {
+		display: none;
+	}
+	.page-about .post-entry p, .page-shop .post-entry p {
+		line-height: 42px;
+		letter-spacing: .05em;
+		padding: 5% 0;
+	}
+
+/* music */
+	.single-muso-album article header {
+		display: none;
+	}
+	.single-muso-album #ww .col-lg-8.col-lg-offset-2 {
+		text-align: left;
+	}
+	.single-muso-album h2.entry-title, .tax-artist h2.entry-title {
+		margin-top: 0;
+	}
+	#muso-discog-grid {
+		margin: -10px 0 0 -10px;
+	}
+	.album-details {
+		font-size: 12px;
+		height: 80px;
+		display:none;
+	}
+	.album-grid {
+		padding: 10px;
+	}
+	#album-description ol {
+		list-style: decimal;
+		margin-left: 40px;
+	}
+	a.albumlink {
+		background: #000;
+		padding: 10px 15px;
+		margin: 20px 0 0 0;
+		display: inline-block;
+		-webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+	}
+	a.albumlink:hover {
+		background: #7b7b7b;
+	}
+	
+/* search page */
+
+
+/* sidebars */
+
+
+	
+/*** media queries ****/
+
+@media (max-width: 991px) {
+	.nav>li>a {
+		padding: 10px;
+	}
+	.artist-social li {
+		width: 30px;
+	}
+	.artist-social a {
+		background-size: 24px;
+	}
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1600px) {
+
+}
+@media (max-width: 767px) {
+	#logo img {
+		max-height: 120px;
+		width: auto;
+	}
+	.navbar-nav {
+		margin: 0;
+	}
+	.navbar-collapse {
+		border-top: none;
+	}
+	.navbar-collapse .navbar-nav > li > a {
+		padding: 5px 0;
+		text-align: right;
+	}
+	.nav li:hover ul {
+		display: none;
+	}
+	
+}
+
+@media (max-width: 479px) {
+
+}
