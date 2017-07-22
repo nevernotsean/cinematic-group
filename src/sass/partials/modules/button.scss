@@ -1,0 +1,13 @@
+button,
+.button {
+	@include bold-title;
+}
+
+i.fa.fa-bars:before {
+	content: '';
+	width: 25px;
+	height: 25px;
+	background: url(../img/hamburguesa_bttn.svg) no-repeat no-repeat;
+	background-size: 25px;
+	display: inline-block;
+}

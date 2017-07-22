@@ -1,0 +1,9 @@
+.bg {
+	background: url() center center no-repeat;
+	&-cover {
+		background-size: cover;
+	}
+	&-contain {
+		background-size: contain;
+	}
+}

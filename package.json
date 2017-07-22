@@ -1,40 +1,42 @@
 {
-  "name": "cinematic-group-by-never-not",
-  "version": "1.0.0",
-  "description": "Cinematic Group Website",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "compress": "webpack -p",
-    "build": "webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nevernotsean/joey-badass.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nevernotsean/joey-badass/issues"
-  },
-  "homepage": "https://github.com/nevernotsean/joey-badass#readme",
-  "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.0",
-    "babel-preset-es2015": "^6.24.1",
-    "css-loader": "^0.28.4",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "node-sass": "^4.5.3",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.5.0",
-    "file-loader": "^0.11.2",
-    "resolve-url-loader": "^2.1.0"
-  },
-  "dependencies": {
-    "normalize.css": "^7.0.0"
-  }
+	"name": "cinematic-group-by-never-not",
+	"version": "1.0.0",
+	"description": "Cinematic Group Website",
+	"main": "index.js",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"compress": "webpack -p",
+		"build": "webpack"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nevernotsean/joey-badass.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/nevernotsean/joey-badass/issues"
+	},
+	"homepage": "https://github.com/nevernotsean/joey-badass#readme",
+	"devDependencies": {
+		"babel-core": "^6.25.0",
+		"babel-loader": "^7.1.0",
+		"babel-preset-es2015": "^6.24.1",
+		"css-loader": "^0.28.4",
+		"extract-text-webpack-plugin": "^3.0.0",
+		"file-loader": "^0.11.2",
+		"node-sass": "^4.5.3",
+		"resolve-url-loader": "^2.1.0",
+		"sass-loader": "^6.0.6",
+		"style-loader": "^0.18.2",
+		"webpack": "^3.3.0",
+		"webpack-dev-server": "^2.5.0"
+	},
+	"dependencies": {
+		"foundation-sites": "^6.4.1",
+		"normalize.css": "^7.0.0",
+		"slick-carousel": "^1.6.0"
+	}
 }

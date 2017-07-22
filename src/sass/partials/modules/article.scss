@@ -1,0 +1,39 @@
+article {
+	margin-bottom: calc(100px - 1rem);
+
+	.border {
+		border: 3px solid #000;
+	}
+	header,
+	footer {
+		line-height: 1;
+		padding: 1rem 0;
+		@include small-type;
+	}
+	footer {
+		margin-top: calc(40px - 1rem);
+	}
+	h2 {
+		line-height: 1;
+		margin-bottom: 0;
+	}
+}
+
+.image-block {
+	position: relative;
+	display: block;
+	.overlay {
+		position: absolute;
+		text-align: center;
+		padding: 10px;
+		width: 100%;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+
+		h2,
+		p {
+			color: #fff;
+		}
+	}
+}

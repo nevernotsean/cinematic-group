@@ -1,0 +1,17 @@
+footer {
+	@include whitespace-top;
+	.social {
+		justify-content: flex-end;
+		li {
+			@include bold-title;
+		}
+	}
+	.sub-footer {
+		.cell,
+		.cell * {
+			@include small-type;
+			font-weight: normal;
+			text-transform: uppercase;
+		}
+	}
+}

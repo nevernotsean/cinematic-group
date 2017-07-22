@@ -1,0 +1,16 @@
+.hero {
+	position: relative;
+	@include whitespace-bottom;
+
+	.hero-content {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.placeholder {
+	min-height: 500px;
+	background-image: url('http://unsplash.it/1200x600.jpg');
+}

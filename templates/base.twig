@@ -10,13 +10,9 @@
 		<div class="offcanvas-menu show-for-small-only">
 			<div class="offcanvas-wrapper">
 				<a href="#" class="menu-toggle text-right"><i class="fa fa-times"></i></a>
-				<div class="row">
-					<div class="small-10 medium-6 small-centered column">
-						<a class="hdr-logo-link-mobile" href="{{site.url}}" rel="home">
-							<img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt="">
-						</a>
-					</div>
-				</div>
+				<a class="hdr-logo-link-mobile" href="{{site.url}}" rel="home">
+					<img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt="">
+				</a>
 				<nav class="mobile-nav">
 					<ul class="mobile-links no-bullet text-center">
 						{% include "menu.twig" with {'menu': menu.get_items} %}
@@ -29,23 +25,27 @@
 		<div class="offcanvas-wrap">
 			<header class="header">
 				{% block header %}
-					<div class="wrapper hide-for-small-only">
-						<a class="hdr-logo-link" href="{{site.url}}" rel="home">
-							<img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt="">
+					<div class="grid-x wrapper hide-for-small-only">
+						<a class="nav-cap hdr-logo-link" href="{{site.url}}" rel="home">
+							<!-- <img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt=""> -->
+							<img src="http://placehold.it/50x50.jpg" alt="">
 						</a>
-						<nav id="nav-main" class="nav-main" role="navigation">
-							<ul class="menu-links">
+						<nav id="nav-main" class="auto cell" role="navigation">
+							<ul class="medium-8 menu-links menu simple expanded">
 								{% include "menu.twig" with {'menu': menu.get_items} %}
 							</ul>
-						</nav><!-- #nav -->
-						<div class="right-logo">
-							<a target="_blank" title="Pro Era Records" href="http://theproera.com/" class="def-link"><img src="{{theme.path}}/static/img/perecords.svg" alt=""></a>
+						</nav>
+						<div class="nav-cap social-menu-expand">
+							Social
+							<ul class="social-menu menu">
+								{% include 'social-links.twig' %}
+							</ul>
 						</div>
 					</div>
 
 					<div class="mobile-top-bar show-for-small-only">
 						<a href="#" class="menu-toggle"><i class="fa fa-bars fa-2x"></i></a>
-						<img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt="">
+						<!-- <img src="{{theme.path}}/static/img/jba-logo-wht.svg" alt=""> -->
 					</div>
 
 				{% endblock %}

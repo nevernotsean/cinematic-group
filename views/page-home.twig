@@ -2,127 +2,75 @@
 
 {% block content %}
     <div class="hero">
-        <div class="bg hero-bg" rel="fullscreen">
-
-        </div>
+        <div class="placeholder bg-cover"></div>
         <div class="hero-content">
-            <h6 class="top">out now</h6>
-            <h1>All Ameri<span class="strikethrough">kkk</span>an Bada$$</h1>
-            <a target="_blank" href="https://joeybadass.lnk.to/AABA/">Download/Stream
-              <span class="hide-for-small-only">All-Ameri<span class="strikethrough">kkk</span>an Bada$$</a></span>
-        </div>
-        <div class="lower">
-            <div class="video-ui">
-                <a href="./video/land-of-the-free/">Watch Full Video</a>
-                <a href="#" class="mute def-link hide-for-small-only">
-                    <i class="fa fa-volume-up"></i>
-                </a>
-            </div>
-
-            {% include 'social-links.twig' %}
+            <h1>Hero Title</h1>
         </div>
     </div>
-    <div class="content-wrapper amerikan-bg">
-        <img id="flagsrc" data-src="{{theme.path}}/static/img/american-bg-sm.jpg" alt="">
-        <div class="inner-wrapper bg" style="background-image: url({{theme.path}}/static/img/homepage-bg-overlay.jpg);">
-            <div class="album-section">
-                <div class="row">
-                        <div class="small-12 medium-8 large-6 column small-centered">
-                          <img class="album-rotate" src="{{theme.path}}/static/img/albumart.jpg" alt="">
-                        </div>
-                    <div class="small-12 column text-center">
-                        <a href="https://joeybadass.lnk.to/AABA"><h2>Listen to the album</h2></a>
-                        <ul class="menu simple hide-for-small-only">
-                            <li>
-                                <a target="_blank" href="https://joeybadass.lnk.to/AABA/itunes">iTunes</a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://joeybadass.lnk.to/AABA/applemusic">Apple Music</a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://joeybadass.lnk.to/AABA/google-play">Google Play</a>
-                            </li>
-
-                            <li>
-                                <a target="_blank" href="https://joeybadass.lnk.to/AABA/amazonmp3">Amazon</a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://joeybadass.lnk.to/AABA/spotify">Spotify</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="small-12 medium-10 large-8 small-centered column text-center">
-                        <div class="row small-up-1 medium-up-2 image-grid">
-                            {% for item in post.get_field('music_posts') %}
-                              <div class="column">
-
-                                  <article class="article-item post-type-{{item.post_type}}" id="post-{{item.ID}}">
-                                    <section class="article-content">
-                                      <a href="{{item.link}}" class="article-link def-link pixellate-trigger"></a>
-                                      <div class="image-pixelate">
-                                        <img src="{{item.thumbnail.src('large') }}" alt="" class="article-thumbnail">
-                                      </div>
-                                      <h2 class="article-h1">View</h2>
-                                    </section>
-                                  </article>
-                                  <a href="{{item.link}}">
-                                    <h6 style="margin: 15px 0;">{{ item.title }}</h2>
-                                  </a>
-                              </div>
-                            {% endfor %}
-                        </div>
-                        <a href="./music">View More Music</a>
-                    </div>
-                </div>
-            </div>
-            <div class="tour-section">
-                <div class="row">
-                    <div class="small-12 medium-11 small-centered column">
-                        <h2 class="text-center">JOEY BADA$$ TOUR</h2>
-                				<table class="tourdates">
-                          <tr>
-                              <td colspan="5" style="background-color: #333; text-align: center;">
-                                <h6 style="color: #fff;">EVERYBODY’S TOUR</h6>
-                              </td>
-                          </tr>
-                					{% for row in tourpage.get_field('tour_row')|slice(0, 8) %}
-                					<tr>
-                						<td>{{row.date}}</td>
-                						<td><span>{{row.venue}}</span></td>
-                						<td>{{row.city_state}}</td>
-                						{% if row.disable %}
-                							<td><a href="#" class="disable" style="text-decoration: line-through;pointer-events: none;">Buy Tickets</a></td>
-                						{% else %}
-                							<td><a href="{{row.buy_url}}">Buy Tickets</a></td>
-                						{% endif %}
-                            <td>
-                              {% if row.disable %}
-                								Sold Out
-                							{% else %}
-                								{% if row.vip %}
-                									{% if row.vip_url %}
-                										<a href="{{row.vip_url}}">VIP</a>
-                									{% else %}
-                										<a href="http://bit.ly/joeyvip">VIP</a>
-                									{% endif %}
-                								{% endif %}
-                							{% endif %}
-                            </td>
-                					</tr>
-                					{% endfor %}
-                				</table>
-                				<div class="red more-dates">
-                					<span>* more tour dates </span>
-                					<div>to be annouced soon!</div>
-                				</div>
-                    </div>
-                </div>
-            </div>
-
+    <div class="content-wrapper">
+      <section class="grid-container">
+        <div class="grid-x grid-padding-x small-up-1 medium-up-2">
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
         </div>
+      </section>
+      <section class="grid-container">
+        <div class="grid-x grid-padding-x small-up-1 medium-up-3">
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+          <div class="cell">
+            {% include 'tease-post.twig' %}
+          </div>
+        </div>
+      </section>
+      <section class="grid-container">
+        <div class="grid-x grid-padding-x grid-padding-y small-up-1 medium-up-3">
+          <div class="cell">
+            <a class="image-block">
+              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <div class="overlay">
+                <h2>Cinematic Shop</h2>
+                <p>Shop Now</p>
+              </div>
+            </a>
+          </div>
+          <div class="cell">
+            <a class="image-block">
+              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <div class="overlay">
+                <h2>Cinematic Radio</h2>
+                <p>Listen Now</p>
+              </div>
+            </a>
+          </div>
+          <div class="cell">
+            <a class="image-block">
+              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <div class="overlay">
+                <h2>Cinematic TV</h2>
+                <p>Watch Now</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
     <!-- /content-wrapper -->
 {% endblock %}
