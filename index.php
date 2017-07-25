@@ -15,7 +15,10 @@
 
 $context = Timber::get_context();
 $context['posts'] = Timber::get_posts();
-$context['foo'] = 'bar';
+
+$categories = Timber::get_terms(array('taxonomy' => 'category', 'hide_empty' => true));
+$context['categories'] = $categories;
+
 $templates = array( 'index.twig' );
 if ( is_home() ) {
 	array_unshift( $templates, 'home.twig' );

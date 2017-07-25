@@ -36,5 +36,7 @@ if ( is_day() ) {
 }
 
 $context['posts'] = Timber::get_posts();
+$categories = Timber::get_terms(array('taxonomy' => 'category', 'hide_empty' => true));
+$context['categories'] = $categories;
 
 Timber::render( $templates, $context );

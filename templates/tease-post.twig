@@ -1,4 +1,4 @@
-<article class="grid-y article-item post-category-{{post.category}}" id="post-{{post.ID}}" data-equalizer-watch>
+<article class="grid-y article-item post-type-{{post.type}} post-category-{{post.category}}" id="post-{{post.ID}}" data-equalizer-watch>
   <div class="cell grow">
     <a href="{{post.link}}">
       <img src="{{ post.thumbnail.src | resize(500, 300) }}" srcset="{{ post.thumbnail.src | resize(500, 300) | retina(1) }} 1x,
@@ -6,14 +6,12 @@
       {{ post.thumbnail.src | resize(500, 300) | retina(3) }}  3x,
       {{ post.thumbnail.src | resize(500, 300) | retina(4) }}  4x" alt="">
       <header>
-        <span class="post-category">{{post.category}}</span>
-        <span class="divider"> | </span>
+        <span class="post-tags" style="display: none;">{{ post.tags }} <span class="divider"> | </span></span>
+        <span class="post-category">{{post.category}} <span class="divider"> | </span></span>
         <span class="post-date">{{post.date|date('n.j.Y')}}</span>
       </header>
       <h2 class="post-title">{{post.title}}</h2>
-      <div class="post-content">
-        {{ post.post_content|excerpt(15) }}
-      </div>
+      <div class="post-content">{{ post.post_content|excerpt(15) }}</div>
     </a>
   </div>
   <div class="cell">

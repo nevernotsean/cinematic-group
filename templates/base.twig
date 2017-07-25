@@ -49,18 +49,10 @@
 				{% endblock %}
 			</header>
 
-			<section id="content" role="main" class="content-wrapper" rel="fillscreen">
-				{% if title %}<h1 class="base-title">{{title}}</h1>{% endif %}
-				<div class="wrapper {{sidebar_class}}">
+			<section id="content" role="main" class="pjax-content" rel="fillscreen">
 					{% block content %}
 						Sorry, no content
 					{% endblock %}
-				</div>
-				{% if sidebar %}
-					<aside class="layout-sidebar">
-						{{sidebar}}
-					</aside>
-				{% endif %}
 			</section>
 
 			{% block footer %}

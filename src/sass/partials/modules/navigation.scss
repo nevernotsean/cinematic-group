@@ -28,10 +28,14 @@ header#header {
 	.menu-links {
 		width: 600px;
 	}
-	.menu-item * {
-		@include bold-title;
+	.menu-item {
 		text-align: center;
-		font-size: 18px;
+		* {
+			@include bold-title;
+			text-align: center;
+			font-size: 18px;
+			display: inline-block;
+		}
 	}
 	.menu-links .menu-item:not(:first-child) {
 		// margin-left: 30px;
@@ -76,9 +80,14 @@ header#header {
 	}
 }
 
-.hdr-logo-link img {
-	width: 50px;
-	height: 50px;
+a.hdr-logo-link {
+	&:after {
+		content: none;
+	}
+	img {
+		width: 50px;
+		height: 50px;
+	}
 }
 
 .menu-toggle {

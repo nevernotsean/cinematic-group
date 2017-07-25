@@ -1,6 +1,11 @@
 .hero {
 	position: relative;
+	display: inline-block;
+	width: 100%;
 	@include whitespace-bottom;
+
+	padding-left: $global-padding;
+	padding-right: $global-padding;
 
 	.hero-content {
 		position: absolute;
@@ -8,14 +13,45 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
+	.slide-content {
+		.post {
+			&-meta * {
+				@include small-type;
+				margin-top: 8px;
+				display: inline-block;
+			}
+			&-meta a {
+				@extend .arrow-link;
+			}
+			&-date {
+				letter-spacing: 2px;
+			}
+			&-content {
+			}
+		}
+	}
 	.slider {
 		position: static;
-		min-height: 450px;
 		margin: 0;
 		background-color: #fff;
+
+		&:not(.slick-slider),
+		&:not(.slick-slider) .slide {
+			display: inline-block;
+			width: 100%;
+		}
+
 		.slide {
 			position: relative;
-			min-height: 450px;
+			&.bg-cover {
+				background-position-y: 30%;
+				min-height: 450px;
+			}
+		}
+		// override for a slider with height
+		.slick-list {
+			display: inline-block;
+			@include whitespace-bottom;
 		}
 	}
 }
@@ -63,4 +99,9 @@
 			}
 		}
 	}
+}
+
+.home .hero {
+	padding-left: 0;
+	padding-right: 0;
 }

@@ -2,11 +2,24 @@
 
 {% block content %}
 	<div class="content-wrapper">
+		<div class="blog-nav">
+			<div class="text-center">
+				<h1 class="base-title">Blog</h1>
+			</div>
+			<div class="grid-container">
+				<div class="post-categories text-center grid-x grid-padding-x">
+						<div class="cell shrink"><a href="{{ site.url }}/blog">All</a></div>
+					{% for category in categories %}
+						<div class="cell shrink"><a href="{{ site.url }}/{{ category | lower }}">{{ category }}</a></div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
 		<div class="grid-container">
 				<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3">
 					{% for post in posts %}
 						<div class="cell">
-							{% include 'archive-item.twig' %}
+							{% include 'tease-post.twig' %}
 						</div>
 					{% endfor %}
 				</div>

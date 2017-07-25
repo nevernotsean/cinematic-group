@@ -1,12 +1,12 @@
 @font-face {
 	font-family: 'FranchiseFree-Bold';
-	src: url('http://dev.never-not.com/cinematicmusicgroup/wp-content/themes/cg-nn-theme/dist/fonts/Franchise-Free-Bold.ttf'),
+	src: url('../static/fonts/Franchise-Free-Bold.ttf'),
 		url('../static/fonts/Franchise-Free-Bold.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'HelveticaNeue';
-	src: url('http://dev.never-not.com/cinematicmusicgroup/wp-content/themes/cg-nn-theme/dist/fonts/HelveticaNeue.ttf'),
+	src: url('../static/fonts/HelveticaNeue.ttf'),
 		url('../static/fonts/HelveticaNeue.ttf') format('truetype');
 }
 
@@ -21,6 +21,13 @@
 	font-size: 12px;
 }
 
+@mixin letter-spaced {
+	@include small-type;
+	text-transform: uppercase;
+	font-size: 10px;
+	letter-spacing: 4px;
+}
+
 body {
 	font-family: 'HelveticaNeue', sans-serif;
 }
@@ -33,4 +40,42 @@ h5,
 h6 {
 	font-family: 'FranchiseFree-Bold', sans-serif;
 	text-transform: uppercase;
+}
+
+a {
+	&.active {
+		position: relative;
+		&:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -0.25em;
+			width: 100%;
+			width: calc(100% - 3px);
+			height: 1px;
+			background: #000;
+		}
+	}
+}
+
+.arrow-link {
+	position: relative;
+	&::after {
+		content: '';
+		display: inline-block;
+		position: relative;
+		height: 16px;
+		width: 30px;
+		margin-top: -8px;
+		margin-left: 10px;
+		right: 0px;
+		top: 3px;
+		background: url(/wp-content/themes/cg-nn-theme/dist/img/arrow.svg) center
+			center no-repeat;
+		background-size: 20px;
+		transition: all 300ms ease;
+	}
+	&:hover::after {
+		right: -8px;
+	}
 }

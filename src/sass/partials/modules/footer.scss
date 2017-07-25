@@ -9,10 +9,8 @@
 	.sub-footer {
 		.cell,
 		.cell * {
-			@include small-type;
+			@include letter-spaced;
 			font-weight: normal;
-			text-transform: uppercase;
-			font-size: 10px;
 			letter-spacing: 1px;
 		}
 	}
@@ -34,6 +32,6 @@
 	}
 	form input.button {
 		margin-left: 25px;
-    height: calc(2.5rem + 2px);
+		height: calc(2.5rem + 2px);
 	}
 }

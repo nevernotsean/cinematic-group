@@ -17,23 +17,7 @@ article.article-item {
 		margin-top: calc(40px - 1rem);
 
 		a {
-			position: relative;
-			&::after {
-				content: '';
-				position: absolute;
-				height: 16px;
-				width: 30px;
-				margin-top: -8px;
-				right: -40px;
-				top: 50%;
-				background: url(/wp-content/themes/cg-nn-theme/dist/img/arrow.svg)
-					center center no-repeat;
-				background-size: 20px;
-				transition: all 300ms ease;
-			}
-			&:hover::after {
-				right: -50px;
-			}
+			@extend .arrow-link;
 		}
 	}
 	.post-title {
@@ -42,19 +26,13 @@ article.article-item {
 		margin-bottom: 0;
 	}
 
+	.post-tags {
+		display: none;
+	}
+
 	.post-content {
 		font-size: 11px;
 		padding: 20px 0 0 0;
-	}
-
-	&.post-type-portfolio {
-		header > span,
-		footer {
-			display: none;
-		}
-		.post-title {
-			text-align: center;
-		}
 	}
 }
 
