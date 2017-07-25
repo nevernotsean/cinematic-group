@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="offcanvas-wrap">
-			<header class="header">
+			<header id="header">
 				{% block header %}
 					<div class="grid-x wrapper hide-for-small-only">
 						<a class="nav-cap hdr-logo-link" href="{{site.url}}" rel="home">
@@ -49,7 +49,7 @@
 				{% endblock %}
 			</header>
 
-			<section id="content" role="main" class="content-wrapper">
+			<section id="content" role="main" class="content-wrapper" rel="fillscreen">
 				{% if title %}<h1 class="base-title">{{title}}</h1>{% endif %}
 				<div class="wrapper {{sidebar_class}}">
 					{% block content %}

@@ -11,7 +11,9 @@ module.exports = {
 		publicPath: '/wp-content/themes/cg-nn-theme/dist'
 	},
 	externals: {
-		foundation: 'foundation-sites'
+		foundation: 'foundation-sites',
+		slick: 'slick-carousel',
+		fontawesome: 'fontawesome'
 	},
 	resolve: {
 		modules: [path.resolve(__dirname, './src'), 'node_modules']
@@ -41,14 +43,14 @@ module.exports = {
 				test: [/\.(svg|png|jpg)$/],
 				loader: 'file-loader',
 				options: {
-					name: '/img/[name].[hash].[ext]'
+					name: '/img/[name].[ext]'
 				}
 			},
 			{
 				test: [/\.(ttf|eot|woff|woff2)$/],
 				loader: 'file-loader',
 				options: {
-					name: '/fonts/[name].[hash].[ext]'
+					name: '/fonts/[name].[ext]'
 				}
 			}
 		]

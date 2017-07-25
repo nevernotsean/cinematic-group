@@ -1,15 +1,13 @@
 import $ from 'jquery'
 import Foundation from 'foundation-sites'
 import slick from 'slick-carousel'
-
-// Your JavaScript goes here
-$(document).foundation()
+import getImageBrightness from './getImageBrightness.js'
 
 $(document).ready(function() {
-	var wh = document.documentElement.clientHeight
-	var ww = document.documentElement.clientWidth
-	var headerHeight = $('header').height()
-	var footerHeight = $('footer').height()
+	var wh = document.documentElement.clientHeight,
+		ww = document.documentElement.clientWidth,
+		headerHeight = $('#header').outerHeight(),
+		footerHeight = $('#footer').outerHeight()
 
 	// active states
 	var activeLinks = $(
@@ -21,34 +19,37 @@ $(document).ready(function() {
 	)
 	activeLinks.addClass('active')
 
-	// full screen
-	if (ww > 768) {
-		$('[rel="fullscreen"]').css('height', wh)
-		$('[rel="fillscreen"]').css('min-height', wh - headerHeight - footerHeight)
-	} else {
-		$('[rel="fullscreen"]').css('height', wh * 0.9)
+	function fillscreen() {
+		var pageTitleHeight = $('.page-title').outerHeight()
+		// if (ww > 768) {
+		var fillHeight = wh - headerHeight - footerHeight - 80
+
+		$('[rel="fullscreen"]').css('min-height', wh)
+		$('[rel="fillscreen"]').css('min-height', fillHeight)
+		$('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight)
+
+		if ($('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
+			$('[rel="pagefill"]').addClass('abs-centered')
+		} else {
+			$('[rel="pagefill"]').removeClass('abs-centered')
+		}
+		// } else {
+		$('[rel="fullscreen"]').css('min-height', wh * 0.9)
+		// }
 	}
+	fillscreen()
 
 	window.addEventListener('resize', function() {
 		wh = document.documentElement.clientHeight
 		ww = document.documentElement.clientWidth
-		if (ww > 768) {
-			$('[rel="fullscreen"]').css('height', wh)
-			$('[rel="fillscreen"]').css(
-				'min-height',
-				wh - headerHeight - footerHeight
-			)
-		} else {
-			$('[rel="fullscreen"]').css('height', wh * 0.9)
-		}
+		fillscreen()
 	})
 
 	window.addEventListener('orientationchange', function() {
 		wh = document.documentElement.clientHeight
 		ww = document.documentElement.clientWidth
-		$('[rel="fullscreen"]').css('height', wh)
-		$('[rel="fillscreen"]').css('min-height', wh - headerHeight - footerHeight)
-		$('body').removeClass('open')
+		$('body').removeClass('menu-open')
+		fillscreen()
 	})
 
 	$('.slider').slick({
@@ -83,11 +84,11 @@ $(document).ready(function() {
 	// mobile nav
 	$('.menu-toggle').on('click', function(e) {
 		e.preventDefault()
-		$('body').toggleClass('open')
+		$('body').toggleClass('menu-open')
 	})
 
 	// sticky nav
-	var $header = $('header')
+	var $header = $('#header')
 	var st = window.scrollY
 	var tempSt = 0
 	var offset = 300
@@ -110,4 +111,18 @@ $(document).ready(function() {
 	}
 
 	$(window).on('scroll', detectScroll)
+
+	$('.article-item').each(function() {
+		var image = $(this).find('img')[0]
+		getImageBrightness(image.src, function(br) {
+			if (br > 180) {
+				$(image).addClass('border')
+			}
+		})
+	})
+	setTimeout(function() {
+		$(document).foundation()
+	}, 50)
+
+	Foundation.reInit('equalizer')
 })

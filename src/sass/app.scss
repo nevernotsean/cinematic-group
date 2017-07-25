@@ -1,8 +1,14 @@
+// foundation
 @import "~foundation-sites/scss/foundation.scss";
 @import "partials/settings.scss";
 
 @include foundation-everything;
 
+// slick
+@import "~slick-carousel/slick/slick.scss";
+// @import "~slick-carousel/slick/slick-theme.scss";
+
+// partials
 @import "partials/typography.scss";
 @import "partials/image.scss";
 @import "partials/spacing.scss";
@@ -11,10 +17,10 @@
 @import "partials/modules/navigation.scss";
 @import "partials/modules/button.scss";
 @import "partials/modules/hero.scss";
-@import "partials/modules/article.scss";
+@import "partials/modules/teaser-blocks.scss";
 
 @import "partials/pages/archive.scss";
-
+@import "partials/pages/page.scss";
 /// temp legacy from JBA
 
 /*Global*/
@@ -25,7 +31,7 @@
 .fa.fa-volume-up {
 	width: 25px;
 	height: 25px;
-	background: url(../img/volume-on.svg) no-repeat center center;
+	background: url(../static/img/volume-on.svg) no-repeat center center;
 }
 
 .fa.fa-volume-off:before {
@@ -35,13 +41,13 @@
 .fa.fa-volume-off {
 	width: 25px;
 	height: 25px;
-	background: url(../img/volume-off.svg) no-repeat center center;
+	background: url(../static/img/volume-off.svg) no-repeat center center;
 }
 i.fa.fa-bars:before {
 	content: '';
 	width: 25px;
 	height: 25px;
-	background: url(../img/hamburguesa_bttn.svg) no-repeat no-repeat;
+	background: url(../static/img/hamburguesa_bttn.svg) no-repeat no-repeat;
 	background-size: 25px;
 	display: inline-block;
 }
@@ -49,7 +55,7 @@ i.fa.fa-times:before {
 	content: '';
 	width: 25px;
 	height: 25px;
-	background: url(../img/close_bttn.svg) no-repeat no-repeat;
+	background: url(../static/img/close_bttn.svg) no-repeat no-repeat;
 	background-size: 25px;
 	display: inline-block;
 }
@@ -436,10 +442,7 @@ i.fa.fa-times:before {
 // 	transform: translate(-50%, -50);
 // }
 //
-// .hero .slider .slide {
-// 	min-height: 450px;
-// 	position: relative;
-// }
+
 //
 // .hero .slider .slide img {
 // 	position: absolute;
@@ -458,10 +461,7 @@ i.fa.fa-times:before {
 // 	margin-bottom: 120px;
 // }
 //
-// .bg {
-// 	background: url() no-repeat center center;
-// 	background-size: cover;
-// }
+
 //
 // img.album-rotate {
 // 	/*transform: rotate(-10deg);*/
@@ -488,7 +488,7 @@ i.fa.fa-times:before {
 // /*.tour-section.bg {
 //   position: relative;
 //   background-color: #121212;.home .inner-wrapper
-//   background-image: url(../img/album-tour-blend-bg.png), url(../img/tourbg.jpg);
+//   background-image: url(../static/img/album-tour-blend-bg.png), url(../static/img/tourbg.jpg);
 //   background-position: center top, center bottom;
 //   padding: 15% 0;
 //   background-size: cover;
@@ -536,8 +536,8 @@ i.fa.fa-times:before {
 // 		height: 100%;
 // 		top: 0;
 // 		left: 0;
-// 		background: url(../img/jba_flag_top.jpg) no-repeat top center,
-// 			url(../img/jba_flag_top_stripes.jpg) repeat-y bottom center;
+// 		background: url(../static/img/jba_flag_top.jpg) no-repeat top center,
+// 			url(../static/img/jba_flag_top_stripes.jpg) repeat-y bottom center;
 // 		background-size: contain;
 // 		will-change: transform;
 // 		z-index: -1;
@@ -902,7 +902,7 @@ i.fa.fa-times:before {
 //
 // .home .subscribe .block {
 // 	display: inline-block;
-// 	background: url(../img/pixelated-flag.png);
+// 	background: url(../static/img/pixelated-flag.png);
 // 	padding: 10px;
 // }
 //

@@ -1,4 +1,4 @@
-footer {
+#footer {
 	@include whitespace-top;
 	.social {
 		justify-content: flex-end;
@@ -12,6 +12,28 @@ footer {
 			@include small-type;
 			font-weight: normal;
 			text-transform: uppercase;
+			font-size: 10px;
+			letter-spacing: 1px;
 		}
+	}
+	hr.black {
+		border-top: 2px solid black;
+		@include breakpoint(small) {
+			margin-left: 0.625rem;
+			margin-right: 0.625rem;
+		}
+		@include breakpoint(medium) {
+			margin-left: 0.9375rem;
+			margin-right: 0.9375rem;
+		}
+	}
+	.footer-logo {
+		width: auto;
+		height: 20px;
+		padding: 4px;
+	}
+	form input.button {
+		margin-left: 25px;
+    height: calc(2.5rem + 2px);
 	}
 }

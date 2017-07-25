@@ -8,9 +8,59 @@
 		top: 50%;
 		transform: translate(-50%, -50%);
 	}
+	.slider {
+		position: static;
+		min-height: 450px;
+		margin: 0;
+		background-color: #fff;
+		.slide {
+			position: relative;
+			min-height: 450px;
+		}
+	}
 }
 
-.placeholder {
-	min-height: 500px;
-	background-image: url('http://unsplash.it/1200x600.jpg');
+.slick- {
+	&prev,
+	&next {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 9;
+	}
+	&prev {
+		left: 25px;
+	}
+	&next {
+		right: 25px;
+	}
+}
+
+.slick-dots {
+	position: absolute;
+	transform: translateX(-50%);
+	bottom: 25px;
+	left: 50%;
+
+	margin: 0;
+	@extend .menu;
+	@extend .simple;
+
+	li {
+		list-style: none;
+
+		button {
+			font-size: 0;
+			width: 10px;
+			height: 10px;
+			border-radius: 100%;
+			border: 2px solid #000;
+			background: #000;
+		}
+		&.slick-active {
+			button {
+				background: #fff;
+			}
+		}
+	}
 }

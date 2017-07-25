@@ -16,3 +16,7 @@ section:not(#content) {
 	// @include whitespace-vert;
 	@include whitespace-bottom;
 }
+
+.cell.grow {
+	flex: 1 0 auto;
+}

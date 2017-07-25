@@ -1,0 +1,28 @@
+.page-title.article-h1,
+.base-title {
+	@include bold-title;
+	text-align: center;
+	margin-bottom: 0;
+	padding: 50px 0;
+}
+
+.article-body.abs-centered {
+	position: relative;
+	.article-body-wrapper {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.article-body-wrapper {
+	padding-left: $global-padding;
+	padding-right: $global-padding;
+}
+
+// home page
+.home {
+	.features-grid .post-content {
+		display: none;
+	}
+}

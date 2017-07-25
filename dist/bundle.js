@@ -14441,7 +14441,7 @@ Tabs.defaults = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(40);
 
 
 /***/ }),
@@ -14463,46 +14463,53 @@ var _slickCarousel = __webpack_require__(38);
 
 var _slickCarousel2 = _interopRequireDefault(_slickCarousel);
 
+var _getImageBrightness = __webpack_require__(39);
+
+var _getImageBrightness2 = _interopRequireDefault(_getImageBrightness);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Your JavaScript goes here
-(0, _jquery2.default)(document).foundation();
-
 (0, _jquery2.default)(document).ready(function () {
-	var wh = document.documentElement.clientHeight;
-	var ww = document.documentElement.clientWidth;
-	var headerHeight = (0, _jquery2.default)('header').height();
-	var footerHeight = (0, _jquery2.default)('footer').height();
+	var wh = document.documentElement.clientHeight,
+	    ww = document.documentElement.clientWidth,
+	    headerHeight = (0, _jquery2.default)('#header').outerHeight(),
+	    footerHeight = (0, _jquery2.default)('#footer').outerHeight();
 
 	// active states
 	var activeLinks = (0, _jquery2.default)('ul a[href="https://' + location.host + '/' + location.pathname.split('/')[1] + '"]');
 	activeLinks.addClass('active');
 
-	// full screen
-	if (ww > 768) {
-		(0, _jquery2.default)('[rel="fullscreen"]').css('height', wh);
-		(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', wh - headerHeight - footerHeight);
-	} else {
-		(0, _jquery2.default)('[rel="fullscreen"]').css('height', wh * 0.9);
+	function fillscreen() {
+		var pageTitleHeight = (0, _jquery2.default)('.page-title').outerHeight();
+		// if (ww > 768) {
+		var fillHeight = wh - headerHeight - footerHeight - 80;
+
+		(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh);
+		(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', fillHeight);
+		(0, _jquery2.default)('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight);
+
+		if ((0, _jquery2.default)('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
+			(0, _jquery2.default)('[rel="pagefill"]').addClass('abs-centered');
+		} else {
+			(0, _jquery2.default)('[rel="pagefill"]').removeClass('abs-centered');
+		}
+		// } else {
+		(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh * 0.9);
+		// }
 	}
+	fillscreen();
 
 	window.addEventListener('resize', function () {
 		wh = document.documentElement.clientHeight;
 		ww = document.documentElement.clientWidth;
-		if (ww > 768) {
-			(0, _jquery2.default)('[rel="fullscreen"]').css('height', wh);
-			(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', wh - headerHeight - footerHeight);
-		} else {
-			(0, _jquery2.default)('[rel="fullscreen"]').css('height', wh * 0.9);
-		}
+		fillscreen();
 	});
 
 	window.addEventListener('orientationchange', function () {
 		wh = document.documentElement.clientHeight;
 		ww = document.documentElement.clientWidth;
-		(0, _jquery2.default)('[rel="fullscreen"]').css('height', wh);
-		(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', wh - headerHeight - footerHeight);
-		(0, _jquery2.default)('body').removeClass('open');
+		(0, _jquery2.default)('body').removeClass('menu-open');
+		fillscreen();
 	});
 
 	(0, _jquery2.default)('.slider').slick({
@@ -14537,11 +14544,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	// mobile nav
 	(0, _jquery2.default)('.menu-toggle').on('click', function (e) {
 		e.preventDefault();
-		(0, _jquery2.default)('body').toggleClass('open');
+		(0, _jquery2.default)('body').toggleClass('menu-open');
 	});
 
 	// sticky nav
-	var $header = (0, _jquery2.default)('header');
+	var $header = (0, _jquery2.default)('#header');
 	var st = window.scrollY;
 	var tempSt = 0;
 	var offset = 300;
@@ -14564,6 +14571,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	};
 
 	(0, _jquery2.default)(window).on('scroll', detectScroll);
+
+	(0, _jquery2.default)('.article-item').each(function () {
+		var image = (0, _jquery2.default)(this).find('img')[0];
+		(0, _getImageBrightness2.default)(image.src, function (br) {
+			if (br > 180) {
+				(0, _jquery2.default)(image).addClass('border');
+			}
+		});
+	});
+	setTimeout(function () {
+		(0, _jquery2.default)(document).foundation();
+	}, 50);
+
+	_foundationSites2.default.reInit('equalizer');
 });
 
 /***/ }),
@@ -23989,6 +24010,53 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+function getImageBrightness(imageSrc, callback) {
+	var img = document.createElement('img');
+	img.src = imageSrc;
+	img.style.display = 'none';
+	document.body.appendChild(img);
+
+	var colorSum = 0;
+
+	img.onload = function () {
+		// create canvas
+		var canvas = document.createElement('canvas');
+		canvas.width = this.width;
+		canvas.height = this.height;
+
+		var ctx = canvas.getContext('2d');
+		ctx.drawImage(this, 0, 0);
+
+		var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		var data = imageData.data;
+		var r, g, b, avg;
+
+		for (var x = 0, len = data.length; x < len; x += 4) {
+			r = data[x];
+			g = data[x + 1];
+			b = data[x + 2];
+
+			avg = Math.floor((r + g + b) / 3);
+			colorSum += avg;
+		}
+
+		var brightness = Math.floor(colorSum / (this.width * this.height));
+		callback(brightness);
+	};
+}
+
+exports.default = getImageBrightness;
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

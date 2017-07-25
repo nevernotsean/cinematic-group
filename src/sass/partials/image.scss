@@ -1,9 +1,12 @@
 .bg {
 	background: url() center center no-repeat;
+	min-height: 450px;
 	&-cover {
+		@extend .bg;
 		background-size: cover;
 	}
 	&-contain {
+		@extend .bg;
 		background-size: contain;
 	}
 }

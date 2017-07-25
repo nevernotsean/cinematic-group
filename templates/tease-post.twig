@@ -1,10 +1,24 @@
-<article>
-  <img src="http://unsplash.it/800/450.jpg" alt="">
-  <header>
-    Featured | 6.15.2017
-  </header>
-  <h2>PUBLIC ACCESS TV RELEASES “END OF AN ERA” VIDEO</h2>
-  <footer>
-    <a href="#">Read More</a>
-  </footer>
+<article class="grid-y article-item post-category-{{post.category}}" id="post-{{post.ID}}" data-equalizer-watch>
+  <div class="cell grow">
+    <a href="{{post.link}}">
+      <img src="{{ post.thumbnail.src | resize(500, 300) }}" srcset="{{ post.thumbnail.src | resize(500, 300) | retina(1) }} 1x,
+      {{ post.thumbnail.src | resize(500, 300) | retina(2) }}  2x,
+      {{ post.thumbnail.src | resize(500, 300) | retina(3) }}  3x,
+      {{ post.thumbnail.src | resize(500, 300) | retina(4) }}  4x" alt="">
+      <header>
+        <span class="post-category">{{post.category}}</span>
+        <span class="divider"> | </span>
+        <span class="post-date">{{post.date|date('n.j.Y')}}</span>
+      </header>
+      <h2 class="post-title">{{post.title}}</h2>
+      <div class="post-content">
+        {{ post.post_content|excerpt(15) }}
+      </div>
+    </a>
+  </div>
+  <div class="cell">
+    <footer>
+      <a href="{{post.link}}">Read More</a>
+    </footer>
+  </div>
 </article>

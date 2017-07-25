@@ -2,49 +2,35 @@
 
 {% block content %}
     <div class="hero">
-        <div class="placeholder bg-cover"></div>
-        <div class="hero-content">
+        <div class="bg-cover" style="background-image: url({{theme.path}}/static/img/jba-aaba.jpg)"></div>
+        <!-- <div class="hero-content">
             <h1>Hero Title</h1>
-        </div>
+        </div> -->
     </div>
     <div class="content-wrapper">
-      <section class="grid-container">
+      <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
         <div class="grid-x grid-padding-x small-up-1 medium-up-2">
+          {% for post in features %}
           <div class="cell">
             {% include 'tease-post.twig' %}
           </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
+          {% endfor %}
         </div>
       </section>
-      <section class="grid-container">
+      <section class="grid-container" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
         <div class="grid-x grid-padding-x small-up-1 medium-up-3">
+          {% for post in news %}
           <div class="cell">
             {% include 'tease-post.twig' %}
           </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
-          <div class="cell">
-            {% include 'tease-post.twig' %}
-          </div>
+          {% endfor %}
         </div>
       </section>
       <section class="grid-container">
         <div class="grid-x grid-padding-x grid-padding-y small-up-1 medium-up-3">
           <div class="cell">
             <a class="image-block">
-              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <img src="{{theme.path}}/static/img/shop-tout.jpg" alt="">
               <div class="overlay">
                 <h2>Cinematic Shop</h2>
                 <p>Shop Now</p>
@@ -53,7 +39,7 @@
           </div>
           <div class="cell">
             <a class="image-block">
-              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <img src="{{theme.path}}/static/img/radio-tout.jpg" alt="">
               <div class="overlay">
                 <h2>Cinematic Radio</h2>
                 <p>Listen Now</p>
@@ -62,7 +48,7 @@
           </div>
           <div class="cell">
             <a class="image-block">
-              <img src="http://unsplash.it/800/450.jpg" alt="">
+              <img src="{{theme.path}}/static/img/tv-tout.jpg" alt="">
               <div class="overlay">
                 <h2>Cinematic TV</h2>
                 <p>Watch Now</p>

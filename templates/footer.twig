@@ -1,35 +1,34 @@
-<footer>
-  <div class="grid-container">
-    <div class="grid-x grid-padding-x grid-padding-y">
-      <div class="medium-4 cell">
-        <form class="" action="index.html" method="post">
-          <div class="input-group" style="margin-bottom: 0;">
-            <input class="input-group-field" type="text">
-            <div class="input-group-button">
-              <input type="submit" class="button" value="Submit">
-            </div>
+<div class="grid-container">
+  <hr class="black">
+  <div class="grid-x grid-padding-x grid-padding-y">
+    <div class="medium-5 cell">
+      <form class="" action="index.html" method="post">
+        <div class="input-group" style="margin-bottom: 0;">
+          <input class="input-group-field" type="text" placeholder="Sign up for our monthly newsletter.">
+          <div class="input-group-button">
+            <input type="submit" class="button" value="Submit">
           </div>
-        </form>
-      </div>
-      <div class="cell auto">
-        <ul class="menu simple social">
-          {% include 'social-links.twig' %}
-        </ul>
-      </div>
+        </div>
+      </form>
     </div>
-    <div class="grid-x grid-padding-x grid-padding-y sub-footer">
-      <div class="small-12 cell medium-shrink">
-        <span><i class="fa fa-copyright"></i> {{"now"|date('Y')}} Cinematic Music Group</span>
-      </div>
-      <div class="small-12 cell medium-shrink">
-        <span>All Rights Reserved</span>
-      </div>
-      <div class="small-12 cell medium-shrink">
-        <a href="#">PRIVACY POLICY / TERMS & CONDITIONS</a>
-      </div>
-      <div class="auto cell text-right">
-        <a href="#">Site By: <img src="http://placehold.it/50x25.jpg" alt=""></a>
-      </div>
+    <div class="cell auto">
+      <ul class="menu simple social">
+        {% include 'social-links.twig' %}
+      </ul>
     </div>
   </div>
-</footer>
+  <div class="grid-x grid-padding-x grid-padding-y sub-footer">
+    <div class="small-12 cell medium-shrink">
+      <span><i class="fa fa-copyright"></i> {{"now"|date('Y')}} Cinematic Music Group</span>
+    </div>
+    <div class="small-12 cell medium-shrink">
+      <span>All Rights Reserved</span>
+    </div>
+    <div class="small-12 cell medium-shrink">
+      <a href="#">PRIVACY POLICY / TERMS & CONDITIONS</a>
+    </div>
+    <div class="auto cell text-right">
+      <a href="#">Site By: <img class="footer-logo" src="{{theme.path}}/static/img/nn-logo.png" alt=""></a>
+    </div>
+  </div>
+</div>
