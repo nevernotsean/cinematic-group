@@ -2,7 +2,7 @@ import $ from 'jquery'
 import Foundation from 'foundation-sites'
 import slick from 'slick-carousel'
 import getImageBrightness from './getImageBrightness.js'
-import Barba from 'barba.js'
+import barbaApp from './barbaConfig.js'
 
 var wh = document.documentElement.clientHeight,
 	ww = document.documentElement.clientWidth,
@@ -77,16 +77,13 @@ function stickyNav() {
 	$(window).on('scroll', detectScroll)
 }
 
-function handlePageLoad() {
+function refreshPageLoad() {
 	// active states
 	var activeLinks = $('a[href="' + location.href + '"]')
 
 	$('a.active').removeClass('active')
 
-	activeLinks.addClass('active')
-
-	// active fillscreen util
-	fillscreen()
+	$('a[href="' + location.href + '"]').addClass('active')
 
 	// run slick
 	$('.slider').each(function() {
@@ -108,20 +105,34 @@ function handlePageLoad() {
 			}
 		})
 	})
+
+	// active fillscreen util
+	fillscreen()
+
+	// run foundation
+	$(document).foundation()
+}
+
+function updateBodyClasses(newPageRawHTML) {
+	var response = newPageRawHTML.replace(
+		/(<\/?)body( .+?)?>/gi,
+		'$1notbody$2>',
+		newPageRawHTML
+	)
+	var bodyClasses = $(response).filter('notbody').attr('class')
+	$('body').attr('class', bodyClasses)
+}
+
+function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
+	refreshPageLoad()
+	updateBodyClasses(newPageRawHTML)
 }
 
 $(document).ready(function() {
-	Barba.Pjax.Dom.containerClass = 'content-wrapper'
-	Barba.Pjax.Dom.wrapperId = 'content'
-	Barba.Pjax.start()
-
-	Barba.Dispatcher.on('transitionCompleted', handlePageLoad)
-
+	barbaApp(handleNewPageReady)
 	addEventListeners()
-	handlePageLoad()
+	refreshPageLoad()
 	stickyNav()
-
-	$(document).foundation()
 
 	setTimeout(function() {
 		if ($('[data-equalizer]').length) {

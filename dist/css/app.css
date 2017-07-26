@@ -8266,6 +8266,17 @@ article.article-item .post-content {
   text-align: center;
 }
 
+.page-template-timber-releases-page-custom .post-type-muso-album .post-date,
+.page-template-timber-releases-page-custom .post-type-muso-album .post-content,
+.page-template-timber-releases-page-custom .post-type-muso-album .post-category,
+.page-template-timber-releases-page-custom .post-type-muso-album footer {
+  display: none;
+}
+
+.page-template-timber-releases-page-custom .post-type-muso-album .post-tags {
+  display: initial !important;
+}
+
 /*Global*/
 
 .fa.fa-volume-up:before {

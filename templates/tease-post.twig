@@ -6,7 +6,7 @@
       {{ post.thumbnail.src | resize(500, 300) | retina(3) }}  3x,
       {{ post.thumbnail.src | resize(500, 300) | retina(4) }}  4x" alt="">
       <header>
-        <span class="post-tags" style="display: none;">{{ post.tags }} <span class="divider"> | </span></span>
+        <span class="post-tags" style="display: none;">{{ post.tags | first }}</span>
         <span class="post-category">{{post.category}} <span class="divider"> | </span></span>
         <span class="post-date">{{post.date|date('n.j.Y')}}</span>
       </header>

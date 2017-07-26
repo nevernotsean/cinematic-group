@@ -41,3 +41,18 @@
 		}
 	}
 }
+
+// releases page
+.page-template-timber-releases-page-custom {
+	.post-type-muso-album {
+		.post-date,
+		.post-content,
+		.post-category,
+		footer {
+			display: none;
+		}
+		.post-tags {
+			display: initial !important;
+		}
+	}
+}
