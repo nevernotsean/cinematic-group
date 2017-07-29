@@ -8189,7 +8189,7 @@ article.article-item .post-content {
   font-family: 'FranchiseFree-Bold', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  margin: 50px;
+  padding-top: 50px;
 }
 
 .blog-nav .base-title {
@@ -8230,7 +8230,8 @@ article.article-item .post-content {
   font-family: 'FranchiseFree-Bold', sans-serif;
   text-transform: uppercase;
   text-align: center;
-  margin: 50px 0;
+  padding: 50px 0;
+  margin: 0;
 }
 
 .article-body.abs-centered {
@@ -8253,7 +8254,8 @@ article.article-item .post-content {
 }
 
 .post-type-archive-portfolio .base-title {
-  margin: 50px 0;
+  padding: 50px 0;
+  margin: 0;
 }
 
 .post-type-archive-portfolio .post-type-portfolio header > span,

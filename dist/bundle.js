@@ -14441,7 +14441,7 @@ Tabs.defaults = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(20);
-module.exports = __webpack_require__(41);
+module.exports = __webpack_require__(42);
 
 
 /***/ }),
@@ -14467,7 +14467,7 @@ var _getImageBrightness = __webpack_require__(39);
 
 var _getImageBrightness2 = _interopRequireDefault(_getImageBrightness);
 
-var _barbaConfig = __webpack_require__(53);
+var _barbaConfig = __webpack_require__(40);
 
 var _barbaConfig2 = _interopRequireDefault(_barbaConfig);
 
@@ -24078,6 +24078,59 @@ exports.default = getImageBrightness;
 /* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _barba = __webpack_require__(41);
+
+var _barba2 = _interopRequireDefault(_barba);
+
+var _FadeTransition = __webpack_require__(54);
+
+var _FadeTransition2 = _interopRequireDefault(_FadeTransition);
+
+var _StaggeredFadeTransition = __webpack_require__(55);
+
+var _StaggeredFadeTransition2 = _interopRequireDefault(_StaggeredFadeTransition);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function barbaApp(pageCallback) {
+	_barba2.default.Pjax.getTransition = function () {
+		if ((0, _jquery2.default)('.article-item').length) {
+			return _StaggeredFadeTransition2.default;
+		}
+		return _FadeTransition2.default;
+	};
+
+	_barba2.default.Pjax.Dom.containerClass = 'content-wrapper';
+	_barba2.default.Pjax.Dom.wrapperId = 'content';
+	_barba2.default.Pjax.start();
+
+	_barba2.default.Dispatcher.on('newPageReady', pageCallback);
+
+	_barba2.default.Dispatcher.on('linkClicked', function (htmlel, e) {
+		if ((0, _jquery2.default)(htmlel).hasClass('ab-item')) {
+			window.location = htmlel.href;
+			return false;
+		}
+	});
+}
+
+exports.default = barbaApp;
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
 		module.exports = factory();
@@ -25790,13 +25843,12 @@ return /******/ (function(modules) { // webpackBootstrap
 //# sourceMappingURL=barba.js.map
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 42 */,
 /* 43 */,
 /* 44 */,
 /* 45 */,
@@ -25807,7 +25859,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 50 */,
 /* 51 */,
 /* 52 */,
-/* 53 */
+/* 53 */,
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25821,79 +25874,94 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _barba = __webpack_require__(40);
+var _barba = __webpack_require__(41);
 
 var _barba2 = _interopRequireDefault(_barba);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function barbaApp(pageCallback) {
-	var FadeTransition = _barba2.default.BaseTransition.extend({
-		start: function start() {
-			/**
-     * This function is automatically called as soon the Transition starts
-     * this.newContainerLoading is a Promise for the loading of the new container
-     * (Barba.js also comes with an handy Promise polyfill!)
-     */
+var FadeTransition = _barba2.default.BaseTransition.extend({
+	start: function start() {
+		var _this = this;
 
-			// As soon the loading is finished and the old page is faded out, let's fade the new page
-			Promise.all([this.newContainerLoading, this.fadeOut()]).then(this.fadeIn.bind(this));
-		},
+		Promise.all([this.newContainerLoading, this.fadeOut()]).then(function () {
+			return _this.fadeIn();
+		});
+	},
+	fadeOut: function fadeOut() {
+		return (0, _jquery2.default)(this.oldContainer).animate({ opacity: 0 }).promise();
+	},
+	fadeIn: function fadeIn() {
+		var _this2 = this;
 
-		fadeOut: function fadeOut() {
-			/**
-     * this.oldContainer is the HTMLElement of the old Container
-     */
+		var $el = (0, _jquery2.default)(this.newContainer);
 
-			return (0, _jquery2.default)(this.oldContainer).animate({ opacity: 0 }).promise();
-		},
+		(0, _jquery2.default)(this.oldContainer).hide();
 
-		fadeIn: function fadeIn() {
-			var _this2 = this;
+		$el.css({
+			visibility: 'visible',
+			opacity: 0
+		});
 
-			/**
-     * this.newContainer is the HTMLElement of the new Container
-     * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-     * Please note, newContainer is available just after newContainerLoading is resolved!
-     */
+		$el.animate({ opacity: 1 }, 400, function () {
+			_this2.done();
+		});
+	}
+});
 
-			var _this = this;
-			var $el = (0, _jquery2.default)(this.newContainer);
+exports.default = FadeTransition;
 
-			(0, _jquery2.default)(this.oldContainer).hide();
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
 
-			$el.css({
-				visibility: 'visible',
-				opacity: 0
-			});
+"use strict";
 
-			$el.animate({ opacity: 1 }, 400, function () {
-				_this2.done();
-			});
-		}
-	});
 
-	/**
- * Next step, you have to tell Barba to use the new Transition
- */
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
-	_barba2.default.Pjax.getTransition = function () {
-		/**
-   * Here you can use your own logic!
-   * For example you can use different Transition based on the current page or link...
-   */
+var _jquery = __webpack_require__(0);
 
-		return FadeTransition;
-	};
+var _jquery2 = _interopRequireDefault(_jquery);
 
-	_barba2.default.Pjax.Dom.containerClass = 'content-wrapper';
-	_barba2.default.Pjax.Dom.wrapperId = 'content';
-	_barba2.default.Pjax.start();
+var _barba = __webpack_require__(41);
 
-	_barba2.default.Dispatcher.on('newPageReady', pageCallback);
-}
+var _barba2 = _interopRequireDefault(_barba);
 
-exports.default = barbaApp;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var StaggeredFadeTransition = _barba2.default.BaseTransition.extend({
+	start: function start() {
+		var _this = this;
+
+		Promise.all([this.newContainerLoading, this.fadeOut()]).then(function () {
+			return _this.fadeIn();
+		});
+	},
+	fadeOut: function fadeOut() {
+		return (0, _jquery2.default)(this.oldContainer).animate({ opacity: 0 }).promise();
+	},
+	fadeIn: function fadeIn() {
+		var _this2 = this;
+
+		var $el = (0, _jquery2.default)(this.newContainer);
+
+		(0, _jquery2.default)(this.oldContainer).hide();
+
+		$el.css({
+			visibility: 'visible',
+			opacity: 0
+		});
+
+		$el.animate({ opacity: 1 }, 400, function () {
+			_this2.done();
+		});
+	}
+});
+
+exports.default = StaggeredFadeTransition;
 
 /***/ })
 /******/ ]);

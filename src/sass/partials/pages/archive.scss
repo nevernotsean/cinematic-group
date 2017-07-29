@@ -1,7 +1,7 @@
 .base-title {
 	@include bold-title;
 	text-align: center;
-	margin: 50px;
+	padding-top: 50px;
 
 	.blog-nav & {
 		margin-bottom: 0px;
