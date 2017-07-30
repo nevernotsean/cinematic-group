@@ -5,7 +5,16 @@
 		<div class="row column post-header">
 			<h1 class="h4 text-center">{{post.title}}</h1>
 			<div class="grid-container">
+				{% if post.get_field('purchase_links') %}
+					<div class="flex-album-list">
+						{% for purchase_link in post.get_field('purchase_links') %}
+							<a class="albumlink" href="{{purchase_link.link}}" target="_blank">{{purchase_link.link_name}}</a>
+							{% if loop.last != true and loop.length != 1 %}  |  {% endif %}
+						{% endfor %}
+					</div>
+				{% else %}
 				<div class="albumlist-wrapper"></div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="grid-container post-body">
@@ -16,7 +25,16 @@
 				<div class="small-12 medium-6 cell">
 					<section class="article-content">
 						<div class="post-date">Released: {{post.date|date('n.j.Y')}}</div>
-						<div class="article-body">{{post.content}}</div>
+						<div class="article-body">
+							<div class="track-list">
+								{{post.content}}
+							</div>
+							{% if post.custom.album_description %}
+							<div class="album-description">
+								{{post.custom.album_description}}
+							</div>
+							{% endif %}
+						</div>
 					</section>
 				</div>
 			</div>

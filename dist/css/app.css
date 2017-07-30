@@ -8422,7 +8422,7 @@ article.article-item.post-type-muso-album .post-tags {
 
 .single-muso-album .article-body .track-list {
   overflow-y: scroll;
-  border-bottom: 2px solid black;
+  max-height: 300px;
 }
 
 .single-muso-album .article-body .track-list:before {
@@ -8450,6 +8450,26 @@ article.article-item.post-type-muso-album .post-tags {
   letter-spacing: 0.15em;
   border-bottom: 1px solid #ececec;
   line-height: 1;
+}
+
+.single-muso-album .article-body .album-description {
+  position: relative;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.single-muso-album .article-body .album-description:before {
+  content: 'About the Album';
+  display: block;
+  position: absolute;
+  top: -2.2em;
+  left: 0;
+  width: 100%;
+  font-size: 11px;
+  font-weight: bolder;
+  padding-bottom: 8px;
+  margin-top: 12px;
+  border-bottom: 2px solid black;
 }
 
 .single-muso-album .flex-album-list {

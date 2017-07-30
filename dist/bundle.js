@@ -16297,11 +16297,17 @@ function refreshPageLoad() {
 	if ((0, _jquery2.default)('.single-muso-album').length) {
 		var $articleBody = (0, _jquery2.default)('.single-muso-album .article-body'),
 		    $albumLinks = $articleBody.find('p a.albumlink'),
-		    $albumList = $articleBody.find('ol').wrap('<div class="track-list"></div>'),
+		    $albumList = $articleBody.find('ol'),
 		    $albumArt = (0, _jquery2.default)('.single-muso-album .album-art');
 		var $trackList = $articleBody.find('.track-list');
 
-		$trackList.css('max-height', $albumArt.innerWidth());
+		if (!(0, _jquery2.default)('.album-description').length) {
+			$trackList.css('max-height', $albumArt.innerHeight() - 20);
+		}
+
+		if (_foundationSites2.default.MediaQuery.current == 'Small') {
+			$trackList.css('max-height', 'none');
+		}
 
 		if ($albumLinks.length) {
 			var _$albumList = $albumLinks.parent('p').addClass('flex-album-list');

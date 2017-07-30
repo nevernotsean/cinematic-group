@@ -113,13 +113,17 @@ function refreshPageLoad() {
 	if ($('.single-muso-album').length) {
 		let $articleBody = $('.single-muso-album .article-body'),
 			$albumLinks = $articleBody.find('p a.albumlink'),
-			$albumList = $articleBody
-				.find('ol')
-				.wrap('<div class="track-list"></div>'),
+			$albumList = $articleBody.find('ol'),
 			$albumArt = $('.single-muso-album .album-art')
 		let $trackList = $articleBody.find('.track-list')
 
-		$trackList.css('max-height', $albumArt.innerWidth())
+		if (!$('.album-description').length) {
+			$trackList.css('max-height', $albumArt.innerHeight() - 20)
+		}
+
+		if (Foundation.MediaQuery.current == 'Small') {
+			$trackList.css('max-height', 'none')
+		}
 
 		if ($albumLinks.length) {
 			let $albumList = $albumLinks.parent('p').addClass('flex-album-list')
