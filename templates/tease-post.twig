@@ -1,17 +1,30 @@
+{% if square is empty %}
+  {% set square = false %}
+{% endif %}
 <article class="grid-y article-item post-type-{{post.type}} post-category-{{post.category}}" id="post-{{post.ID}}" data-equalizer-watch>
   <div class="cell grow">
     <a href="{{post.link}}">
-      <img src="{{ post.thumbnail.src | resize(500, 300) }}" srcset="{{ post.thumbnail.src | resize(500, 300) | retina(1) }} 1x,
-      {{ post.thumbnail.src | resize(500, 300) | retina(2) }}  2x,
-      {{ post.thumbnail.src | resize(500, 300) | retina(3) }}  3x,
-      {{ post.thumbnail.src | resize(500, 300) | retina(4) }}  4x" alt="">
+
+      {% if square == true %}
+        <img src="{{ post.thumbnail.src | resize(500, 500) }}" srcset="{{ post.thumbnail.src | resize(500, 500) | retina(1) }} 1x,
+        {{ post.thumbnail.src | resize(500, 500) | retina(2) }}  2x,
+        {{ post.thumbnail.src | resize(500, 500) | retina(3) }}  3x,
+        {{ post.thumbnail.src | resize(500, 500) | retina(4) }}  4x" alt="">
+      {% else %}
+        <img src="{{ post.thumbnail.src | resize(500, 300) }}" srcset="{{ post.thumbnail.src | resize(500, 300) | retina(1) }} 1x,
+        {{ post.thumbnail.src | resize(500, 300) | retina(2) }}  2x,
+        {{ post.thumbnail.src | resize(500, 300) | retina(3) }}  3x,
+        {{ post.thumbnail.src | resize(500, 300) | retina(4) }}  4x" alt="">
+      {% endif %}
       <header>
-        <span class="post-tags" style="display: none;">{{ post.tags | first }}</span>
         <span class="post-category">{{post.category}} <span class="divider"> | </span></span>
         <span class="post-date">{{post.date|date('n.j.Y')}}</span>
       </header>
       <h2 class="post-title">{{post.title}}</h2>
       <div class="post-content">{{ post.post_content|excerpt(15) }}</div>
+      {% if post.type == 'muso-album' %}
+        <p class="post-artist">{{ post.terms('artist') | first }}</p>
+      {% endif %}
     </a>
   </div>
   <div class="cell">

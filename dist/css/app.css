@@ -2899,6 +2899,7 @@ h1,
 h2,
 h3,
 h4,
+article.article-item.post-type-muso-album .post-title,
 h5,
 h6,
 pre,
@@ -2939,6 +2940,7 @@ h1,
 h2,
 h3,
 h4,
+article.article-item.post-type-muso-album .post-title,
 h5,
 h6 {
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -2952,6 +2954,7 @@ h1 small,
 h2 small,
 h3 small,
 h4 small,
+article.article-item.post-type-muso-album .post-title small,
 h5 small,
 h6 small {
   line-height: 0;
@@ -2979,7 +2982,8 @@ h3 {
   margin-bottom: 0.5rem;
 }
 
-h4 {
+h4,
+article.article-item.post-type-muso-album .post-title {
   font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
@@ -3013,7 +3017,8 @@ h6 {
     font-size: 1.9375rem;
   }
 
-  h4 {
+  h4,
+  article.article-item.post-type-muso-album .post-title {
     font-size: 1.5625rem;
   }
 
@@ -7726,6 +7731,28 @@ a.thumbnail image {
   display: none;
 }
 
+iframe {
+  border: none;
+}
+
+.align-center {
+  align-items: center;
+  justify-content: center;
+}
+
+hr.black {
+  border-top: 2px solid black;
+}
+
+.single-line-height {
+  line-height: 0.6;
+}
+
+.post-header {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
 @font-face {
   font-family: 'FranchiseFree-Bold';
   src: url(/wp-content/themes/cg-nn-theme/dist/fonts/Franchise-Free-Bold.ttf), url(/wp-content/themes/cg-nn-theme/dist/fonts/Franchise-Free-Bold.ttf) format("truetype");
@@ -7744,6 +7771,7 @@ h1,
 h2,
 h3,
 h4,
+article.article-item.post-type-muso-album .post-title,
 h5,
 h6 {
   font-family: 'FranchiseFree-Bold', sans-serif;
@@ -7807,6 +7835,44 @@ article.article-item footer a:hover::after {
 
 .bg-contain {
   background-size: contain;
+}
+
+.fa.fa-volume-up:before {
+  content: '';
+}
+
+.fa.fa-volume-up {
+  width: 25px;
+  height: 25px;
+  background: url(/wp-content/themes/cg-nn-theme/dist/img/volume-on.svg) no-repeat center center;
+}
+
+.fa.fa-volume-off:before {
+  content: '';
+}
+
+.fa.fa-volume-off {
+  width: 25px;
+  height: 25px;
+  background: url(/wp-content/themes/cg-nn-theme/dist/img/volume-off.svg) no-repeat center center;
+}
+
+i.fa.fa-bars:before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background: url(/wp-content/themes/cg-nn-theme/dist/img/hamburguesa_bttn.svg) no-repeat no-repeat;
+  background-size: 25px;
+  display: inline-block;
+}
+
+i.fa.fa-times:before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  background: url(/wp-content/themes/cg-nn-theme/dist/img/close_bttn.svg) no-repeat no-repeat;
+  background-size: 25px;
+  display: inline-block;
 }
 
 section:not(#content) {
@@ -8155,6 +8221,24 @@ article.article-item .post-content {
   padding: 20px 0 0 0;
 }
 
+article.article-item.post-type-muso-album {
+  margin-bottom: 16.66667px !important;
+}
+
+article.article-item.post-type-muso-album header,
+article.article-item.post-type-muso-album footer,
+article.article-item.post-type-muso-album .post-content {
+  display: none;
+}
+
+article.article-item.post-type-muso-album .post-title {
+  margin-top: 16.66667px;
+}
+
+article.article-item.post-type-muso-album .post-tags {
+  display: initial !important;
+}
+
 .image-block {
   position: relative;
   display: block;
@@ -8268,55 +8352,121 @@ article.article-item .post-content {
   text-align: center;
 }
 
-.page-template-timber-releases-page-custom .post-type-muso-album .post-date,
-.page-template-timber-releases-page-custom .post-type-muso-album .post-content,
-.page-template-timber-releases-page-custom .post-type-muso-album .post-category,
-.page-template-timber-releases-page-custom .post-type-muso-album footer {
-  display: none;
+.single .post-header {
+  padding: 50px 0;
 }
 
-.page-template-timber-releases-page-custom .post-type-muso-album .post-tags {
-  display: initial !important;
+.single .post-header .blog-author {
+  margin-bottom: 0;
 }
 
-/*Global*/
-
-.fa.fa-volume-up:before {
-  content: '';
+.single .article-body {
+  margin: 50px 0;
 }
 
-.fa.fa-volume-up {
-  width: 25px;
-  height: 25px;
-  background: url(/wp-content/themes/cg-nn-theme/dist/img/volume-on.svg) no-repeat center center;
+.single .article-body p iframe {
+  margin: 30px 0;
 }
 
-.fa.fa-volume-off:before {
-  content: '';
+.single .article-body a {
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
-.fa.fa-volume-off {
-  width: 25px;
-  height: 25px;
-  background: url(/wp-content/themes/cg-nn-theme/dist/img/volume-off.svg) no-repeat center center;
+.single .article-body iframe {
+  max-width: 100%;
 }
 
-i.fa.fa-bars:before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  background: url(/wp-content/themes/cg-nn-theme/dist/img/hamburguesa_bttn.svg) no-repeat no-repeat;
-  background-size: 25px;
-  display: inline-block;
+.single .single-hero-image {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
 }
 
-i.fa.fa-times:before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  background: url(/wp-content/themes/cg-nn-theme/dist/img/close_bttn.svg) no-repeat no-repeat;
-  background-size: 25px;
-  display: inline-block;
+.single .more-posts article.article-item {
+  margin-bottom: 0;
+}
+
+.single .addtoany_share_save_container.addtoany_content_bottom {
+  text-align: center;
+}
+
+.single-portfolio .article-body {
+  margin: 0;
+}
+
+.single-portfolio .more-posts {
+  padding-top: 50px;
+}
+
+.single-muso-album .purchase-links {
+  margin-bottom: 0;
+}
+
+.single-muso-album .article-content {
+  position: relative;
+}
+
+.single-muso-album .article-content .post-date {
+  position: absolute;
+  top: -2.2em;
+  right: 0;
+  font-size: 11px;
+  font-weight: bolder;
+  padding-bottom: 8px;
+}
+
+.single-muso-album .article-body {
+  margin-top: 20px;
+}
+
+.single-muso-album .article-body .track-list {
+  overflow-y: scroll;
+  border-bottom: 2px solid black;
+}
+
+.single-muso-album .article-body .track-list:before {
+  content: 'Track List';
+  display: block;
+  position: absolute;
+  top: -2.2em;
+  left: 0;
+  width: 100%;
+  font-size: 11px;
+  font-weight: bolder;
+  padding-bottom: 8px;
+  border-bottom: 2px solid black;
+}
+
+.single-muso-album .article-body .track-list ol {
+  margin: 0;
+}
+
+.single-muso-album .article-body .track-list li {
+  padding: 17px 0;
+  list-style: none;
+  font-size: 12px;
+  font-weight: bolder;
+  letter-spacing: 0.15em;
+  border-bottom: 1px solid #ececec;
+  line-height: 1;
+}
+
+.single-muso-album .flex-album-list {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.single-muso-album .flex-album-list .albumlink {
+  font-family: 'HelveticaNeue', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 10px;
+  text-align: center;
+  flex: 0 1 auto;
 }
 
 /*special anchors*/

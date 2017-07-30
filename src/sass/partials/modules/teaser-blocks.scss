@@ -34,6 +34,22 @@ article.article-item {
 		font-size: 11px;
 		padding: 20px 0 0 0;
 	}
+	// albums teasers
+	&.post-type-muso-album {
+		header,
+		footer,
+		.post-content {
+			display: none;
+		}
+		.post-title {
+			@extend h4;
+			margin-top: $spacing-base / 3;
+		}
+		.post-tags {
+			display: initial !important;
+		}
+		margin-bottom: $spacing-base / 3 !important;
+	}
 }
 
 .image-block {

@@ -6,7 +6,7 @@ module.exports = {
 	context: path.resolve(__dirname, './src'),
 	entry: ['./js/app.js', './sass/app.scss'],
 	output: {
-		path: path.resolve(__dirname, './dist/'),
+		path: path.resolve(__dirname, './dist'),
 		filename: 'bundle.js',
 		publicPath: '/wp-content/themes/cg-nn-theme/dist'
 	},
@@ -55,10 +55,10 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new ExtractTextPlugin('css/app.css')],
-	devServer: {
-		contentBase: path.resolve(__dirname, './static/')
-	}
+	plugins: [new ExtractTextPlugin('css/app.css')]
+	// devServer: {
+	// 	contentBase: path.resolve(__dirname, './static/')
+	// }
 }
 
 // WIP https://github.com/JonathanMH/webpack-scss-sass-file

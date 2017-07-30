@@ -109,6 +109,29 @@ function refreshPageLoad() {
 	// active fillscreen util
 	fillscreen()
 
+	// On single release post (muso-album post-type), fix the album links
+	if ($('.single-muso-album').length) {
+		let $articleBody = $('.single-muso-album .article-body'),
+			$albumLinks = $articleBody.find('p a.albumlink'),
+			$albumList = $articleBody
+				.find('ol')
+				.wrap('<div class="track-list"></div>'),
+			$albumArt = $('.single-muso-album .album-art')
+		let $trackList = $articleBody.find('.track-list')
+
+		$trackList.css('max-height', $albumArt.innerWidth())
+
+		if ($albumLinks.length) {
+			let $albumList = $albumLinks.parent('p').addClass('flex-album-list')
+			let $albumclone = $albumList.clone()
+
+			$albumclone.find('br').replaceWith('|')
+			$albumList.hide()
+
+			$('.albumlist-wrapper').append($albumclone)
+		}
+	}
+
 	// run foundation
 	$(document).foundation()
 }

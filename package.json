@@ -6,7 +6,7 @@
 	"scripts": {
 		"compress": "webpack -p",
 		"build": "webpack",
-		"watch": "webpack -w"
+		"start": "webpack -w"
 	},
 	"repository": {
 		"type": "git",

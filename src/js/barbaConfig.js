@@ -15,7 +15,7 @@ function barbaApp(pageCallback) {
 	Barba.Pjax.Dom.wrapperId = 'content'
 	Barba.Pjax.start()
 
-	Barba.Dispatcher.on('newPageReady', pageCallback)
+	Barba.Dispatcher.on('transitionCompleted', pageCallback)
 
 	Barba.Dispatcher.on('linkClicked', function(htmlel, e) {
 		if ($(htmlel).hasClass('ab-item')) {

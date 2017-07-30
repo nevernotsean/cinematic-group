@@ -1,0 +1,21 @@
+iframe {
+	border: none;
+}
+
+.align-center {
+	align-items: center;
+	justify-content: center;
+}
+
+hr.black {
+	border-top: 2px solid black;
+}
+
+.single-line-height {
+	line-height: 0.6;
+}
+
+.post-header {
+	visibility: visible !important;
+	opacity: 1 !important;
+}

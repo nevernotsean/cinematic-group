@@ -14,18 +14,15 @@ $post = Timber::query_post();
 $context['post'] = $post;
 
 $args = array(
-	'post_type' => 'post',
-	'post_status' => 'publish'
+	'post_type' => 'muso-album',
+	'artist' => $post->slug
 );
-$posts = Timber::get_posts($args);
-shuffle($posts);
+$related_albums = Timber::get_posts($args);
 
-$more_posts = array_slice($posts, 1, 3);
-
-$context['more_posts'] = $more_posts;
+$context['related_albums'] = $related_albums;
 
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {
-	Timber::render( array( 'single-' . $post->ID . '.twig', 'single-' . $post->post_type . '.twig', 'single.twig' ), $context );
+	Timber::render( array( 'single-roster.twig' ), $context );
 }

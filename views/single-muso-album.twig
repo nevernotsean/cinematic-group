@@ -2,27 +2,20 @@
 
 {% block content %}
 	<div class="content-wrapper">
-		<div class="row column">
-			<h1 class="h4 text-center" style="margin: 30px 0;">{{post.title}}</h1>
+		<div class="row column post-header">
+			<h1 class="h4 text-center">{{post.title}}</h1>
+			<div class="grid-container">
+				<div class="albumlist-wrapper"></div>
+			</div>
 		</div>
-		<div class="grid-container">
+		<div class="grid-container post-body">
 			<div class="grid-x grid-padding-x">
-				<div class="small-12 medium-offset-2 medium-4 cell">
-					<img src="{{post.thumbnail.src("large")}}" alt="">
+				<div class="small-12 medium-6 cell">
+					<img class="album-art" src="{{post.thumbnail.src("large")}}" alt="">
 				</div>
-				<div class="small-12 medium-4 medium-centered cell">
+				<div class="small-12 medium-6 cell">
 					<section class="article-content">
-						<p class="blog-author">{{ post.post_date|date}}</p>
-						<ul class="no-bullet purchase-links">
-							{% for item in post.get_field('links') %}
-									{% set field = item.icon %}
-									<li>
-										<a href="{{item.url}}" class="">
-											{% include 'icons.twig' ignore missing %}{% if field != 'No Icon' %}  |  {% endif %}{{item.label}}
-										</a>
-									</li>
-							{% endfor %}
-						</ul>
+						<div class="post-date">Released: {{post.date|date('n.j.Y')}}</div>
 						<div class="article-body">{{post.content}}</div>
 					</section>
 				</div>

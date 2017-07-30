@@ -9,6 +9,7 @@
 // @import "~slick-carousel/slick/slick-theme.scss";
 
 // partials
+@import "partials/global.scss";
 @import "partials/typography.scss";
 @import "partials/image.scss";
 @import "partials/spacing.scss";
@@ -21,44 +22,8 @@
 
 @import "partials/pages/archive.scss";
 @import "partials/pages/page.scss";
+@import "partials/pages/single.scss";
 /// temp legacy from JBA
-
-/*Global*/
-.fa.fa-volume-up:before {
-	content: '';
-}
-
-.fa.fa-volume-up {
-	width: 25px;
-	height: 25px;
-	background: url(../static/img/volume-on.svg) no-repeat center center;
-}
-
-.fa.fa-volume-off:before {
-	content: '';
-}
-
-.fa.fa-volume-off {
-	width: 25px;
-	height: 25px;
-	background: url(../static/img/volume-off.svg) no-repeat center center;
-}
-i.fa.fa-bars:before {
-	content: '';
-	width: 25px;
-	height: 25px;
-	background: url(../static/img/hamburguesa_bttn.svg) no-repeat no-repeat;
-	background-size: 25px;
-	display: inline-block;
-}
-i.fa.fa-times:before {
-	content: '';
-	width: 25px;
-	height: 25px;
-	background: url(../static/img/close_bttn.svg) no-repeat no-repeat;
-	background-size: 25px;
-	display: inline-block;
-}
 
 // body,
 // html {

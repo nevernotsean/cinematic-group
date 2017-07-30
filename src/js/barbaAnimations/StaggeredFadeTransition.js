@@ -8,20 +8,39 @@ const StaggeredFadeTransition = Barba.BaseTransition.extend({
 		)
 	},
 	fadeOut: function() {
-		return $(this.oldContainer).animate({ opacity: 0 }).promise()
+		$('body').animate({ scrollTop: 0 }, 500, 'swing', () => {
+			return $(this.oldContainer)
+				.find('.post-header, .post-body')
+				.animate({ opacity: 0 })
+				.promise()
+		})
 	},
 	fadeIn: function() {
-		var $el = $(this.newContainer)
+		var $el = $(this.newContainer),
+			$title = $el.find('.post-header'),
+			$content = $el.find('.post-body')
 
 		$(this.oldContainer).hide()
 
 		$el.css({
 			visibility: 'visible',
+			opacity: 1
+		})
+
+		$title.css({
+			visibility: 'visible',
 			opacity: 0
 		})
 
-		$el.animate({ opacity: 1 }, 400, () => {
-			this.done()
+		$content.css({
+			visibility: 'visible',
+			opacity: 0
+		})
+
+		$title.animate({ opacity: 1 }, 400, () => {
+			$content.animate({ opacity: 1 }, 400, () => {
+				this.done()
+			})
 		})
 	}
 })
