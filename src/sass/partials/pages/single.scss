@@ -43,6 +43,12 @@
 }
 
 .single-muso-album {
+	.artist-link {
+		@include small-type;
+		font-weight: bold;
+		text-transform: capitalize;
+		letter-spacing: 0.1em;
+	}
 	.purchase-links {
 		margin-bottom: 0;
 	}
@@ -108,6 +114,9 @@
 				border-bottom: 2px solid black;
 			}
 		}
+	}
+	.more-posts {
+		@include whitespace-top;
 	}
 	.flex-album-list {
 		display: flex;

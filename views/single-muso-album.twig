@@ -2,42 +2,64 @@
 
 {% block content %}
 	<div class="content-wrapper">
-		<div class="row column post-header">
-			<h1 class="h4 text-center">{{post.title}}</h1>
+		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
 			<div class="grid-container">
-				{% if post.get_field('purchase_links') %}
-					<div class="flex-album-list">
-						{% for purchase_link in post.get_field('purchase_links') %}
-							<a class="albumlink" href="{{purchase_link.link}}" target="_blank">{{purchase_link.link_name}}</a>
-							{% if loop.last != true and loop.length != 1 %}  |  {% endif %}
-						{% endfor %}
-					</div>
-				{% else %}
-				<div class="albumlist-wrapper"></div>
-				{% endif %}
-			</div>
-		</div>
-		<div class="grid-container post-body">
-			<div class="grid-x grid-padding-x">
-				<div class="small-12 medium-6 cell">
-					<img class="album-art" src="{{post.thumbnail.src("large")}}" alt="">
-				</div>
-				<div class="small-12 medium-6 cell">
-					<section class="article-content">
-						<div class="post-date">Released: {{post.date|date('n.j.Y')}}</div>
-						<div class="article-body">
-							<div class="track-list">
-								{{post.content}}
-							</div>
-							{% if post.custom.album_description %}
-							<div class="album-description">
-								{{post.custom.album_description}}
-							</div>
+				<div class="grid-x grid-padding-x text-center post-header">
+					<div class="cell">
+						<a href="{{ artist_perma }}" class="artist-link">{{ artist_name }}</a>
+						<h1 class="article-h1">{{ post.title }}</h1>
+						<div class="grid-container">
+							{% if post.get_field('purchase_links') %}
+								<div class="flex-album-list">
+									{% for purchase_link in post.get_field('purchase_links') %}
+										<a class="albumlink" href="{{purchase_link.link}}" target="_blank">{{purchase_link.link_name}}</a>
+										{% if loop.last != true and loop.length != 1 %}  |  {% endif %}
+									{% endfor %}
+								</div>
+							{% else %}
+							<div class="albumlist-wrapper"></div>
 							{% endif %}
 						</div>
-					</section>
+					</div>
+				</div>
+				<div class="post-body">
+					<div class="grid-x grid-padding-x grid-padding-y">
+						<div class="cell medium-6">
+							<img class="single-hero-image" src="{{post.thumbnail | resize(1200) }}" alt="">
+						</div>
+						<div class="cell medium-6">
+							<section class="article-content">
+								<div class="post-date">Released: {{post.date|date('n.j.Y')}}</div>
+								<div class="article-body">
+									<div class="track-list">
+										{{post.content}}
+									</div>
+									{% if post.custom.album_description %}
+									<div class="album-description">
+										{{post.custom.album_description}}
+									</div>
+									{% endif %}
+								</div>
+							</section>
+						</div>
+					</div>
+					<div class="more-posts">
+						<div class="grid-x grid-padding-x">
+							<div class="cell">
+								<h2 class="single-line-height">More Cinematic Releases</h2>
+								<hr class="black">
+							</div>
+						</div>
+						<div class="grid-x grid-padding-x small-up-1 medium-up-4">
+							{% for post in more_albums %}
+								<div class="cell">
+									{% include 'tease-post.twig' with { 'square': true } %}
+								</div>
+							{% endfor %}
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
+		</article>
 	</div><!-- /content-wrapper -->
 {% endblock %}

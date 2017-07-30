@@ -8399,6 +8399,15 @@ article.article-item.post-type-muso-album .post-tags {
   padding-top: 50px;
 }
 
+.single-muso-album .artist-link {
+  font-family: 'HelveticaNeue', sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  letter-spacing: 0.1em;
+}
+
 .single-muso-album .purchase-links {
   margin-bottom: 0;
 }
@@ -8470,6 +8479,10 @@ article.article-item.post-type-muso-album .post-tags {
   padding-bottom: 8px;
   margin-top: 12px;
   border-bottom: 2px solid black;
+}
+
+.single-muso-album .more-posts {
+  padding-top: 50px;
 }
 
 .single-muso-album .flex-album-list {
