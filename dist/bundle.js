@@ -16233,7 +16233,6 @@ function fillscreen() {
 	// }
 }
 
-// sticky nav
 function stickyNav() {
 	var $header = (0, _jquery2.default)('#header'),
 	    st = window.scrollY,
@@ -16261,39 +16260,7 @@ function stickyNav() {
 	(0, _jquery2.default)(window).on('scroll', detectScroll);
 }
 
-function refreshPageLoad() {
-	// active states
-	var activeLinks = (0, _jquery2.default)('a[href="' + location.href + '"]');
-
-	(0, _jquery2.default)('a.active').removeClass('active');
-
-	(0, _jquery2.default)('a[href="' + location.href + '"]').addClass('active');
-
-	// run slick
-	(0, _jquery2.default)('.slider').each(function () {
-		var slides = (0, _jquery2.default)(this).find('.slide');
-		if (slides.length > 1) {
-			(0, _jquery2.default)(this).slick({
-				arrows: true,
-				dots: true
-			});
-		}
-	});
-
-	// add borders to images
-	(0, _jquery2.default)('.article-item').each(function () {
-		var image = (0, _jquery2.default)(this).find('img')[0];
-		(0, _getImageBrightness2.default)(image.src, function (br) {
-			if (br > 180) {
-				(0, _jquery2.default)(image).addClass('border');
-			}
-		});
-	});
-
-	// active fillscreen util
-	fillscreen();
-
-	// On single release post (muso-album post-type), fix the album links
+function albumScripts() {
 	if ((0, _jquery2.default)('.single-muso-album').length) {
 		var $articleBody = (0, _jquery2.default)('.single-muso-album .article-body'),
 		    $albumLinks = $articleBody.find('p a.albumlink'),
@@ -16319,27 +16286,71 @@ function refreshPageLoad() {
 			(0, _jquery2.default)('.albumlist-wrapper').append($albumclone);
 		}
 	}
-
-	// run foundation
-	(0, _jquery2.default)(document).foundation();
 }
 
 function updateBodyClasses(newPageRawHTML) {
+	if (!newPageRawHTML) {
+		console.log('!newPageRawHTML');
+		return;
+	}
 	var response = newPageRawHTML.replace(/(<\/?)body( .+?)?>/gi, '$1notbody$2>', newPageRawHTML);
 	var bodyClasses = (0, _jquery2.default)(response).filter('notbody').attr('class');
 	(0, _jquery2.default)('body').attr('class', bodyClasses);
 }
 
+function activateLinks() {
+	// active states
+	var activeLinks = (0, _jquery2.default)('a[href="' + location.href + '"]');
+
+	(0, _jquery2.default)('a.active').removeClass('active');
+
+	(0, _jquery2.default)('a[href="' + location.href + '"]').addClass('active');
+}
+
+function runSlick() {
+	(0, _jquery2.default)('.slider').each(function () {
+		var slides = (0, _jquery2.default)(this).find('.slide');
+		if (slides.length > 1) {
+			(0, _jquery2.default)(this).slick({
+				arrows: true,
+				dots: true
+			});
+		}
+	});
+}
+
+function borderImages() {
+	(0, _jquery2.default)('.article-item').each(function () {
+		var image = (0, _jquery2.default)(this).find('img')[0];
+		(0, _getImageBrightness2.default)(image.src, function (br) {
+			if (br > 180) {
+				(0, _jquery2.default)(image).addClass('border');
+			}
+		});
+	});
+}
+
 function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
-	refreshPageLoad();
 	updateBodyClasses(newPageRawHTML);
+	stickyNav();
+	fillscreen();
+}
+
+function handleTransitionComplete() {
+	activateLinks();
+	runSlick();
+	borderImages();
+	albumScripts();
+
+	// run foundation
+	(0, _jquery2.default)(document).foundation();
 }
 
 (0, _jquery2.default)(document).ready(function () {
-	(0, _barbaConfig2.default)(handleNewPageReady);
-	addEventListeners();
-	refreshPageLoad();
-	stickyNav();
+	handleNewPageReady();
+	handleTransitionComplete();
+
+	(0, _barbaConfig2.default)(handleNewPageReady, handleTransitionComplete);
 
 	setTimeout(function () {
 		if ((0, _jquery2.default)('[data-equalizer]').length) {
@@ -25845,7 +25856,7 @@ var _StaggeredFadeTransition2 = _interopRequireDefault(_StaggeredFadeTransition)
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function barbaApp(pageCallback) {
+function barbaApp(handleNewPageReady, handleTransitionComplete) {
 	_barba2.default.Pjax.getTransition = function () {
 		if ((0, _jquery2.default)('.article-item').length) {
 			return _StaggeredFadeTransition2.default;
@@ -25857,7 +25868,8 @@ function barbaApp(pageCallback) {
 	_barba2.default.Pjax.Dom.wrapperId = 'content';
 	_barba2.default.Pjax.start();
 
-	_barba2.default.Dispatcher.on('transitionCompleted', pageCallback);
+	_barba2.default.Dispatcher.on('newPageReady', handleNewPageReady);
+	_barba2.default.Dispatcher.on('transitionCompleted', handleTransitionComplete);
 
 	_barba2.default.Dispatcher.on('linkClicked', function (htmlel, e) {
 		if ((0, _jquery2.default)(htmlel).hasClass('ab-item')) {

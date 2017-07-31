@@ -3,7 +3,7 @@ import Barba from 'barba.js'
 import FadeTransition from './barbaAnimations/FadeTransition.js'
 import StaggeredFadeTransition from './barbaAnimations/StaggeredFadeTransition.js'
 
-function barbaApp(pageCallback) {
+function barbaApp(handleNewPageReady, handleTransitionComplete) {
 	Barba.Pjax.getTransition = function() {
 		if ($('.article-item').length) {
 			return StaggeredFadeTransition
@@ -15,7 +15,8 @@ function barbaApp(pageCallback) {
 	Barba.Pjax.Dom.wrapperId = 'content'
 	Barba.Pjax.start()
 
-	Barba.Dispatcher.on('transitionCompleted', pageCallback)
+	Barba.Dispatcher.on('newPageReady', handleNewPageReady)
+	Barba.Dispatcher.on('transitionCompleted', handleTransitionComplete)
 
 	Barba.Dispatcher.on('linkClicked', function(htmlel, e) {
 		if ($(htmlel).hasClass('ab-item')) {

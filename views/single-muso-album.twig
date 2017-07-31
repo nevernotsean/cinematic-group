@@ -6,7 +6,9 @@
 			<div class="grid-container">
 				<div class="grid-x grid-padding-x text-center post-header">
 					<div class="cell">
-						<a href="{{ artist_perma }}" class="artist-link">{{ artist_name }}</a>
+						<div class="artist-name">
+							<a href="{{ artist_perma }}" class="artist-link">{{ artist_name }}</a>
+						</div>
 						<h1 class="article-h1">{{ post.title }}</h1>
 						<div class="grid-container">
 							{% if post.get_field('purchase_links') %}

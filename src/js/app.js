@@ -49,7 +49,6 @@ function fillscreen() {
 	// }
 }
 
-// sticky nav
 function stickyNav() {
 	var $header = $('#header'),
 		st = window.scrollY,
@@ -77,39 +76,7 @@ function stickyNav() {
 	$(window).on('scroll', detectScroll)
 }
 
-function refreshPageLoad() {
-	// active states
-	var activeLinks = $('a[href="' + location.href + '"]')
-
-	$('a.active').removeClass('active')
-
-	$('a[href="' + location.href + '"]').addClass('active')
-
-	// run slick
-	$('.slider').each(function() {
-		var slides = $(this).find('.slide')
-		if (slides.length > 1) {
-			$(this).slick({
-				arrows: true,
-				dots: true
-			})
-		}
-	})
-
-	// add borders to images
-	$('.article-item').each(function() {
-		var image = $(this).find('img')[0]
-		getImageBrightness(image.src, function(br) {
-			if (br > 180) {
-				$(image).addClass('border')
-			}
-		})
-	})
-
-	// active fillscreen util
-	fillscreen()
-
-	// On single release post (muso-album post-type), fix the album links
+function albumScripts() {
 	if ($('.single-muso-album').length) {
 		let $articleBody = $('.single-muso-album .article-body'),
 			$albumLinks = $articleBody.find('p a.albumlink'),
@@ -135,12 +102,13 @@ function refreshPageLoad() {
 			$('.albumlist-wrapper').append($albumclone)
 		}
 	}
-
-	// run foundation
-	$(document).foundation()
 }
 
 function updateBodyClasses(newPageRawHTML) {
+	if (!newPageRawHTML) {
+		console.log('!newPageRawHTML')
+		return
+	}
 	var response = newPageRawHTML.replace(
 		/(<\/?)body( .+?)?>/gi,
 		'$1notbody$2>',
@@ -150,16 +118,59 @@ function updateBodyClasses(newPageRawHTML) {
 	$('body').attr('class', bodyClasses)
 }
 
+function activateLinks() {
+	// active states
+	var activeLinks = $('a[href="' + location.href + '"]')
+
+	$('a.active').removeClass('active')
+
+	$('a[href="' + location.href + '"]').addClass('active')
+}
+
+function runSlick() {
+	$('.slider').each(function() {
+		var slides = $(this).find('.slide')
+		if (slides.length > 1) {
+			$(this).slick({
+				arrows: true,
+				dots: true
+			})
+		}
+	})
+}
+
+function borderImages() {
+	$('.article-item').each(function() {
+		var image = $(this).find('img')[0]
+		getImageBrightness(image.src, function(br) {
+			if (br > 180) {
+				$(image).addClass('border')
+			}
+		})
+	})
+}
+
 function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
-	refreshPageLoad()
 	updateBodyClasses(newPageRawHTML)
+	stickyNav()
+	fillscreen()
+}
+
+function handleTransitionComplete() {
+	activateLinks()
+	runSlick()
+	borderImages()
+	albumScripts()
+
+	// run foundation
+	$(document).foundation()
 }
 
 $(document).ready(function() {
-	barbaApp(handleNewPageReady)
-	addEventListeners()
-	refreshPageLoad()
-	stickyNav()
+	handleNewPageReady()
+	handleTransitionComplete()
+
+	barbaApp(handleNewPageReady, handleTransitionComplete)
 
 	setTimeout(function() {
 		if ($('[data-equalizer]').length) {

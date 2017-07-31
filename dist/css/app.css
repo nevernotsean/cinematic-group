@@ -8276,7 +8276,9 @@ article.article-item.post-type-muso-album .post-tags {
   padding-top: 50px;
 }
 
-.blog-nav .base-title {
+.archive .blog-nav .base-title,
+.catgeory .blog-nav .base-title,
+.blog .blog-nav .base-title {
   margin-bottom: 0px;
 }
 
@@ -8399,6 +8401,14 @@ article.article-item.post-type-muso-album .post-tags {
   padding-top: 50px;
 }
 
+.single-muso-album .post-header {
+  padding-top: 30px;
+}
+
+.single-muso-album .artist-name {
+  min-height: 14px;
+}
+
 .single-muso-album .artist-link {
   font-family: 'HelveticaNeue', sans-serif;
   font-weight: bold;
@@ -8406,6 +8416,10 @@ article.article-item.post-type-muso-album .post-tags {
   font-weight: bold;
   text-transform: capitalize;
   letter-spacing: 0.1em;
+}
+
+.single-muso-album .albumlist-wrapper {
+  min-height: 25px;
 }
 
 .single-muso-album .purchase-links {
@@ -8461,6 +8475,16 @@ article.article-item.post-type-muso-album .post-tags {
   line-height: 1;
 }
 
+.single-muso-album .article-body .track-list:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.01) 1%, white 100%);
+}
+
 .single-muso-album .article-body .album-description {
   position: relative;
   padding-top: 20px;
@@ -8489,6 +8513,7 @@ article.article-item.post-type-muso-album .post-tags {
   display: flex;
   justify-content: center;
   align-items: baseline;
+  margin-bottom: 0;
 }
 
 .single-muso-album .flex-album-list .albumlink {

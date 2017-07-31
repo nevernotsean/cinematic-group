@@ -43,11 +43,20 @@
 }
 
 .single-muso-album {
+	.post-header {
+		padding-top: 30px;
+	}
+	.artist-name {
+		min-height: 14px;
+	}
 	.artist-link {
 		@include small-type;
 		font-weight: bold;
 		text-transform: capitalize;
 		letter-spacing: 0.1em;
+	}
+	.albumlist-wrapper {
+		min-height: 25px;
 	}
 	.purchase-links {
 		margin-bottom: 0;
@@ -95,6 +104,22 @@
 				border-bottom: 1px solid #ececec;
 				line-height: 1;
 			}
+			&:after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 50px;
+				bottom: 0;
+				left: 0;
+				background-image: (
+					linear-gradient(
+						top,
+						rgba(255, 255, 255, 0) 0%,
+						rgba(255, 255, 255, 0.01) 1%,
+						rgba(255, 255, 255, 1) 100%
+					)
+				);
+			}
 		}
 		.album-description {
 			position: relative;
@@ -122,6 +147,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: baseline;
+		margin-bottom: 0;
 
 		.albumlink {
 			@include small-type;

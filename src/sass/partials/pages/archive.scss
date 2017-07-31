@@ -2,8 +2,12 @@
 	@include bold-title;
 	text-align: center;
 	padding-top: 50px;
+}
 
-	.blog-nav & {
+.archive,
+.catgeory,
+.blog {
+	.blog-nav .base-title {
 		margin-bottom: 0px;
 	}
 }
