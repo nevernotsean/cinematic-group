@@ -30,6 +30,7 @@
 		"webpack-dev-server": "^2.5.0"
 	},
 	"dependencies": {
+		"blazy": "^1.8.2",
 		"fontawesome": "^4.7.2",
 		"foundation-sites": "^6.4.1",
 		"normalize.css": "^7.0.0",

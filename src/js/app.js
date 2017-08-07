@@ -3,6 +3,7 @@ import Foundation from 'foundation-sites'
 import slick from 'slick-carousel'
 import getImageBrightness from './getImageBrightness.js'
 import barbaApp from './barbaConfig.js'
+import Blazy from 'blazy'
 
 var wh = document.documentElement.clientHeight,
 	ww = document.documentElement.clientWidth,
@@ -106,7 +107,7 @@ function albumScripts() {
 
 function updateBodyClasses(newPageRawHTML) {
 	if (!newPageRawHTML) {
-		console.log('!newPageRawHTML')
+		// console.log('!newPageRawHTML')
 		return
 	}
 	var response = newPageRawHTML.replace(
@@ -154,6 +155,27 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	updateBodyClasses(newPageRawHTML)
 	stickyNav()
 	fillscreen()
+	addEventListeners()
+
+	// lazy load images
+	var bLazy = new Blazy({
+		success: function(ele) {
+			const parent = $(ele).parents('[data-equalizer]')
+
+			// equalize
+			parent.foundation('getHeightsByRow', heights => {
+				parent.foundation('applyHeightByRow', heights)
+			})
+
+			// border the image
+			getImageBrightness(ele.src, function(br) {
+				if (br > 180) {
+					$(ele).addClass('border')
+				}
+			})
+		},
+		offset: 150
+	})
 }
 
 function handleTransitionComplete() {
@@ -171,6 +193,10 @@ $(document).ready(function() {
 	handleTransitionComplete()
 
 	barbaApp(handleNewPageReady, handleTransitionComplete)
+
+	// $('[data-equalizer]').on('preequalized.zf.equalizer', () => {
+	// 	console.log('preequalized')
+	// })\
 
 	setTimeout(function() {
 		if ($('[data-equalizer]').length) {

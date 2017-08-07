@@ -8,7 +8,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, './dist'),
 		filename: 'bundle.js',
-		publicPath: '/wp-content/themes/cg-nn-theme/dist'
+		publicPath: '/wp-content/themes/cg-nn-theme/dist/'
 	},
 	externals: {
 		foundation: 'foundation-sites',
@@ -43,21 +43,21 @@ module.exports = {
 				test: [/\.(svg|png|jpg)$/],
 				loader: 'file-loader',
 				options: {
-					name: '/img/[name].[ext]'
+					name: 'img/[name].[ext]'
 				}
 			},
 			{
 				test: [/\.(ttf|eot|woff|woff2)$/],
 				loader: 'file-loader',
 				options: {
-					name: '/fonts/[name].[ext]'
+					name: 'fonts/[name].[ext]'
 				}
 			}
 		]
 	},
 	plugins: [new ExtractTextPlugin('css/app.css')]
 	// devServer: {
-	// 	contentBase: path.resolve(__dirname, './static/')
+	// 	contentBase: path.resolve(__dirname, './static')
 	// }
 }
 

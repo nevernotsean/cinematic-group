@@ -23,6 +23,7 @@
 		width: 100%;
 		height: 600px;
 		object-fit: cover;
+		object-position: 50% 30%;
 	}
 	.more-posts article.article-item {
 		margin-bottom: 0;
@@ -44,7 +45,7 @@
 
 .single-muso-album {
 	.post-header {
-		padding-top: 30px;
+		padding-top: 26px;
 	}
 	.artist-name {
 		min-height: 14px;

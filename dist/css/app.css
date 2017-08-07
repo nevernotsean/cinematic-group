@@ -7837,6 +7837,22 @@ article.article-item footer a:hover::after {
   background-size: contain;
 }
 
+.b-lazy {
+  width: 100%;
+  font-size: 0;
+  opacity: 0;
+  transition: opacity 500ms ease;
+  transition-delay: 300ms;
+}
+
+.b-lazy.b-loaded {
+  opacity: 1;
+}
+
+.b-lazy.b-error {
+  opacity: 1;
+}
+
 .fa.fa-volume-up:before {
   content: '';
 }
@@ -8071,15 +8087,6 @@ button,
   text-transform: uppercase;
 }
 
-i.fa.fa-bars:before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  background: url(/wp-content/themes/cg-nn-theme/dist/img/hamburguesa_bttn.svg) no-repeat no-repeat;
-  background-size: 25px;
-  display: inline-block;
-}
-
 .hero {
   position: relative;
   display: inline-block;
@@ -8182,6 +8189,7 @@ i.fa.fa-bars:before {
 
 article.article-item {
   margin-bottom: calc(100px - 1rem);
+  position: relative;
 }
 
 article.article-item img {
@@ -8339,6 +8347,29 @@ article.article-item.post-type-muso-album .post-tags {
   display: none;
 }
 
+.home .hero {
+  position: relative;
+}
+
+.home .hero > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  height: calc(100% - 50px);
+}
+
+.home .blind {
+  position: fixed;
+  z-index: 99999;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  clip-path: url(#clip);
+  background: white;
+}
+
 .post-type-archive-portfolio .base-title {
   padding: 50px 0;
   margin: 0;
@@ -8383,6 +8414,7 @@ article.article-item.post-type-muso-album .post-tags {
   width: 100%;
   height: 600px;
   object-fit: cover;
+  object-position: 50% 30%;
 }
 
 .single .more-posts article.article-item {
@@ -8402,7 +8434,7 @@ article.article-item.post-type-muso-album .post-tags {
 }
 
 .single-muso-album .post-header {
-  padding-top: 30px;
+  padding-top: 26px;
 }
 
 .single-muso-album .artist-name {

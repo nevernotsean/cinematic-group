@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="offcanvas-wrap">
-			<header id="header">
+			<header id="header" class="{% if function('is_home') %}hidden{% endif %}">
 				{% block header %}
 					<div class="grid-x wrapper hide-for-small-only">
 						<a class="nav-cap hdr-logo-link" href="{{site.url}}" rel="home">

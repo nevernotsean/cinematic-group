@@ -1,13 +1,13 @@
 @font-face {
 	font-family: 'FranchiseFree-Bold';
-	src: url('../static/fonts/Franchise-Free-Bold.ttf'),
-		url('../static/fonts/Franchise-Free-Bold.ttf') format('truetype');
+	src: url('../fonts/Franchise-Free-Bold.ttf'),
+		url('../fonts/Franchise-Free-Bold.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'HelveticaNeue';
-	src: url('../static/fonts/HelveticaNeue.ttf'),
-		url('../static/fonts/HelveticaNeue.ttf') format('truetype');
+	src: url('../fonts/HelveticaNeue.ttf'),
+		url('../fonts/HelveticaNeue.ttf') format('truetype');
 }
 
 @mixin bold-title {
@@ -70,8 +70,7 @@ a {
 		margin-left: 10px;
 		right: 0px;
 		top: 3px;
-		background: url(/wp-content/themes/cg-nn-theme/dist/img/arrow.svg) center
-			center no-repeat;
+		background: url(../img/arrow.svg) center center no-repeat;
 		background-size: 20px;
 		transition: all 300ms ease;
 	}
