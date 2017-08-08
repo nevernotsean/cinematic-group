@@ -5,21 +5,21 @@ import getImageBrightness from './getImageBrightness.js'
 import barbaApp from './barbaConfig.js'
 import Blazy from 'blazy'
 
-var wh = document.documentElement.clientHeight,
-	ww = document.documentElement.clientWidth,
+var wh = window.innerHeight,
+	ww = window.innerWidth,
 	headerHeight = $('#header').outerHeight(),
 	footerHeight = $('#footer').outerHeight()
 
 function addEventListeners() {
 	window.addEventListener('resize', function() {
-		wh = document.documentElement.clientHeight
-		ww = document.documentElement.clientWidth
+		wh = window.innerHeight
+		ww = window.innerWidth
 		fillscreen()
 	})
 
 	window.addEventListener('orientationchange', function() {
-		wh = document.documentElement.clientHeight
-		ww = document.documentElement.clientWidth
+		wh = window.innerHeight
+		ww = window.innerWidth
 		$('body').removeClass('menu-open')
 		fillscreen()
 	})
@@ -33,21 +33,25 @@ function addEventListeners() {
 
 function fillscreen() {
 	var pageTitleHeight = $('.page-title').outerHeight()
-	// if (ww > 768) {
-	var fillHeight = wh - headerHeight - footerHeight - 80
 
-	$('[rel="fullscreen"]').css('min-height', wh)
-	$('[rel="fillscreen"]').css('min-height', fillHeight)
-	$('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight)
+	if (ww > 768) {
+		var fillHeight = wh - headerHeight - footerHeight - 80
 
-	if ($('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
-		$('[rel="pagefill"]').addClass('abs-centered')
+		$('[rel="fullscreen"]').css('min-height', wh)
+		$('[rel="fullscreen"]').css('max-height', wh)
+
+		$('[rel="fillscreen"]').css('min-height', fillHeight)
+
+		$('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight)
+
+		if ($('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
+			$('[rel="pagefill"]').addClass('abs-centered')
+		} else {
+			$('[rel="pagefill"]').removeClass('abs-centered')
+		}
 	} else {
-		$('[rel="pagefill"]').removeClass('abs-centered')
+		$('[rel="fullscreen"]').css('min-height', wh * 0.9)
 	}
-	// } else {
-	$('[rel="fullscreen"]').css('min-height', wh * 0.9)
-	// }
 }
 
 function stickyNav() {
@@ -151,21 +155,66 @@ function borderImages() {
 	})
 }
 
-function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
-	updateBodyClasses(newPageRawHTML)
-	stickyNav()
-	fillscreen()
-	addEventListeners()
+function reflowEqualizer(parent) {
+	if (!parent.length) {
+		return
+	}
+	const plugClass = parent.data('zfPlugin')
 
-	// lazy load images
+	if (!plugClass) {
+		parent.foundation()
+	}
+	parent.foundation('getHeightsByRow', heights => {
+		parent.foundation('applyHeightByRow', heights)
+	})
+}
+
+function PreloadVideo() {
+	var xhr = new XMLHttpRequest()
+	var video = document.getElementById('player')
+
+	if (!video) {
+		return
+	}
+
+	xhr.open('GET', video.getAttribute('data-src'), true)
+	xhr.responseType = 'blob'
+	xhr.onload = function(e) {
+		if (this.status == 200) {
+			var myBlob = this.response
+			var vid = (window.URL ? URL : URL).createObjectURL(myBlob)
+			video.src = vid
+		}
+	}
+
+	xhr.addEventListener('progress', function(data) {
+		var total = data.total,
+			loaded = data.loaded,
+			pct = loaded / total * 100,
+			rounded = Math.floor(pct)
+
+		// console.log('loaded: ', rounded)
+
+		if ($('#loading-container').length) {
+			animateLoadingBar(rounded)
+		}
+	})
+
+	xhr.addEventListener('load', function() {
+		// console.log('load')
+		$(video).css('background-color', '#000')
+		animateCurtain(5000)
+	})
+
+	xhr.send()
+}
+
+function lazyLoadImages() {
 	var bLazy = new Blazy({
 		success: function(ele) {
 			const parent = $(ele).parents('[data-equalizer]')
 
-			// equalize
-			parent.foundation('getHeightsByRow', heights => {
-				parent.foundation('applyHeightByRow', heights)
-			})
+			reflowEqualizer(parent)
 
 			// border the image
 			getImageBrightness(ele.src, function(br) {
@@ -176,6 +225,74 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 		},
 		offset: 150
 	})
+}
+
+function animateLoadingBar(pct) {
+	var barheight = 350 - 350 * pct / 100
+	$('#loading-bar').css('height', barheight + 'px')
+}
+
+function animateCurtain(delay) {
+	var timeout1, timeout2, timeout3
+
+	$('#loading-container').addClass('skip-reveal')
+
+	timeout1 = setTimeout(function() {
+		$('.underside').css('opacity', 0)
+		timeout2 = setTimeout(function() {
+			$('body').css('overflow-y', 'auto').addClass('remove-curtain')
+			timeout3 = setTimeout(function() {
+				$('#loading-container').remove()
+				$('#header').removeClass('hidden')
+			}, 2000)
+		}, delay)
+	}, 1000)
+
+	window.addEventListener('keydown', skipCurtain)
+	window.addEventListener('click', skipCurtain)
+
+	function skipCurtain() {
+		clearTimeout(timeout1)
+		clearTimeout(timeout2)
+		clearTimeout(timeout3)
+		$('body').css('overflow-y', 'auto').addClass('remove-curtain')
+		setTimeout(function() {
+			$('#loading-container').remove()
+			$('#header').removeClass('hidden')
+		}, 2000)
+	}
+}
+
+function homeCurtainSetup() {
+	if ($('.curtain').length) {
+		$('body').css('overflow-y', 'hidden')
+		$('#header').addClass('hidden')
+		$('#content').css('margin-top', 0)
+	} else {
+		$('body').css('overflow-y', '')
+		$('#header').removeClass('hidden')
+		$('#content').css('margin-top', '')
+	}
+}
+
+// Page transition Callbacks
+
+function handleLinkClicked(el, evt) {
+	$('.hdr-logo-link').addClass('loading')
+}
+
+function handleInitStateChange(currentStatus) {}
+
+function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
+	$('.hdr-logo-link').removeClass('loading')
+
+	updateBodyClasses(newPageRawHTML)
+	stickyNav()
+	fillscreen()
+	addEventListeners()
+	lazyLoadImages()
+	PreloadVideo()
+	homeCurtainSetup()
 }
 
 function handleTransitionComplete() {
@@ -192,15 +309,10 @@ $(document).ready(function() {
 	handleNewPageReady()
 	handleTransitionComplete()
 
-	barbaApp(handleNewPageReady, handleTransitionComplete)
-
-	// $('[data-equalizer]').on('preequalized.zf.equalizer', () => {
-	// 	console.log('preequalized')
-	// })\
-
-	setTimeout(function() {
-		if ($('[data-equalizer]').length) {
-			Foundation.reInit('equalizer')
-		}
-	}, 50)
+	barbaApp(
+		handleLinkClicked,
+		handleInitStateChange,
+		handleNewPageReady,
+		handleTransitionComplete
+	)
 })

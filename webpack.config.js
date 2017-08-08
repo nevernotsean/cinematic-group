@@ -40,7 +40,7 @@ module.exports = {
 				})
 			},
 			{
-				test: [/\.(svg|png|jpg)$/],
+				test: [/\.(svg|png|jpg|gif)$/],
 				loader: 'file-loader',
 				options: {
 					name: 'img/[name].[ext]'

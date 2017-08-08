@@ -19,34 +19,6 @@
 	padding-right: $global-padding;
 }
 
-// home page
-.home {
-	.features-grid .post-content {
-		display: none;
-	}
-	.hero {
-		position: relative;
-		> * {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			height: calc(100% - 50px);
-		}
-	}
-	.blind {
-		// display: none;
-		position: fixed;
-		z-index: 99999;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		pointer-events: none;
-		clip-path: url(#clip);
-		background: white;
-	}
-}
-
 // Roster Page
 .post-type-archive-portfolio {
 	.base-title {
