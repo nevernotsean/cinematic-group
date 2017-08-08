@@ -1,5 +1,8 @@
 // home page
 .home {
+	#content {
+		margin-top: 0 !important;
+	}
 	.features-grid .post-content {
 		display: none;
 	}

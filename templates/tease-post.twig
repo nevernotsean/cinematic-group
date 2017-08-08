@@ -10,7 +10,7 @@
       {% if square == true %}
         <img class="b-lazy square" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{{ thumb | resize(500, 500) }}" alt="{{ post.title }}">
       {% else %}
-        <img class="b-lazy" src=data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAADCAQAAADxPw1zAAAADklEQVR42mNkgANGrEwAAGMABP93vXMAAAAASUVORK5CYII= data-src="{{ thumb | resize(500, 300) }}" alt="{{ post.title }}">
+        <img class="b-lazy" src=data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAE0lEQVR42mNk+M9Qz4AEGAkKAACM3wR+BhedNgAAAABJRU5ErkJggg== data-src="{{ thumb | resize(400, 300) }}" alt="{{ post.title }}">
       {% endif %}
       <header>
         {% if post.category %}

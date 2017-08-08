@@ -1,5 +1,5 @@
 article.article-item {
-	margin-bottom: calc(100px - 1rem);
+	margin-bottom: 80px;
 	position: relative;
 
 	img {
@@ -11,11 +11,12 @@ article.article-item {
 	header,
 	footer {
 		line-height: 1;
-		padding: 1rem 0;
+		padding: 20px 0 20px 0;
 		@include small-type;
+		font-size: 10px;
 	}
 	footer {
-		margin-top: calc(40px - 1rem);
+		margin-top: 20px;
 
 		a {
 			@extend .arrow-link;
@@ -34,6 +35,7 @@ article.article-item {
 	.post-content {
 		font-size: 11px;
 		padding: 20px 0 0 0;
+		letter-spacing: 0.02em;
 	}
 	// albums teasers
 	&.post-type-muso-album {

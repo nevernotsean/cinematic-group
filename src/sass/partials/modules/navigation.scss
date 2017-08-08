@@ -26,7 +26,13 @@ header#header {
 		}
 	}
 	.menu-links {
-		width: 600px;
+		width: 680px;
+		align-items: center;
+		justify-content: center;
+		// @extend .expanded;
+		li + li {
+			margin-left: 60px;
+		}
 	}
 	.menu-item {
 		text-align: center;

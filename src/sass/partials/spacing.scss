@@ -12,11 +12,10 @@ $spacing-base: 50px;
 	padding-bottom: $spacing-base;
 }
 
-section:not(#content) {
-	// @include whitespace-vert;
-	@include whitespace-bottom;
-}
-
 .cell.grow {
 	flex: 1 0 auto;
+}
+.divider {
+	margin: 0 5px;
+	text-align: center;
 }

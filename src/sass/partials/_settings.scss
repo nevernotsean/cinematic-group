@@ -144,7 +144,7 @@ $header-styles: (
 	medium:
 		(
 			'h1': ('font-size': 48),
-			'h2': ('font-size': 40),
+			'h2': ('font-size': 36),
 			'h3': ('font-size': 31),
 			'h4': ('font-size': 25),
 			'h5': ('font-size': 20),
@@ -793,7 +793,7 @@ $topbar-unstack-breakpoint: medium;
 $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
-$grid-margin-gutters: (small: 20px, medium: 30px);
+$grid-margin-gutters: (small: 20px, medium: 40px);
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
