@@ -8,16 +8,15 @@ const FadeTransition = Barba.BaseTransition.extend({
 		)
 	},
 	fadeOut: function() {
-		$('body').animate({ scrollTop: 0 }, 500, 'swing', () => {
+		$('body').animate({ scrollTop: 0 }, 400, 'swing', () => {
 			return $(this.oldContainer)
-				.find('.post-header, .post-body')
-				.animate({ opacity: 0 })
+				.find('.post-body')
+				.animate({ opacity: 0 }, 400)
 				.promise()
 		})
 	},
 	fadeIn: function() {
 		var $el = $(this.newContainer),
-			$title = $el.find('.post-header'),
 			$content = $el.find('.post-body')
 
 		$(this.oldContainer).hide()
@@ -27,21 +26,22 @@ const FadeTransition = Barba.BaseTransition.extend({
 			opacity: 1
 		})
 
-		$title.css({
-			visibility: 'visible',
-			opacity: 0
-		})
-
 		$content.css({
 			visibility: 'visible',
 			opacity: 0
 		})
 
-		$title.animate({ opacity: 1 }, 400, () => {
-			$content.animate({ opacity: 1 }, 400, () => {
+		if (!$content.length) {
+			$el.animate({ opacity: 1 }, 400, () => {
 				this.done()
 			})
-		})
+		} else {
+			setTimeout(() => {
+				$content.animate({ opacity: 1 }, 400, () => {
+					this.done()
+				})
+			}, 400)
+		}
 	}
 })
 

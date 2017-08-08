@@ -38,7 +38,6 @@ function fillscreen() {
 		var fillHeight = wh - headerHeight - footerHeight - 80
 
 		$('[rel="fullscreen"]').css('min-height', wh)
-		$('[rel="fullscreen"]').css('max-height', wh)
 
 		$('[rel="fillscreen"]').css('min-height', fillHeight)
 
@@ -90,7 +89,7 @@ function albumScripts() {
 		let $trackList = $articleBody.find('.track-list')
 
 		if (!$('.album-description').length) {
-			$trackList.css('max-height', $albumArt.innerHeight() - 20)
+			$trackList.css('height', $albumArt.innerHeight() - 20)
 		}
 
 		if (Foundation.MediaQuery.current == 'Small') {
@@ -201,7 +200,7 @@ function PreloadVideo() {
 	})
 
 	xhr.addEventListener('load', function() {
-		// console.log('load')
+		console.log('video loaded')
 		$(video).css('background-color', '#000')
 		animateCurtain(5000)
 	})
@@ -235,6 +234,7 @@ function animateLoadingBar(pct) {
 function animateCurtain(delay) {
 	var timeout1, timeout2, timeout3
 
+	window.scrollTo(0, 0)
 	$('#loading-container').addClass('skip-reveal')
 
 	timeout1 = setTimeout(function() {
@@ -265,6 +265,7 @@ function animateCurtain(delay) {
 
 function homeCurtainSetup() {
 	if ($('.curtain').length) {
+		window.scrollTo(0, 0)
 		$('body').css('overflow-y', 'hidden')
 		$('#header').addClass('hidden')
 		$('#content').css('margin-top', 0)
@@ -285,7 +286,6 @@ function handleInitStateChange(currentStatus) {}
 
 function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	$('.hdr-logo-link').removeClass('loading')
-
 	updateBodyClasses(newPageRawHTML)
 	stickyNav()
 	fillscreen()
