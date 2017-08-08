@@ -16192,21 +16192,21 @@ var _blazy2 = _interopRequireDefault(_blazy);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var wh = document.documentElement.clientHeight,
-    ww = document.documentElement.clientWidth,
+var wh = window.innerHeight,
+    ww = window.innerWidth,
     headerHeight = (0, _jquery2.default)('#header').outerHeight(),
     footerHeight = (0, _jquery2.default)('#footer').outerHeight();
 
 function addEventListeners() {
 	window.addEventListener('resize', function () {
-		wh = document.documentElement.clientHeight;
-		ww = document.documentElement.clientWidth;
+		wh = window.innerHeight;
+		ww = window.innerWidth;
 		fillscreen();
 	});
 
 	window.addEventListener('orientationchange', function () {
-		wh = document.documentElement.clientHeight;
-		ww = document.documentElement.clientWidth;
+		wh = window.innerHeight;
+		ww = window.innerWidth;
 		(0, _jquery2.default)('body').removeClass('menu-open');
 		fillscreen();
 	});
@@ -16220,21 +16220,25 @@ function addEventListeners() {
 
 function fillscreen() {
 	var pageTitleHeight = (0, _jquery2.default)('.page-title').outerHeight();
-	// if (ww > 768) {
-	var fillHeight = wh - headerHeight - footerHeight - 80;
 
-	(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh);
-	(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', fillHeight);
-	(0, _jquery2.default)('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight);
+	if (ww > 768) {
+		var fillHeight = wh - headerHeight - footerHeight - 80;
 
-	if ((0, _jquery2.default)('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
-		(0, _jquery2.default)('[rel="pagefill"]').addClass('abs-centered');
+		(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh);
+		(0, _jquery2.default)('[rel="fullscreen"]').css('max-height', wh);
+
+		(0, _jquery2.default)('[rel="fillscreen"]').css('min-height', fillHeight);
+
+		(0, _jquery2.default)('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight);
+
+		if ((0, _jquery2.default)('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
+			(0, _jquery2.default)('[rel="pagefill"]').addClass('abs-centered');
+		} else {
+			(0, _jquery2.default)('[rel="pagefill"]').removeClass('abs-centered');
+		}
 	} else {
-		(0, _jquery2.default)('[rel="pagefill"]').removeClass('abs-centered');
+		(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh * 0.9);
 	}
-	// } else {
-	(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh * 0.9);
-	// }
 }
 
 function stickyNav() {
@@ -16334,21 +16338,66 @@ function borderImages() {
 	});
 }
 
-function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
-	updateBodyClasses(newPageRawHTML);
-	stickyNav();
-	fillscreen();
-	addEventListeners();
+function reflowEqualizer(parent) {
+	if (!parent.length) {
+		return;
+	}
+	var plugClass = parent.data('zfPlugin');
 
-	// lazy load images
+	if (!plugClass) {
+		parent.foundation();
+	}
+	parent.foundation('getHeightsByRow', function (heights) {
+		parent.foundation('applyHeightByRow', heights);
+	});
+}
+
+function PreloadVideo() {
+	var xhr = new XMLHttpRequest();
+	var video = document.getElementById('player');
+
+	if (!video) {
+		return;
+	}
+
+	xhr.open('GET', video.getAttribute('data-src'), true);
+	xhr.responseType = 'blob';
+	xhr.onload = function (e) {
+		if (this.status == 200) {
+			var myBlob = this.response;
+			var vid = (window.URL ? URL : URL).createObjectURL(myBlob);
+			video.src = vid;
+		}
+	};
+
+	xhr.addEventListener('progress', function (data) {
+		var total = data.total,
+		    loaded = data.loaded,
+		    pct = loaded / total * 100,
+		    rounded = Math.floor(pct);
+
+		// console.log('loaded: ', rounded)
+
+		if ((0, _jquery2.default)('#loading-container').length) {
+			animateLoadingBar(rounded);
+		}
+	});
+
+	xhr.addEventListener('load', function () {
+		// console.log('load')
+		(0, _jquery2.default)(video).css('background-color', '#000');
+		animateCurtain(5000);
+	});
+
+	xhr.send();
+}
+
+function lazyLoadImages() {
 	var bLazy = new _blazy2.default({
 		success: function success(ele) {
 			var parent = (0, _jquery2.default)(ele).parents('[data-equalizer]');
 
-			// equalize
-			parent.foundation('getHeightsByRow', function (heights) {
-				parent.foundation('applyHeightByRow', heights);
-			});
+			reflowEqualizer(parent);
 
 			// border the image
 			(0, _getImageBrightness2.default)(ele.src, function (br) {
@@ -16359,6 +16408,74 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 		},
 		offset: 150
 	});
+}
+
+function animateLoadingBar(pct) {
+	var barheight = 350 - 350 * pct / 100;
+	(0, _jquery2.default)('#loading-bar').css('height', barheight + 'px');
+}
+
+function animateCurtain(delay) {
+	var timeout1, timeout2, timeout3;
+
+	(0, _jquery2.default)('#loading-container').addClass('skip-reveal');
+
+	timeout1 = setTimeout(function () {
+		(0, _jquery2.default)('.underside').css('opacity', 0);
+		timeout2 = setTimeout(function () {
+			(0, _jquery2.default)('body').css('overflow-y', 'auto').addClass('remove-curtain');
+			timeout3 = setTimeout(function () {
+				(0, _jquery2.default)('#loading-container').remove();
+				(0, _jquery2.default)('#header').removeClass('hidden');
+			}, 2000);
+		}, delay);
+	}, 1000);
+
+	window.addEventListener('keydown', skipCurtain);
+	window.addEventListener('click', skipCurtain);
+
+	function skipCurtain() {
+		clearTimeout(timeout1);
+		clearTimeout(timeout2);
+		clearTimeout(timeout3);
+		(0, _jquery2.default)('body').css('overflow-y', 'auto').addClass('remove-curtain');
+		setTimeout(function () {
+			(0, _jquery2.default)('#loading-container').remove();
+			(0, _jquery2.default)('#header').removeClass('hidden');
+		}, 2000);
+	}
+}
+
+function homeCurtainSetup() {
+	if ((0, _jquery2.default)('.curtain').length) {
+		(0, _jquery2.default)('body').css('overflow-y', 'hidden');
+		(0, _jquery2.default)('#header').addClass('hidden');
+		(0, _jquery2.default)('#content').css('margin-top', 0);
+	} else {
+		(0, _jquery2.default)('body').css('overflow-y', '');
+		(0, _jquery2.default)('#header').removeClass('hidden');
+		(0, _jquery2.default)('#content').css('margin-top', '');
+	}
+}
+
+// Page transition Callbacks
+
+function handleLinkClicked(el, evt) {
+	(0, _jquery2.default)('.hdr-logo-link').addClass('loading');
+}
+
+function handleInitStateChange(currentStatus) {}
+
+function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
+	(0, _jquery2.default)('.hdr-logo-link').removeClass('loading');
+
+	updateBodyClasses(newPageRawHTML);
+	stickyNav();
+	fillscreen();
+	addEventListeners();
+	lazyLoadImages();
+	PreloadVideo();
+	homeCurtainSetup();
 }
 
 function handleTransitionComplete() {
@@ -16375,17 +16492,7 @@ function handleTransitionComplete() {
 	handleNewPageReady();
 	handleTransitionComplete();
 
-	(0, _barbaConfig2.default)(handleNewPageReady, handleTransitionComplete);
-
-	// $('[data-equalizer]').on('preequalized.zf.equalizer', () => {
-	// 	console.log('preequalized')
-	// })\
-
-	setTimeout(function () {
-		if ((0, _jquery2.default)('[data-equalizer]').length) {
-			_foundationSites2.default.reInit('equalizer');
-		}
-	}, 50);
+	(0, _barbaConfig2.default)(handleLinkClicked, handleInitStateChange, handleNewPageReady, handleTransitionComplete);
 });
 
 /***/ }),
@@ -25879,17 +25986,15 @@ var _FadeTransition = __webpack_require__(42);
 
 var _FadeTransition2 = _interopRequireDefault(_FadeTransition);
 
-var _StaggeredFadeTransition = __webpack_require__(43);
-
-var _StaggeredFadeTransition2 = _interopRequireDefault(_StaggeredFadeTransition);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function barbaApp(handleNewPageReady, handleTransitionComplete) {
+// import StaggeredFadeTransition from './barbaAnimations/StaggeredFadeTransition.js'
+
+function barbaApp(handleLinkClicked, handleInitStateChange, handleNewPageReady, handleTransitionComplete) {
 	_barba2.default.Pjax.getTransition = function () {
-		if ((0, _jquery2.default)('.article-item').length) {
-			return _StaggeredFadeTransition2.default;
-		}
+		// if ($('.article-item').length) {
+		// 	return StaggeredFadeTransition
+		// }
 		return _FadeTransition2.default;
 	};
 
@@ -25897,6 +26002,8 @@ function barbaApp(handleNewPageReady, handleTransitionComplete) {
 	_barba2.default.Pjax.Dom.wrapperId = 'content';
 	_barba2.default.Pjax.start();
 
+	_barba2.default.Dispatcher.on('linkClicked', handleLinkClicked);
+	_barba2.default.Dispatcher.on('initStateChange', handleInitStateChange);
 	_barba2.default.Dispatcher.on('newPageReady', handleNewPageReady);
 	_barba2.default.Dispatcher.on('transitionCompleted', handleTransitionComplete);
 
@@ -25981,76 +26088,7 @@ var FadeTransition = _barba2.default.BaseTransition.extend({
 exports.default = FadeTransition;
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _barba = __webpack_require__(11);
-
-var _barba2 = _interopRequireDefault(_barba);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var StaggeredFadeTransition = _barba2.default.BaseTransition.extend({
-	start: function start() {
-		var _this = this;
-
-		Promise.all([this.newContainerLoading, this.fadeOut()]).then(function () {
-			return _this.fadeIn();
-		});
-	},
-	fadeOut: function fadeOut() {
-		var _this2 = this;
-
-		(0, _jquery2.default)('body').animate({ scrollTop: 0 }, 500, 'swing', function () {
-			return (0, _jquery2.default)(_this2.oldContainer).find('.post-header, .post-body').animate({ opacity: 0 }).promise();
-		});
-	},
-	fadeIn: function fadeIn() {
-		var _this3 = this;
-
-		var $el = (0, _jquery2.default)(this.newContainer),
-		    $title = $el.find('.post-header'),
-		    $content = $el.find('.post-body');
-
-		(0, _jquery2.default)(this.oldContainer).hide();
-
-		$el.css({
-			visibility: 'visible',
-			opacity: 1
-		});
-
-		$title.css({
-			visibility: 'visible',
-			opacity: 0
-		});
-
-		$content.css({
-			visibility: 'visible',
-			opacity: 0
-		});
-
-		$title.animate({ opacity: 1 }, 400, function () {
-			$content.animate({ opacity: 1 }, 400, function () {
-				_this3.done();
-			});
-		});
-	}
-});
-
-exports.default = StaggeredFadeTransition;
-
-/***/ }),
+/* 43 */,
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 

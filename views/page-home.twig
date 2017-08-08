@@ -3,7 +3,7 @@
 {% block content %}
     <div class="content-wrapper">
       <div class="hero" rel="fullscreen">
-          <div class="bg-cover" style="background-image: url({{theme.path}}/static/img/jba-aaba.jpg)"></div>
+        <video poster="data:image/gif,AAAA" playsinline="" autoplay="" loop="" preload="auto" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
       </div>
       <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
         <div class="grid-x grid-padding-x small-up-1 medium-up-2">
@@ -55,6 +55,15 @@
         </div>
       </section>
     </div>
-    
+    <div id="loading-container">
+      <div class="underside"></div>
+      <div id="loading-bar"></div>
+      <div class="curtain">
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-top"></div>
+        <div class="border-bottom"></div>
+      </div>
+    </div>
     <!-- /content-wrapper -->
 {% endblock %}

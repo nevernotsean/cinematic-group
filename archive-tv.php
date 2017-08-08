@@ -39,4 +39,8 @@ $context['posts'] = Timber::get_posts();
 $categories = Timber::get_terms(array('taxonomy' => 'tv_category', 'hide_empty' => true));
 $context['categories'] = $categories;
 
+$context['featured_posts'] = Timber::get_posts(array('tv_category' => 'featured'));
+
+echo "<script> console.dir(" . json_encode($context) . ")</script>";
+
 Timber::render( $templates, $context );
