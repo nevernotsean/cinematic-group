@@ -16306,7 +16306,6 @@ function updateBodyClasses(newPageRawHTML) {
 }
 
 function activateLinks() {
-	// active states
 	var activeLinks = (0, _jquery2.default)('a[href="' + location.href + '"]');
 
 	(0, _jquery2.default)('a.active').removeClass('active');
@@ -16385,7 +16384,7 @@ function PreloadVideo() {
 	xhr.addEventListener('load', function () {
 		console.log('video loaded');
 		(0, _jquery2.default)(video).css('background-color', '#000');
-		animateCurtain(5000);
+		animateCurtain(2000);
 	});
 
 	xhr.send();
@@ -16427,9 +16426,9 @@ function animateCurtain(delay) {
 			timeout3 = setTimeout(function () {
 				(0, _jquery2.default)('#loading-container').remove();
 				(0, _jquery2.default)('#header').removeClass('hidden');
-			}, 2000);
+			}, delay);
 		}, delay);
-	}, 1000);
+	}, delay / 2);
 
 	window.addEventListener('keydown', skipCurtain);
 	window.addEventListener('click', skipCurtain);

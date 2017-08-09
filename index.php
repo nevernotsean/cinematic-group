@@ -12,9 +12,16 @@
  * @subpackage  Timber
  * @since   Timber 0.1
  */
-
+global $paged;
+if (!isset($paged) || !$paged){
+	 $paged = 1;
+}
 $context = Timber::get_context();
-$context['posts'] = Timber::get_posts();
+$context['posts'] = Timber::get_posts(array(
+	'posts_per_page' => 13,
+	'paged' => $paged
+));
+$context['pagination'] = Timber::get_pagination();
 
 $categories = Timber::get_terms(array('taxonomy' => 'category', 'hide_empty' => true));
 $context['categories'] = $categories;

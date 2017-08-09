@@ -22,7 +22,7 @@
         {% endif %}
       </header>
       {% if post.title %}
-        <h2 class="post-title">{{post.title}}</h2>
+        <h2 class="post-title">{{post.title|replace({'<i>': '','</i>': ''})}}</h2>
       {% endif %}
       {% if post.post_content %}
         <div class="post-content">{{ post.post_content|excerpt(15) }}</div>

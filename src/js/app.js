@@ -123,7 +123,6 @@ function updateBodyClasses(newPageRawHTML) {
 }
 
 function activateLinks() {
-	// active states
 	var activeLinks = $('a[href="' + location.href + '"]')
 
 	$('a.active').removeClass('active')
@@ -202,7 +201,7 @@ function PreloadVideo() {
 	xhr.addEventListener('load', function() {
 		console.log('video loaded')
 		$(video).css('background-color', '#000')
-		animateCurtain(5000)
+		animateCurtain(2000)
 	})
 
 	xhr.send()
@@ -244,9 +243,9 @@ function animateCurtain(delay) {
 			timeout3 = setTimeout(function() {
 				$('#loading-container').remove()
 				$('#header').removeClass('hidden')
-			}, 2000)
+			}, delay)
 		}, delay)
-	}, 1000)
+	}, delay / 2)
 
 	window.addEventListener('keydown', skipCurtain)
 	window.addEventListener('click', skipCurtain)
