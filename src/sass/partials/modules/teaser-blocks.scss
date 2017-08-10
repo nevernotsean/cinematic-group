@@ -51,6 +51,10 @@ article.article-item {
 		.post-tags {
 			display: initial !important;
 		}
+		.post-artist {
+			font-size: 11px;
+			letter-spacing: 0.02em;
+		}
 		margin-bottom: $spacing-base / 3 !important;
 	}
 }

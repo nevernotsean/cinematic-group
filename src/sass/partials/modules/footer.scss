@@ -4,6 +4,7 @@
 		justify-content: flex-end;
 		li {
 			@include bold-title;
+			font-size: 18px;
 		}
 	}
 	.sub-footer {
@@ -15,6 +16,8 @@
 	}
 	hr.black {
 		border-top: 2px solid black;
+		margin-top: 10px;
+		margin-bottom: 10px;
 		@include breakpoint(small) {
 			margin-left: 0.625rem;
 			margin-right: 0.625rem;
@@ -31,6 +34,10 @@
 	}
 	form input.button {
 		margin-left: 25px;
-		height: calc(2.5rem + 2px);
+		font-size: 18px;
+	}
+	form input.button,
+	.social {
+		height: 34px;
 	}
 }

@@ -53,8 +53,9 @@ header#header {
 	.social-menu-expand {
 		@include small-type;
 		position: relative;
+		@extend .chevron;
+		@extend .bottom;
 		&:after {
-			@include css-triangle(5px, #000, down);
 			margin-left: 5px;
 		}
 		.social-menu {
@@ -82,7 +83,7 @@ header#header {
 .offcanvas-wrap {
 	transition: transform 500ms ease;
 	.menu-open & {
-		transform: translateX(0%);
+		transform: none;
 	}
 }
 
@@ -116,11 +117,41 @@ a.hdr-logo-link {
 	display: inline-block;
 }
 
+// Mobile Nav
+@include breakpoint(small only) {
+	header#header.hidden {
+		transform: none;
+	}
+}
+body.menu-open {
+	overflow: hidden;
+}
 .mobile-top-bar {
 	position: relative;
+	height: 40px;
+	max-width: 100vw;
+	overflow-x: hidden;
 	.menu-toggle {
 		position: absolute;
 		right: 0;
 		top: 0;
 	}
+	.mobile-logo {
+		height: 40px;
+		padding: 8px;
+		width: auto;
+	}
+}
+
+.offcanvas-menu {
+	z-index: 999;
+	background: white;
+	height: 100vh;
+	a.menu-toggle {
+		float: right;
+	}
+}
+
+.hdr-logo-link-mobile img {
+	width: 50px;
 }

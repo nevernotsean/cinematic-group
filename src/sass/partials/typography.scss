@@ -6,13 +6,16 @@
 
 @font-face {
 	font-family: 'HelveticaNeue';
-	src: url('../fonts/HelveticaNeue.ttf'),
-		url('../fonts/HelveticaNeue.ttf') format('truetype');
+	src: url('../fonts/helveticaneue.ttf'),
+		url('../fonts/helveticaneue.ttf') format('truetype'),
+		url('../fonts/helveticaneue.woff') format('woff'),
+		url('../fonts/helveticaneue.eot') format('eot');
 }
 
 @mixin bold-title {
 	font-family: 'FranchiseFree-Bold', sans-serif;
 	text-transform: uppercase;
+	letter-spacing: 0.1em;
 }
 
 @mixin small-type {

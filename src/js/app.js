@@ -24,6 +24,30 @@ function addEventListeners() {
 		fillscreen()
 	})
 
+	// mute button
+	var video = $('video')[0]
+	var $muteButton = $('.mute')
+	var $icon = $muteButton.find('i.fa')
+
+	if (ww < 768 && video) {
+		video.muted = true
+		$icon.removeClass('fa-volume-up').addClass('fa-volume-off')
+	}
+
+	$muteButton.on('click', function(e) {
+		e.preventDefault()
+
+		var isMuted = video.muted
+
+		if (isMuted === false) {
+			video.muted = true
+			$icon.removeClass('fa-volume-up').addClass('fa-volume-off')
+		} else {
+			video.muted = false
+			$icon.removeClass('fa-volume-off').addClass('fa-volume-up')
+		}
+	})
+
 	// mobile nav
 	$('.menu-toggle').on('click', function(e) {
 		e.preventDefault()
@@ -35,7 +59,7 @@ function fillscreen() {
 	var pageTitleHeight = $('.page-title').outerHeight()
 
 	if (ww > 768) {
-		var fillHeight = wh - headerHeight - footerHeight - 80
+		var fillHeight = wh - headerHeight - footerHeight
 
 		$('[rel="fullscreen"]').css('min-height', wh)
 
@@ -241,7 +265,7 @@ function animateCurtain(delay) {
 		timeout2 = setTimeout(function() {
 			$('body').css('overflow-y', 'auto').addClass('remove-curtain')
 			timeout3 = setTimeout(function() {
-				$('#loading-container').remove()
+				// $('#loading-container').remove()
 				$('#header').removeClass('hidden')
 			}, delay)
 		}, delay)

@@ -2,65 +2,67 @@
 
 {% block content %}
     <div class="content-wrapper">
-        <div class="post-body">
-          <div class="hero" rel="fullscreen">
-            <video poster="data:image/gif,AAAA" playsinline="" autoplay="" loop="" preload="auto" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
-          </div>
-          <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
-            <div class="grid-x grid-padding-x small-up-1 medium-up-2">
-              {% for post in features %}
-              <div class="cell">
-                {% include 'tease-post.twig' %}
-              </div>
-              {% endfor %}
-            </div>
-          </section>
-          <section class="grid-container" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
-            <div class="grid-x grid-padding-x small-up-1 medium-up-3">
-              {% for post in news %}
-              <div class="cell">
-                {% include 'tease-post.twig' %}
-              </div>
-              {% endfor %}
-            </div>
-          </section>
-          <!-- <section class="grid-container">
-            <div class="text-center">
-              <a href="/blog">View More</a>
-            </div>
-          </section> -->
-          <section class="grid-container">
-            <div class="grid-x grid-padding-x grid-padding-y small-up-1 medium-up-3">
-              <div class="cell">
-                <a href="/shop" class="image-block">
-                  <img src="{{theme.path}}/static/img/shop-tout.jpg" alt="">
-                  <div class="overlay">
-                    <h2>Cinematic Shop</h2>
-                    <p>Shop Now</p>
-                  </div>
-                </a>
-              </div>
-              <div class="cell">
-                <a href="/radio" class="image-block">
-                  <img src="{{theme.path}}/static/img/radio-tout.jpg" alt="">
-                  <div class="overlay">
-                    <h2>Cinematic Radio</h2>
-                    <p>Listen Now</p>
-                  </div>
-                </a>
-              </div>
-              <div class="cell">
-                <a href="/tv" class="image-block">
-                  <img src="{{theme.path}}/static/img/tv-tout.jpg" alt="">
-                  <div class="overlay">
-                    <h2>Cinematic TV</h2>
-                    <p>Watch Now</p>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </section>
+      <div class="post-body">
+        <div class="hero">
+          <video poster="data:image/gif,AAAA" playsinline="" autoplay="" loop="" preload="auto" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
+          <a href="#" class="mute hide-for-small-only">
+              <i class="fa fa-volume-up"></i>
+          </a>
         </div>
+        <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
+          <div class="grid-x grid-padding-x small-up-1 medium-up-2">
+            {% for post in features %}
+            <div class="cell">
+              {% include 'tease-post.twig' %}
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        <section class="grid-container" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
+          <div class="grid-x grid-padding-x small-up-1 medium-up-3">
+            {% for post in news %}
+            <div class="cell">
+              {% include 'tease-post.twig' %}
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        <!-- <section class="grid-container">
+          <div class="text-center">
+            <a href="/blog">View More</a>
+          </div>
+        </section> -->
+        <section class="grid-container">
+          <div class="grid-x grid-padding-x grid-padding-y small-up-1 medium-up-3">
+            <div class="cell">
+              <a href="/shop" class="image-block">
+                <img src="{{theme.path}}/static/img/shop-tout.jpg" alt="">
+                <div class="overlay">
+                  <h2>Cinematic Shop</h2>
+                  <p>Shop Now</p>
+                </div>
+              </a>
+            </div>
+            <div class="cell">
+              <a href="/radio" class="image-block">
+                <img src="{{theme.path}}/static/img/radio-tout.jpg" alt="">
+                <div class="overlay">
+                  <h2>Cinematic Radio</h2>
+                  <p>Listen Now</p>
+                </div>
+              </a>
+            </div>
+            <div class="cell">
+              <a href="/tv" class="image-block">
+                <img src="{{theme.path}}/static/img/tv-tout.jpg" alt="">
+                <div class="overlay">
+                  <h2>Cinematic TV</h2>
+                  <p>Watch Now</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
     <div id="loading-container">
