@@ -158,10 +158,11 @@ function runSlick() {
 	$('.carousel').each(function() {
 		var slides = $(this).find('.slide')
 		if (slides.length > 1) {
-			$(this).slick({
+			var $slider = $(this).slick({
 				arrows: false,
 				dots: false,
-				centerPadding: '40px'
+				centerPadding: '40px',
+				focusOnSelect: true
 			})
 		}
 	})

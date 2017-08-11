@@ -93,7 +93,7 @@
 					width: calc(100% - 20px);
 					height: 500px;
 					z-index: 999;
-					transition: all 500ms ease;
+					transition: opacity 500ms ease;
 					transition-delay: 500ms;
 				}
 				.slide-content {
@@ -109,6 +109,18 @@
 					.slide-content {
 						opacity: 1;
 					}
+				}
+				&:hover {
+					cursor: w-resize;
+					&:after {
+						background: rgba(0, 0, 0, 0);
+					}
+				}
+				& + .slide:hover {
+					cursor: e-resize;
+				}
+				&.slick-current {
+					cursor: pointer;
 				}
 			}
 		}

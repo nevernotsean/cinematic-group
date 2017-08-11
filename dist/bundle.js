@@ -16341,10 +16341,11 @@ function runSlick() {
 	(0, _jquery2.default)('.carousel').each(function () {
 		var slides = (0, _jquery2.default)(this).find('.slide');
 		if (slides.length > 1) {
-			(0, _jquery2.default)(this).slick({
+			var $slider = (0, _jquery2.default)(this).slick({
 				arrows: false,
 				dots: false,
-				centerPadding: '40px'
+				centerPadding: '40px',
+				focusOnSelect: true
 			});
 		}
 	});

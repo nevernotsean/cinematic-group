@@ -8364,7 +8364,7 @@ button,
   width: calc(100% - 20px);
   height: 500px;
   z-index: 999;
-  transition: all 500ms ease;
+  transition: opacity 500ms ease;
   transition-delay: 500ms;
 }
 
@@ -8381,6 +8381,22 @@ button,
 
 .hero .carousel .slick-list .slick-slide.slick-current .slide-content {
   opacity: 1;
+}
+
+.hero .carousel .slick-list .slick-slide:hover {
+  cursor: w-resize;
+}
+
+.hero .carousel .slick-list .slick-slide:hover:after {
+  background: transparent;
+}
+
+.hero .carousel .slick-list .slick-slide + .slide:hover {
+  cursor: e-resize;
+}
+
+.hero .carousel .slick-list .slick-slide.slick-current {
+  cursor: pointer;
 }
 
 .slick-prev,
@@ -8660,6 +8676,8 @@ article.article-item.post-type-muso-album .post-artist {
 }
 
 .home .hero .mute i {
+  font-size: 13px;
+  letter-spacing: 0.1em;
   width: auto;
   color: white;
   display: block;
@@ -8685,7 +8703,7 @@ article.article-item.post-type-muso-album .post-artist {
 }
 
 .home #loading-bar {
-  background-color: #aaa;
+  background-color: #666;
   position: fixed;
   width: 100%;
   max-width: 100vw;
@@ -8785,7 +8803,7 @@ article.article-item.post-type-muso-album .post-artist {
   transition: all 1000ms ease;
   transition-delay: 4000ms;
   cursor: pointer;
-  color: #aaa;
+  color: #000;
 }
 
 .home .skip-reveal h2.enter {
