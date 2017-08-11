@@ -26,10 +26,18 @@
 		.mute {
 			display: block;
 			position: absolute;
-			right: 20px;
+			left: 20px;
 			bottom: 20px;
+			color: white;
 			i {
+				width: auto;
+				color: white;
 				display: block;
+				background: none;
+				font-style: normal;
+				&.fa-volume-off {
+					text-decoration: line-through;
+				}
 			}
 		}
 	}
@@ -48,7 +56,7 @@
 		opacity: 1;
 	}
 	#loading-bar {
-		background-color: #666;
+		background-color: #aaa;
 		position: fixed;
 		width: 100%;
 		max-width: 100vw;
@@ -122,5 +130,28 @@
 	}
 	&.remove-curtain .curtain {
 		transform: translateY(-100%);
+	}
+	h2.enter {
+		font-size: 48px;
+		position: absolute;
+		left: 50%;
+		top: calc(50% + 180px);
+		z-index: 999999;
+		transform: translateX(-50%);
+		opacity: 0;
+		transition: all 1000ms ease;
+		transition-delay: 4000ms;
+		cursor: pointer;
+		color: #aaa;
+	}
+	.skip-reveal {
+		h2.enter {
+			opacity: 1;
+		}
+	}
+	&.remove-curtain {
+		h2.enter {
+			display: none;
+		}
 	}
 }

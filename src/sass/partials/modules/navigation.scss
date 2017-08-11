@@ -42,6 +42,9 @@ header#header {
 			font-size: 18px;
 			display: inline-block;
 		}
+		a:hover {
+			@include hover-link;
+		}
 	}
 	.menu-links .menu-item:not(:first-child) {
 		// margin-left: 30px;
@@ -60,6 +63,18 @@ header#header {
 		}
 		.social-menu {
 			display: none;
+			position: absolute;
+			top: 100%;
+			right: 0px;
+			text-align: right;
+			border: 1px solid #cccccc;
+			border-top: 0;
+		}
+		&:hover {
+			cursor: pointer;
+			.social-menu {
+				display: block;
+			}
 		}
 	}
 }

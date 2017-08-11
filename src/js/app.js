@@ -155,12 +155,13 @@ function activateLinks() {
 }
 
 function runSlick() {
-	$('.slider').each(function() {
+	$('.carousel').each(function() {
 		var slides = $(this).find('.slide')
 		if (slides.length > 1) {
 			$(this).slick({
-				arrows: true,
-				dots: true
+				arrows: false,
+				dots: false,
+				centerPadding: '40px'
 			})
 		}
 	})
@@ -225,7 +226,7 @@ function PreloadVideo() {
 	xhr.addEventListener('load', function() {
 		console.log('video loaded')
 		$(video).css('background-color', '#000')
-		animateCurtain(2000)
+		animateCurtain(10000)
 	})
 
 	xhr.send()
@@ -265,7 +266,7 @@ function animateCurtain(delay) {
 		timeout2 = setTimeout(function() {
 			$('body').css('overflow-y', 'auto').addClass('remove-curtain')
 			timeout3 = setTimeout(function() {
-				// $('#loading-container').remove()
+				$('#loading-container').remove()
 				$('#header').removeClass('hidden')
 			}, delay)
 		}, delay)
@@ -290,7 +291,7 @@ function homeCurtainSetup() {
 	if ($('.curtain').length) {
 		window.scrollTo(0, 0)
 		$('body').css('overflow-y', 'hidden')
-		$('#header').addClass('hidden')
+		// $('#header').addClass('hidden')
 		$('#content').css('margin-top', 0)
 	} else {
 		$('body').css('overflow-y', '')

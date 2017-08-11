@@ -6,7 +6,7 @@
         <div class="hero">
           <video poster="data:image/gif,AAAA" playsinline="" autoplay="" loop="" preload="auto" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
           <a href="#" class="mute hide-for-small-only">
-              <i class="fa fa-volume-up"></i>
+              <i class="fa fa-volume-up">Sound</i>
           </a>
         </div>
         <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
@@ -67,7 +67,8 @@
     </div>
     <div id="loading-container">
       <div class="underside"></div>
-      <div id="loading-bar"></div>
+      <div id="loading-bar" style="background-image:url('http://vimeo.com/api/v2/video/{{ post.get_field('vimeo_link')|slice(-16,null) }}.output')"></div>
+      <h2 class="enter">Enter</h2>
       <div class="curtain">
         <div class="border-left"></div>
         <div class="border-right"></div>

@@ -161,3 +161,14 @@
 		}
 	}
 }
+
+.single-radio {
+	article {
+		.article-body {
+			margin: 0;
+			@include breakpoint(small only) {
+				margin: 20px;
+			}
+		}
+	}
+}

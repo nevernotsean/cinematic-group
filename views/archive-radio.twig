@@ -3,30 +3,26 @@
 {% block content %}
 	<div class="content-wrapper">
 		<div class="post-header">
-			<h1 class="base-title text-center">Cinematic TV</h1>
+			<h1 class="base-title text-center">Cinematic Radio</h1>
 			<div class="grid-container">
+				{% if categories | length > 0 %}
 				<div class="post-categories text-center grid-x grid-padding-x">
 					<div class="cell shrink"><a href="{{ site.url }}/tv/">All</a></div>
 					{% for category in categories %}
 						<div class="cell shrink"><a href="{{ site.url }}/{{ category | lower }}/">{{ category }}</a></div>
 					{% endfor %}
 				</div>
+				{% endif %}
 			</div>
 		</div>
 		<div class="grid-container post-body">
-			{% include 'hero-tv.twig' with { posts: posts|slice(null,3) } %}
-			<div class="grid-x grid-padding-x">
-				<div class="cell">
-					<h2 class="single-line-height">All Episodes</h2>
-					<hr class="black">
+				<div class="grid-x grid-padding-x small-up-1 medium-up-4 large-up-4">
+					{% for post in posts %}
+						<div class="cell">
+							{% include 'tease-post.twig' with { 'square': true } %}
+						</div>
+					{% endfor %}
 				</div>
-			</div>
-			<div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">
-				{% for post in posts %}
-					<div class="cell">
-						{% include 'tease-post.twig' %}
-					</div>
-				{% endfor %}
 			</div>
 		</div>
 	</div><!-- /content-wrapper -->

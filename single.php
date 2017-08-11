@@ -14,7 +14,8 @@ $post = Timber::query_post();
 $context['post'] = $post;
 
 $args = array(
-	'post_type' => 'post',
+	'posts_per_page' => -1,
+	'post_type' => $post->post_type,
 	'post_status' => 'publish'
 );
 $posts = Timber::get_posts($args);
@@ -23,6 +24,8 @@ shuffle($posts);
 $more_posts = array_slice($posts, 1, 3);
 
 $context['more_posts'] = $more_posts;
+
+echo "<script> console.dir(" . json_encode($context) . ")</script>";
 
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );

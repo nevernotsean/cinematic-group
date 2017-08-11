@@ -7676,6 +7676,8 @@ header#header .tooltip.align-center.social-menu-expand::before {
   left: 0;
   top: 0;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .slick-track:before,
@@ -7734,10 +7736,16 @@ header#header .tooltip.align-center.social-menu-expand::before {
 }
 
 html,
-body,
-#header {
+body {
   overflow-x: hidden;
   max-width: 100vw;
+}
+
+@media screen and (max-width: 39.9375em) {
+  #header {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
 }
 
 .align-center {
@@ -7859,6 +7867,10 @@ header#header .menu-item * {
 
 header#header .social-menu-expand {
   letter-spacing: 0.1em;
+}
+
+.object-fit {
+  object-fit: cover;
 }
 
 .bg,
@@ -8096,6 +8108,21 @@ header#header .menu-item * {
   display: inline-block;
 }
 
+header#header .menu-item a:hover {
+  position: relative;
+}
+
+header#header .menu-item a:hover:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.25em;
+  width: 100%;
+  width: calc(100% - 3px);
+  height: 1px;
+  background: #000;
+}
+
 header#header .nav-cap {
   text-align: center;
   width: 100px;
@@ -8114,6 +8141,20 @@ header#header .social-menu-expand:after {
 
 header#header .social-menu-expand .social-menu {
   display: none;
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  text-align: right;
+  border: 1px solid #cccccc;
+  border-top: 0;
+}
+
+header#header .social-menu-expand:hover {
+  cursor: pointer;
+}
+
+header#header .social-menu-expand:hover .social-menu {
+  display: block;
 }
 
 @media print, screen and (min-width: 40em) {
@@ -8252,38 +8293,115 @@ button,
   letter-spacing: 2px;
 }
 
-.hero .slider {
+.hero .carousel {
   position: static;
+  width: 100%;
   margin: 0;
   background-color: #fff;
+  opacity: 0;
 }
 
-.hero .slider:not(.slick-slider),
-.hero .slider:not(.slick-slider) .slide {
+.hero .carousel.slick-initialized {
+  opacity: 1;
+}
+
+.hero .carousel:not(.slick-slider),
+.hero .carousel:not(.slick-slider) .slide {
   display: inline-block;
   width: 100%;
 }
 
-.hero .slider .slide {
+.hero .carousel .slide {
   position: relative;
+  width: 100%;
+  height: auto;
 }
 
-.hero .slider .slide.bg-cover {
+.hero .carousel .slide:focus {
+  outline: none;
+}
+
+.hero .carousel .slide img {
+  max-width: none;
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero .carousel .slide.bg-cover {
   background-position-y: 30%;
   min-height: 450px;
 }
 
-.hero .slider .slick-list {
-  display: inline-block;
+.hero .carousel .slide .cell {
+  min-width: 0;
+}
+
+.hero .carousel .slick-list {
   padding-bottom: 50px;
+}
+
+.hero .carousel .slick-list {
+  overflow: visible;
+}
+
+.hero .carousel .slick-list .slick-slide img,
+.hero .carousel .slick-list .slick-slide .rif {
+  margin: 0 10px;
+}
+
+.hero .carousel .slick-list .slick-slide .rif {
+  padding-bottom: 500px;
+}
+
+.hero .carousel .slick-list .slick-slide:after {
+  content: '';
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: calc(100% - 20px);
+  height: 500px;
+  z-index: 999;
+  transition: all 500ms ease;
+  transition-delay: 500ms;
+}
+
+.hero .carousel .slick-list .slick-slide .slide-content {
+  opacity: 0.5;
+  transition: all 500ms ease;
+  transition-delay: 500ms;
+}
+
+.hero .carousel .slick-list .slick-slide.slick-current:after {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero .carousel .slick-list .slick-slide.slick-current .slide-content {
+  opacity: 1;
 }
 
 .slick-prev,
 .slick-next {
   position: absolute;
   top: 50%;
+  top: 250px;
   transform: translateY(-50%);
   z-index: 9;
+  background: #fff;
+  padding: 5px 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  cursor: pointer;
+}
+
+.slick-prev:focus,
+.slick-next:focus {
+  outline: none;
 }
 
 .slick-prev {
@@ -8536,12 +8654,21 @@ article.article-item.post-type-muso-album .post-artist {
 .home .hero .mute {
   display: block;
   position: absolute;
-  right: 20px;
+  left: 20px;
   bottom: 20px;
+  color: white;
 }
 
 .home .hero .mute i {
+  width: auto;
+  color: white;
   display: block;
+  background: none;
+  font-style: normal;
+}
+
+.home .hero .mute i.fa-volume-off {
+  text-decoration: line-through;
 }
 
 .home .underside {
@@ -8558,7 +8685,7 @@ article.article-item.post-type-muso-album .post-artist {
 }
 
 .home #loading-bar {
-  background-color: #666;
+  background-color: #aaa;
   position: fixed;
   width: 100%;
   max-width: 100vw;
@@ -8645,6 +8772,28 @@ article.article-item.post-type-muso-album .post-artist {
 
 .home.remove-curtain .curtain {
   transform: translateY(-100%);
+}
+
+.home h2.enter {
+  font-size: 48px;
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 180px);
+  z-index: 999999;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all 1000ms ease;
+  transition-delay: 4000ms;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.home .skip-reveal h2.enter {
+  opacity: 1;
+}
+
+.home.remove-curtain h2.enter {
+  display: none;
 }
 
 .single .post-header {
@@ -8819,6 +8968,16 @@ article.article-item.post-type-muso-album .post-artist {
   padding: 0 10px;
   text-align: center;
   flex: 0 1 auto;
+}
+
+.single-radio article .article-body {
+  margin: 0;
+}
+
+@media screen and (max-width: 39.9375em) {
+  .single-radio article .article-body {
+    margin: 20px;
+  }
 }
 
 /*special anchors*/

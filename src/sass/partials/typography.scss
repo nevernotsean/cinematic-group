@@ -31,6 +31,20 @@
 	letter-spacing: 0.1em;
 }
 
+@mixin hover-link {
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: -0.25em;
+		width: 100%;
+		width: calc(100% - 3px);
+		height: 1px;
+		background: #000;
+	}
+}
+
 body {
 	font-family: 'HelveticaNeue', sans-serif;
 }
@@ -48,17 +62,7 @@ h6 {
 
 a {
 	&.active {
-		position: relative;
-		&:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: -0.25em;
-			width: 100%;
-			width: calc(100% - 3px);
-			height: 1px;
-			background: #000;
-		}
+		@include hover-link;
 	}
 }
 

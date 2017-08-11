@@ -34,6 +34,6 @@
 		"fontawesome": "^4.7.2",
 		"foundation-sites": "^6.4.1",
 		"normalize.css": "^7.0.0",
-		"slick-carousel": "^1.6.0"
+		"slick-carousel": "^1.7.1"
 	}
 }
