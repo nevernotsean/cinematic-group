@@ -169,7 +169,7 @@ function runSlick() {
 }
 
 function borderImages() {
-	$('.article-item').each(function() {
+	$('.article-item, article').each(function() {
 		var image = $(this).find('img')[0]
 		getImageBrightness(image.src, function(br) {
 			if (br > 180) {
@@ -245,6 +245,11 @@ function lazyLoadImages() {
 				if (br > 180) {
 					$(ele).addClass('border')
 				}
+			})
+
+			// also load the hover image
+			$(ele).siblings('img.hover').each(function() {
+				$(this).attr('src', $(this).data('src')).removeAttr('data-src')
 			})
 		},
 		offset: 150

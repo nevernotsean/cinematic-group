@@ -16352,7 +16352,7 @@ function runSlick() {
 }
 
 function borderImages() {
-	(0, _jquery2.default)('.article-item').each(function () {
+	(0, _jquery2.default)('.article-item, article').each(function () {
 		var image = (0, _jquery2.default)(this).find('img')[0];
 		(0, _getImageBrightness2.default)(image.src, function (br) {
 			if (br > 180) {
@@ -16428,6 +16428,11 @@ function lazyLoadImages() {
 				if (br > 180) {
 					(0, _jquery2.default)(ele).addClass('border');
 				}
+			});
+
+			// also load the hover image
+			(0, _jquery2.default)(ele).siblings('img.hover').each(function () {
+				(0, _jquery2.default)(this).attr('src', (0, _jquery2.default)(this).data('src')).removeAttr('data-src');
 			});
 		},
 		offset: 150

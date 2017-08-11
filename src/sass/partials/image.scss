@@ -105,6 +105,12 @@ i.fa.fa-times:before {
 	transform: rotate(-135deg);
 }
 
+// border images
+
+img.border {
+	border: 2px solid black;
+}
+
 // svg
 #cg-svg {
 	position: absolute;

@@ -7976,6 +7976,10 @@ header#header .left.social-menu-expand:after {
   transform: rotate(-135deg);
 }
 
+img.border {
+  border: 2px solid black;
+}
+
 #cg-svg {
   position: absolute;
   top: 50%;
@@ -8464,11 +8468,31 @@ article.article-item {
 }
 
 article.article-item img {
+  position: relative;
+  z-index: 2;
   border: 2px solid transparent;
 }
 
 article.article-item img.border {
   border: 2px solid #000;
+}
+
+article.article-item img.hover {
+  position: absolute;
+  opacity: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+article.article-item.hoverable:hover img {
+  opacity: 0;
+}
+
+article.article-item.hoverable:hover img.hover {
+  opacity: 1;
 }
 
 article.article-item header,
@@ -8626,8 +8650,12 @@ article.article-item.post-type-muso-album .post-artist {
 }
 
 .post-type-archive-portfolio .base-title {
-  padding: 50px 0;
+  padding: 50px 0 25px 0;
   margin: 0;
+}
+
+.post-type-archive-portfolio .roster-logos {
+  margin-bottom: 50px;
 }
 
 .post-type-archive-portfolio .post-type-portfolio header > span,

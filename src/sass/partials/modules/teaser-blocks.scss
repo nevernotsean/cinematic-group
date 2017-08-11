@@ -3,9 +3,28 @@ article.article-item {
 	position: relative;
 
 	img {
+		position: relative;
+		z-index: 2;
 		border: 2px solid transparent;
 		&.border {
 			border: 2px solid #000;
+		}
+		&.hover {
+			position: absolute;
+			opacity: 0;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: auto;
+		}
+	}
+	&.hoverable:hover {
+		img {
+			opacity: 0;
+			&.hover {
+				opacity: 1;
+			}
 		}
 	}
 	header,

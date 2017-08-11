@@ -6,9 +6,19 @@
 			<h1 class="base-title text-center">Roster</h1>
 		</div>
 		<div class="grid-container post-body">
+			<div class="grid-x grid-padding-x grid-padding-y roster-logos">
+				{% for post in posts %}
+					{% if post.get_field('artist_logo') %}
+						<div class="cell small-1">
+							<img src="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="">
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
 			<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3">
 				{% for post in posts %}
 					<div class="cell">
+						{# {% include 'tease-post.twig' with { 'hover': TimberImage(post.get_field('artist_logo')).src } %} #}
 						{% include 'tease-post.twig' %}
 					</div>
 				{% endfor %}
