@@ -7,9 +7,9 @@
 			<div class="grid-container">
 				{% if categories | length > 0 %}
 				<div class="post-categories text-center grid-x grid-padding-x">
-					<div class="cell shrink"><a href="{{ site.url }}/tv/">All</a></div>
+					<div class="cell shrink"><a href="{{ site.url }}/radio/">All</a></div>
 					{% for category in categories %}
-						<div class="cell shrink"><a href="{{ site.url }}/{{ category | lower }}/">{{ category }}</a></div>
+						<div class="cell shrink"><a href="{{ site.url }}/radio/{{ category | lower }}/">{{ category }}</a></div>
 					{% endfor %}
 				</div>
 				{% endif %}

@@ -59,7 +59,7 @@ function fillscreen() {
 	var pageTitleHeight = $('.page-title').outerHeight()
 
 	if (ww > 768) {
-		var fillHeight = wh - headerHeight - footerHeight
+		var fillHeight = wh - headerHeight - footerHeight - 100
 
 		$('[rel="fullscreen"]').css('min-height', wh)
 
@@ -201,6 +201,20 @@ function PreloadVideo() {
 		return
 	}
 
+	if (video.preload == 'none') {
+		video.src = video.getAttribute('data-src')
+
+		video.addEventListener('play', () => {
+			console.log('animate trigger')
+			animateLoadingBar(100)
+			animateCurtain(10000)
+		})
+
+		$('#loading-bar').remove()
+
+		return
+	}
+
 	xhr.open('GET', video.getAttribute('data-src'), true)
 	xhr.responseType = 'blob'
 	xhr.onload = function(e) {
@@ -276,7 +290,7 @@ function animateCurtain(delay) {
 				$('#header').removeClass('hidden')
 			}, delay)
 		}, delay)
-	}, delay / 2)
+	}, 100)
 
 	window.addEventListener('keydown', skipCurtain)
 	window.addEventListener('click', skipCurtain)

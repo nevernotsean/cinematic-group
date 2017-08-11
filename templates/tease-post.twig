@@ -1,6 +1,9 @@
 {% if square is empty %}
   {% set square = false %}
 {% endif %}
+{% if wide is empty %}
+  {% set wide = false %}
+{% endif %}
 {% if hover is empty %}
   {% set hover = false %}
 {% endif %}
@@ -12,6 +15,8 @@
     <a href="{{post.link}}">
       {% if square == true %}
         <img class="b-lazy square" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{{ thumb | resize(500, 500) }}" alt="{{ post.title }}">
+      {% elseif wide == true %}
+        <img class="b-lazy square" src=data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg== data-src="{{ thumb | resize(640, 360) }}" alt="{{ post.title }}">
       {% else %}
         <img class="b-lazy" src=data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAYAAAC09K7GAAAAE0lEQVR42mNk+M9Qz4AEGAkKAACM3wR+BhedNgAAAABJRU5ErkJggg== data-src="{{ thumb | resize(400, 300) }}" alt="{{ post.title }}">
       {% endif %}

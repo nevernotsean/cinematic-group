@@ -2,7 +2,7 @@
 	{% if posts|length > 1 %}
 	<div class="carousel">
 	{% else %}
-	<div class="not-carousel">
+	<div class="not-carousel {{posts|length}}">
 	{% endif %}
 	{% for post in posts %}
 		<div class="slide">

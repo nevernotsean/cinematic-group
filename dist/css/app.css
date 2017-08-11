@@ -8515,6 +8515,7 @@ article.article-item .post-title {
   letter-spacing: 0.1em;
   line-height: 1;
   margin-bottom: 0;
+  font-size: 26px;
 }
 
 article.article-item .post-tags {
@@ -8672,6 +8673,10 @@ article.article-item.post-type-muso-album .post-artist {
   margin-top: 0 !important;
 }
 
+.home .features-grid .post-title {
+  font-size: 36px;
+}
+
 .home .features-grid .post-content {
   display: none;
 }
@@ -8680,13 +8685,27 @@ article.article-item.post-type-muso-album .post-artist {
   position: relative;
   padding-bottom: 0;
   padding-top: 100px;
+  height: calc(100vh - 100px);
+  overflow: hidden;
   margin-bottom: 50px;
   background-color: #000;
+}
+
+.home .hero video#player {
+  position: absolute;
+  width: 100%;
+  top: calc(50% + 50px);
+  transform: translateY(-50%);
 }
 
 @media screen and (max-width: 39.9375em) {
   .home .hero {
     padding-top: 40px;
+    height: auto;
+  }
+
+  .home .hero video#player {
+    position: static;
   }
 }
 
@@ -8829,7 +8848,7 @@ article.article-item.post-type-muso-album .post-artist {
   transform: translateX(-50%);
   opacity: 0;
   transition: all 1000ms ease;
-  transition-delay: 4000ms;
+  transition-delay: 1000ms;
   cursor: pointer;
   color: #000;
 }

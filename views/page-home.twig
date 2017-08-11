@@ -4,23 +4,23 @@
     <div class="content-wrapper">
       <div class="post-body">
         <div class="hero">
-          <video poster="data:image/gif,AAAA" playsinline="" autoplay="" loop="" preload="auto" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
+          <video poster="data:image/gif,AAAA" muted playsinline="" autoplay="" loop="" preload="none" id="player" data-src="{{ page.get_field('vimeo_link') }}"></video>
           <a href="#" class="mute hide-for-small-only">
-              <i class="fa fa-volume-up">Sound</i>
+              <i class="fa fa-volume-off">Sound</i>
           </a>
         </div>
         <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
           <div class="grid-x grid-padding-x small-up-1 medium-up-2">
-            {% for post in features %}
+            {% for post in posts | slice(null,2) %}
             <div class="cell">
-              {% include 'tease-post.twig' %}
+              {% include 'tease-post.twig' with { 'wide': true } %}
             </div>
             {% endfor %}
           </div>
         </section>
         <section class="grid-container" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
           <div class="grid-x grid-padding-x small-up-1 medium-up-3">
-            {% for post in news %}
+            {% for post in posts | slice(2,5) %}
             <div class="cell">
               {% include 'tease-post.twig' %}
             </div>

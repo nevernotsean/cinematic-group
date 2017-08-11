@@ -3,15 +3,36 @@
 	#content {
 		margin-top: 0 !important;
 	}
-	.features-grid .post-content {
-		display: none;
+	.features-grid {
+		.post-title {
+			font-size: 36px;
+		}
+		.post-content {
+			display: none;
+		}
 	}
 	.hero {
 		position: relative;
 		padding-bottom: 0;
 		padding-top: 100px;
+
+		height: calc(100vh - 100px);
+		overflow: hidden;
+
+		video#player {
+			position: absolute;
+			width: 100%;
+			top: calc(50% + 50px);
+			transform: translateY(-50%);
+		}
+
 		@include breakpoint(small only) {
 			padding-top: 40px;
+			height: auto;
+
+			video#player {
+				position: static;
+			}
 		}
 		margin-bottom: 50px;
 		background-color: #000;
@@ -142,7 +163,7 @@
 		transform: translateX(-50%);
 		opacity: 0;
 		transition: all 1000ms ease;
-		transition-delay: 4000ms;
+		transition-delay: 1000ms;
 		cursor: pointer;
 		color: #000;
 	}
