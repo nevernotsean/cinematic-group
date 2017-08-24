@@ -138,10 +138,10 @@ a.hdr-logo-link {
 	}
 }
 
+.close-button:focus {
+	outline: none;
+}
 .mobile-nav {
-	.close-button:focus {
-		outline: none;
-	}
 	.menu-item {
 		margin-bottom: 5px;
 		a {

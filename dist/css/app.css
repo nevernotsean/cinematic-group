@@ -8259,7 +8259,7 @@ a.hdr-logo-link.loading img.static {
   width: auto;
 }
 
-.mobile-nav .close-button:focus {
+.close-button:focus {
   outline: none;
 }
 
