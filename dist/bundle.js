@@ -16449,6 +16449,7 @@ function lazyLoadImages() {
 				(0, _jquery2.default)(this).attr('src', (0, _jquery2.default)(this).data('src')).removeAttr('data-src');
 			});
 		},
+		container: '#oc-content',
 		offset: 150
 	});
 }
@@ -16467,7 +16468,8 @@ function animateCurtain(delay) {
 	timeout1 = setTimeout(function () {
 		(0, _jquery2.default)('.underside').css('opacity', 0);
 		timeout2 = setTimeout(function () {
-			(0, _jquery2.default)('body').css('overflow-y', 'auto').addClass('remove-curtain');
+			(0, _jquery2.default)('#oc-content').css('overflow-y', 'auto');
+			(0, _jquery2.default)('body').addClass('remove-curtain');
 			timeout3 = setTimeout(function () {
 				(0, _jquery2.default)('#loading-container').remove();
 				(0, _jquery2.default)('#header').removeClass('hidden');
@@ -16482,7 +16484,8 @@ function animateCurtain(delay) {
 		clearTimeout(timeout1);
 		clearTimeout(timeout2);
 		clearTimeout(timeout3);
-		(0, _jquery2.default)('body').css('overflow-y', 'auto').addClass('remove-curtain');
+		(0, _jquery2.default)('#oc-content').css('overflow-y', 'auto');
+		(0, _jquery2.default)('body').addClass('remove-curtain');
 		setTimeout(function () {
 			(0, _jquery2.default)('#loading-container').remove();
 			(0, _jquery2.default)('#header').removeClass('hidden');
@@ -16493,7 +16496,7 @@ function animateCurtain(delay) {
 function homeCurtainSetup() {
 	if ((0, _jquery2.default)('.curtain').length) {
 		window.scrollTo(0, 0);
-		(0, _jquery2.default)('body').css('overflow-y', 'hidden');
+		(0, _jquery2.default)('#oc-content').css('overflow-y', 'hidden');
 		// $('#header').addClass('hidden')
 		(0, _jquery2.default)('#content').css('margin-top', 0);
 	} else {

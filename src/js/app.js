@@ -266,6 +266,7 @@ function lazyLoadImages() {
 				$(this).attr('src', $(this).data('src')).removeAttr('data-src')
 			})
 		},
+		container: '#oc-content',
 		offset: 150
 	})
 }
@@ -284,7 +285,8 @@ function animateCurtain(delay) {
 	timeout1 = setTimeout(function() {
 		$('.underside').css('opacity', 0)
 		timeout2 = setTimeout(function() {
-			$('body').css('overflow-y', 'auto').addClass('remove-curtain')
+			$('#oc-content').css('overflow-y', 'auto')
+			$('body').addClass('remove-curtain')
 			timeout3 = setTimeout(function() {
 				$('#loading-container').remove()
 				$('#header').removeClass('hidden')
@@ -299,7 +301,8 @@ function animateCurtain(delay) {
 		clearTimeout(timeout1)
 		clearTimeout(timeout2)
 		clearTimeout(timeout3)
-		$('body').css('overflow-y', 'auto').addClass('remove-curtain')
+		$('#oc-content').css('overflow-y', 'auto')
+		$('body').addClass('remove-curtain')
 		setTimeout(function() {
 			$('#loading-container').remove()
 			$('#header').removeClass('hidden')
@@ -310,7 +313,7 @@ function animateCurtain(delay) {
 function homeCurtainSetup() {
 	if ($('.curtain').length) {
 		window.scrollTo(0, 0)
-		$('body').css('overflow-y', 'hidden')
+		$('#oc-content').css('overflow-y', 'hidden')
 		// $('#header').addClass('hidden')
 		$('#content').css('margin-top', 0)
 	} else {
