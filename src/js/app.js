@@ -49,9 +49,8 @@ function addEventListeners() {
 	})
 
 	// mobile nav
-	$('.menu-toggle').on('click', function(e) {
-		e.preventDefault()
-		$('body').toggleClass('menu-open')
+	$('.mobile-nav .menu-item a').on('click', function(e) {
+		$('[data-off-canvas]').foundation('close')
 	})
 }
 
@@ -170,7 +169,10 @@ function runSlick() {
 
 function borderImages() {
 	$('.article-item, article').each(function() {
-		var image = $(this).find('img')[0]
+		let image = $(this).find('img')[0]
+
+		if (!image) return false
+
 		getImageBrightness(image.src, function(br) {
 			if (br > 180) {
 				$(image).addClass('border')

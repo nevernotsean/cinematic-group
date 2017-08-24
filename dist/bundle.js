@@ -16236,9 +16236,8 @@ function addEventListeners() {
 	});
 
 	// mobile nav
-	(0, _jquery2.default)('.menu-toggle').on('click', function (e) {
-		e.preventDefault();
-		(0, _jquery2.default)('body').toggleClass('menu-open');
+	(0, _jquery2.default)('.mobile-nav .menu-item a').on('click', function (e) {
+		(0, _jquery2.default)('[data-off-canvas]').foundation('close');
 	});
 }
 
@@ -16354,6 +16353,9 @@ function runSlick() {
 function borderImages() {
 	(0, _jquery2.default)('.article-item, article').each(function () {
 		var image = (0, _jquery2.default)(this).find('img')[0];
+
+		if (!image) return false;
+
 		(0, _getImageBrightness2.default)(image.src, function (br) {
 			if (br > 180) {
 				(0, _jquery2.default)(image).addClass('border');
