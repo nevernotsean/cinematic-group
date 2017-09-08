@@ -16378,9 +16378,9 @@ function reflowEqualizer(parent) {
 	});
 }
 
-function PreloadVideo() {
+function PreloadVideo(ele, progressCb, loadCb, preloadSkipCb, preloadCb) {
 	var xhr = new XMLHttpRequest();
-	var video = document.getElementById('player');
+	var video = ele;
 
 	if (!video) {
 		return;
@@ -16389,13 +16389,7 @@ function PreloadVideo() {
 	if (video.preload == 'none') {
 		video.src = video.getAttribute('data-src');
 
-		video.addEventListener('play', function () {
-			console.log('animate trigger');
-			animateLoadingBar(100);
-			animateCurtain(10000);
-		});
-
-		(0, _jquery2.default)('#loading-bar').remove();
+		video.addEventListener('play', preloadSkipCb);
 
 		return;
 	}
@@ -16410,24 +16404,9 @@ function PreloadVideo() {
 		}
 	};
 
-	xhr.addEventListener('progress', function (data) {
-		var total = data.total,
-		    loaded = data.loaded,
-		    pct = loaded / total * 100,
-		    rounded = Math.floor(pct);
+	xhr.addEventListener('progress', progressCb);
 
-		// console.log('loaded: ', rounded)
-
-		if ((0, _jquery2.default)('#loading-container').length) {
-			animateLoadingBar(rounded);
-		}
-	});
-
-	xhr.addEventListener('load', function () {
-		console.log('video loaded');
-		(0, _jquery2.default)(video).css('background-color', '#000');
-		animateCurtain(10000);
-	});
+	xhr.addEventListener('load', loadCb);
 
 	xhr.send();
 }
@@ -16506,6 +16485,35 @@ function homeCurtainSetup() {
 		(0, _jquery2.default)('#header').removeClass('hidden');
 		(0, _jquery2.default)('#content').css('margin-top', '');
 	}
+
+	var homeHeroLoaded = function homeHeroLoaded() {
+		console.log('video loaded');
+		(0, _jquery2.default)(video).css('background-color', '#000');
+		animateCurtain(10000);
+	},
+	    homeHeroProgress = function homeHeroProgress(data) {
+		var total = data.total,
+		    loaded = data.loaded,
+		    pct = loaded / total * 100,
+		    rounded = Math.floor(pct);
+
+		// console.log('loaded: ', rounded)
+
+		if ((0, _jquery2.default)('#loading-container').length) {
+			animateLoadingBar(rounded);
+		}
+	},
+	    homePreloadSkip = function homePreloadSkip() {
+		console.log('animate trigger');
+		animateLoadingBar(100);
+		animateCurtain(10000);
+	},
+	    homePreload = function homePreload() {
+		(0, _jquery2.default)('#loading-bar').remove();
+	},
+	    homeHeroVideo = document.querySelector('#player');
+
+	PreloadVideo(homeHeroVideo, homeHeroProgress, homeHeroLoaded, homePreloadSkip, homePreload);
 }
 
 // Page transition Callbacks
@@ -16523,7 +16531,7 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	fillscreen();
 	addEventListeners();
 	lazyLoadImages();
-	PreloadVideo();
+
 	homeCurtainSetup();
 }
 
