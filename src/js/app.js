@@ -4,11 +4,13 @@ import slick from 'slick-carousel'
 import getImageBrightness from './getImageBrightness.js'
 import barbaApp from './barbaConfig.js'
 import Blazy from 'blazy'
+import PreloadVideo from './videoPreloader.js'
 
 var wh = window.innerHeight,
 	ww = window.innerWidth,
 	headerHeight = $('#header').outerHeight(),
-	footerHeight = $('#footer').outerHeight()
+	footerHeight = $('#footer').outerHeight(),
+	contentArea = document.getElementById('oc-content')
 
 function addEventListeners() {
 	window.addEventListener('resize', function() {
@@ -52,6 +54,38 @@ function addEventListeners() {
 	$('.mobile-nav .menu-item a').on('click', function(e) {
 		$('[data-off-canvas]').foundation('close')
 	})
+
+	// Home page parrallax fade
+	if ($('.parallax').length) {
+		var st,
+			offset,
+			op,
+			$plx = $('.parallax')
+
+		$(window).on('scroll', function(e) {
+			st = window.scrollY
+			offset = normalize(st, 0, window.innerHeight, -100, 100)
+			op = 1 - normalize(st, 0, window.innerHeight, -1, 1)
+
+			op = op > 1 ? 1 : op
+
+			$plx.css('transform', `translateY(${offset}%)`)
+			$plx.css('opacity', op)
+			// if (st > window.innerHeight) {
+
+			// }
+		})
+	}
+}
+
+function normalize(v, vmin, vmax, tmin, tmax) {
+	var nv = Math.max(Math.min(v, vmax), vmin),
+		dv = vmax - vmin,
+		pc = (nv - vmin) / dv,
+		dt = tmax - tmin,
+		tv = tmin + pc * dt
+
+	return tv
 }
 
 function fillscreen() {
@@ -141,7 +175,9 @@ function updateBodyClasses(newPageRawHTML) {
 		'$1notbody$2>',
 		newPageRawHTML
 	)
-	var bodyClasses = $(response).filter('notbody').attr('class')
+	var bodyClasses = $(response)
+		.filter('notbody')
+		.attr('class')
 	$('body').attr('class', bodyClasses)
 }
 
@@ -195,39 +231,6 @@ function reflowEqualizer(parent) {
 	})
 }
 
-function PreloadVideo(ele, progressCb, loadCb, preloadSkipCb, preloadCb) {
-	var xhr = new XMLHttpRequest()
-	var video = ele
-
-	if (!video) {
-		return
-	}
-
-	if (video.preload == 'none') {
-		video.src = video.getAttribute('data-src')
-
-		video.addEventListener('play', preloadSkipCb)
-
-		return
-	}
-
-	xhr.open('GET', video.getAttribute('data-src'), true)
-	xhr.responseType = 'blob'
-	xhr.onload = function(e) {
-		if (this.status == 200) {
-			var myBlob = this.response
-			var vid = (window.URL ? URL : URL).createObjectURL(myBlob)
-			video.src = vid
-		}
-	}
-
-	xhr.addEventListener('progress', progressCb)
-
-	xhr.addEventListener('load', loadCb)
-
-	xhr.send()
-}
-
 function lazyLoadImages() {
 	var bLazy = new Blazy({
 		success: function(ele) {
@@ -243,9 +246,13 @@ function lazyLoadImages() {
 			})
 
 			// also load the hover image
-			$(ele).siblings('img.hover').each(function() {
-				$(this).attr('src', $(this).data('src')).removeAttr('data-src')
-			})
+			$(ele)
+				.siblings('img.hover')
+				.each(function() {
+					$(this)
+						.attr('src', $(this).data('src'))
+						.removeAttr('data-src')
+				})
 		},
 		container: '#oc-content',
 		offset: 150
@@ -260,17 +267,17 @@ function animateLoadingBar(pct) {
 function animateCurtain(delay) {
 	var timeout1, timeout2, timeout3
 
-	window.scrollTo(0, 0)
 	$('#loading-container').addClass('skip-reveal')
 
 	timeout1 = setTimeout(function() {
+		window.scrollTo(0, 0)
 		$('.underside').css('opacity', 0)
 		timeout2 = setTimeout(function() {
-			$('#oc-content').css('overflow-y', 'auto')
 			$('body').addClass('remove-curtain')
 			timeout3 = setTimeout(function() {
 				$('#loading-container').remove()
 				$('#header').removeClass('hidden')
+				$('html').css('overflow-y', '')
 			}, delay)
 		}, delay)
 	}, 100)
@@ -282,7 +289,7 @@ function animateCurtain(delay) {
 		clearTimeout(timeout1)
 		clearTimeout(timeout2)
 		clearTimeout(timeout3)
-		$('#oc-content').css('overflow-y', 'auto')
+		$('html').css('overflow-y', '')
 		$('body').addClass('remove-curtain')
 		setTimeout(function() {
 			$('#loading-container').remove()
@@ -292,9 +299,10 @@ function animateCurtain(delay) {
 }
 
 function homeCurtainSetup() {
+	window.scrollTo(0, 0)
+
 	if ($('.curtain').length) {
-		window.scrollTo(0, 0)
-		$('#oc-content').css('overflow-y', 'hidden')
+		$('html').css('overflow-y', 'hidden')
 		// $('#header').addClass('hidden')
 		$('#content').css('margin-top', 0)
 	} else {
@@ -330,7 +338,7 @@ function homeCurtainSetup() {
 		},
 		homeHeroVideo = document.querySelector('#player')
 
-	PreloadVideo(
+	var homePageVideo = new PreloadVideo(
 		homeHeroVideo,
 		homeHeroProgress,
 		homeHeroLoaded,
@@ -340,7 +348,6 @@ function homeCurtainSetup() {
 }
 
 // Page transition Callbacks
-
 function handleLinkClicked(el, evt) {
 	$('.hdr-logo-link').addClass('loading')
 }

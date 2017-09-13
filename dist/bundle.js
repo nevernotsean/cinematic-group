@@ -16156,7 +16156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(21);
-module.exports = __webpack_require__(44);
+module.exports = __webpack_require__(45);
 
 
 /***/ }),
@@ -16190,12 +16190,17 @@ var _blazy = __webpack_require__(43);
 
 var _blazy2 = _interopRequireDefault(_blazy);
 
+var _videoPreloader = __webpack_require__(44);
+
+var _videoPreloader2 = _interopRequireDefault(_videoPreloader);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var wh = window.innerHeight,
     ww = window.innerWidth,
     headerHeight = (0, _jquery2.default)('#header').outerHeight(),
-    footerHeight = (0, _jquery2.default)('#footer').outerHeight();
+    footerHeight = (0, _jquery2.default)('#footer').outerHeight(),
+    contentArea = document.getElementById('oc-content');
 
 function addEventListeners() {
 	window.addEventListener('resize', function () {
@@ -16239,6 +16244,38 @@ function addEventListeners() {
 	(0, _jquery2.default)('.mobile-nav .menu-item a').on('click', function (e) {
 		(0, _jquery2.default)('[data-off-canvas]').foundation('close');
 	});
+
+	// Home page parrallax fade
+	if ((0, _jquery2.default)('.parallax').length) {
+		var st,
+		    offset,
+		    op,
+		    $plx = (0, _jquery2.default)('.parallax');
+
+		(0, _jquery2.default)(window).on('scroll', function (e) {
+			st = window.scrollY;
+			offset = normalize(st, 0, window.innerHeight, -100, 100);
+			op = 1 - normalize(st, 0, window.innerHeight, -1, 1);
+
+			op = op > 1 ? 1 : op;
+
+			$plx.css('transform', 'translateY(' + offset + '%)');
+			$plx.css('opacity', op);
+			// if (st > window.innerHeight) {
+
+			// }
+		});
+	}
+}
+
+function normalize(v, vmin, vmax, tmin, tmax) {
+	var nv = Math.max(Math.min(v, vmax), vmin),
+	    dv = vmax - vmin,
+	    pc = (nv - vmin) / dv,
+	    dt = tmax - tmin,
+	    tv = tmin + pc * dt;
+
+	return tv;
 }
 
 function fillscreen() {
@@ -16378,39 +16415,6 @@ function reflowEqualizer(parent) {
 	});
 }
 
-function PreloadVideo(ele, progressCb, loadCb, preloadSkipCb, preloadCb) {
-	var xhr = new XMLHttpRequest();
-	var video = ele;
-
-	if (!video) {
-		return;
-	}
-
-	if (video.preload == 'none') {
-		video.src = video.getAttribute('data-src');
-
-		video.addEventListener('play', preloadSkipCb);
-
-		return;
-	}
-
-	xhr.open('GET', video.getAttribute('data-src'), true);
-	xhr.responseType = 'blob';
-	xhr.onload = function (e) {
-		if (this.status == 200) {
-			var myBlob = this.response;
-			var vid = (window.URL ? URL : URL).createObjectURL(myBlob);
-			video.src = vid;
-		}
-	};
-
-	xhr.addEventListener('progress', progressCb);
-
-	xhr.addEventListener('load', loadCb);
-
-	xhr.send();
-}
-
 function lazyLoadImages() {
 	var bLazy = new _blazy2.default({
 		success: function success(ele) {
@@ -16443,17 +16447,17 @@ function animateLoadingBar(pct) {
 function animateCurtain(delay) {
 	var timeout1, timeout2, timeout3;
 
-	window.scrollTo(0, 0);
 	(0, _jquery2.default)('#loading-container').addClass('skip-reveal');
 
 	timeout1 = setTimeout(function () {
+		window.scrollTo(0, 0);
 		(0, _jquery2.default)('.underside').css('opacity', 0);
 		timeout2 = setTimeout(function () {
-			(0, _jquery2.default)('#oc-content').css('overflow-y', 'auto');
 			(0, _jquery2.default)('body').addClass('remove-curtain');
 			timeout3 = setTimeout(function () {
 				(0, _jquery2.default)('#loading-container').remove();
 				(0, _jquery2.default)('#header').removeClass('hidden');
+				(0, _jquery2.default)('html').css('overflow-y', '');
 			}, delay);
 		}, delay);
 	}, 100);
@@ -16465,7 +16469,7 @@ function animateCurtain(delay) {
 		clearTimeout(timeout1);
 		clearTimeout(timeout2);
 		clearTimeout(timeout3);
-		(0, _jquery2.default)('#oc-content').css('overflow-y', 'auto');
+		(0, _jquery2.default)('html').css('overflow-y', '');
 		(0, _jquery2.default)('body').addClass('remove-curtain');
 		setTimeout(function () {
 			(0, _jquery2.default)('#loading-container').remove();
@@ -16475,9 +16479,10 @@ function animateCurtain(delay) {
 }
 
 function homeCurtainSetup() {
+	window.scrollTo(0, 0);
+
 	if ((0, _jquery2.default)('.curtain').length) {
-		window.scrollTo(0, 0);
-		(0, _jquery2.default)('#oc-content').css('overflow-y', 'hidden');
+		(0, _jquery2.default)('html').css('overflow-y', 'hidden');
 		// $('#header').addClass('hidden')
 		(0, _jquery2.default)('#content').css('margin-top', 0);
 	} else {
@@ -16513,11 +16518,10 @@ function homeCurtainSetup() {
 	},
 	    homeHeroVideo = document.querySelector('#player');
 
-	PreloadVideo(homeHeroVideo, homeHeroProgress, homeHeroLoaded, homePreloadSkip, homePreload);
+	var homePageVideo = new _videoPreloader2.default(homeHeroVideo, homeHeroProgress, homeHeroLoaded, homePreloadSkip, homePreload);
 }
 
 // Page transition Callbacks
-
 function handleLinkClicked(el, evt) {
 	(0, _jquery2.default)('.hdr-logo-link').addClass('loading');
 }
@@ -26626,6 +26630,54 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ }),
 /* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var PreloadVideo = function PreloadVideo(ele, progressCb, loadCb, preloadSkipCb, preloadCb) {
+	this.xhr = new XMLHttpRequest();
+	this.video = ele;
+	this.progressCb = progressCb;
+	this.loadCb = loadCb;
+	this.preloadSkipCb = preloadSkipCb;
+	this.preloadCb = preloadCb;
+
+	if (!this.video) {
+		return;
+	}
+
+	if (this.video.preload == 'none') {
+		this.video.src = this.video.getAttribute('data-src');
+		this.video.addEventListener('play', this.preloadSkipCb);
+		return;
+	}
+
+	this.xhr.open('GET', this.video.getAttribute('data-src'), true);
+	this.xhr.responseType = 'blob';
+
+	this.xhr.onload = function (e) {
+		if (this.status == 200) {
+			var myBlob = this.response;
+			var vid = (window.URL ? URL : URL).createObjectURL(myBlob);
+			this.video.src = vid;
+		}
+	};
+
+	this.xhr.addEventListener('progress', this.progressCb);
+
+	this.xhr.addEventListener('load', this.loadCb);
+
+	this.xhr.send();
+};
+
+exports.default = PreloadVideo;
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

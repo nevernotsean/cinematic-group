@@ -7787,39 +7787,21 @@ video {
   height: auto !important;
 }
 
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
-
-html .off-canvas-content,
-body .off-canvas-content {
-  height: 100%;
-  -webkit-perspective: 900px;
-  perspective: 1000px;
-  -webkit-perspective-origin: 0 0;
-  perspective-origin: 0 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-html .parallax,
-body .parallax {
-  text-align: center;
-  position: fixed;
-  width: 100%;
+.parallax-container {
+  position: relative;
   height: 100px;
-  top: 90vh;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+  top: -3em;
+}
+
+.parallax-container .parallax {
+  position: absolute;
+  width: 100%;
+  text-align: center;
   z-index: -1;
 }
 
-html .parallax > *,
-body .parallax > * {
-  -webkit-transform: translateZ(-600px) translateX(360px) translateY(360px) scale(3);
-  transform: translateZ(-600px) translateX(360px) translateY(360px) scale(3);
+.parallax-container .parallax h1 {
+  font-size: 5em;
 }
 
 @font-face {
