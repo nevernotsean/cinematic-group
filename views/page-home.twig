@@ -10,15 +10,21 @@
           </a>
         </div>
         <div class="parallax-container">
-          <div class="parallax">
+          <div class="parallax" style="transform: translateY(-100%); opacity: 1;">
             <h1>Cinematic Group</h1>
           </div>
         </div>
-        <section class="grid-container features-grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
-          <div class="grid-x grid-padding-x small-up-1 medium-up-2">
-            {% for post in posts | slice(null,2) %}
-            <div class="cell">
-              {% include 'tease-post.twig' with { 'wide': true } %}
+        <section class="grid-container" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">
+          <div class="grid-x grid-padding-x">
+            {% for post in features %}
+            <div class="cell medium-6 large-8 feature-cell">
+              {% include 'tease-post-overlap.twig' with { 'wide': true } %}
+            </div>
+            {% endfor %}
+
+            {% for post in radio %}
+            <div class="cell medium-6 large-4 radio-cell">
+              {% include 'tease-post.twig' %}
             </div>
             {% endfor %}
           </div>

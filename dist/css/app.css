@@ -8487,6 +8487,7 @@ article.article-item .thumbnail-container.border {
 }
 
 article.article-item img {
+  width: 100%;
   position: relative;
   z-index: 2;
 }
@@ -8568,6 +8569,15 @@ article.article-item.post-type-muso-album .post-tags {
 article.article-item.post-type-muso-album .post-artist {
   font-size: 11px;
   letter-spacing: 0.02em;
+}
+
+@media print, screen and (min-width: 64em) {
+  article.article-item.overlap-item .post-content,
+  article.article-item.overlap-item .post-title {
+    width: 150%;
+    position: relative;
+    z-index: 9;
+  }
 }
 
 .image-block {
@@ -8698,11 +8708,17 @@ video.hover {
   margin-top: 0 !important;
 }
 
-.home .features-grid .post-title {
+.home .feature-cell .post-title {
   font-size: 36px;
 }
 
-.home .features-grid .post-content {
+.home .radio-cell .post-title {
+  margin-top: 24px;
+}
+
+.home .radio-cell header,
+.home .radio-cell footer,
+.home .radio-cell .post-content {
   display: none;
 }
 
@@ -8931,12 +8947,29 @@ video.hover {
   object-position: 50% 30%;
 }
 
+@media print, screen and (min-width: 40em) {
+  .single .single-hero-image.overlap {
+    height: 400px;
+  }
+}
+
 .single .more-posts article.article-item {
   margin-bottom: 0;
 }
 
 .single .addtoany_share_save_container.addtoany_content_bottom {
   text-align: center;
+}
+
+.single h1.overlap {
+  position: relative;
+}
+
+@media print, screen and (min-width: 40em) {
+  .single h1.overlap {
+    width: 150%;
+    max-width: none;
+  }
 }
 
 .single-portfolio .article-body {

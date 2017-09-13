@@ -3,7 +3,7 @@
 {% block content %}
 	<div class="content-wrapper">
 		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-			<div class="grid-container post-header">
+			<div class="grid-container post-header show-for-small-only">
 				<div class="grid-x grid-padding-x text-center">
 					<div class="cell">
 						<h1 class="article-h1">{{ post.title }}</h1>
@@ -12,9 +12,13 @@
 				</div>
 			</div>
 			<div class="grid-container post-body">
-				<div class="grid-x">
-					<div class="cell">
-						<img class="single-hero-image" src="{{post.thumbnail | resize(1200) }}" alt="">
+				<div class="grid-x grid-padding-x">
+					<div class="cell hide-for-small-only medium-3">
+						<p class="blog-author">{{ post.date|date('n.j.Y') }}</p>
+						<h1 class="article-h1 overlap">{{ post.title }}</h1>
+					</div>
+					<div class="cell medium-9">
+						<img class="single-hero-image overlap" src="{{post.thumbnail | resize(1200) }}" alt="">
 					</div>
 				</div>
 				<div class="grid-x grid-padding-x align-center">

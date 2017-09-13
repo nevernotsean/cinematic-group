@@ -3,10 +3,17 @@
 	#content {
 		margin-top: 0 !important;
 	}
-	.features-grid {
+	.feature-cell {
 		.post-title {
 			font-size: 36px;
 		}
+	}
+	.radio-cell {
+		.post-title {
+			margin-top: 24px;
+		}
+		header,
+		footer,
 		.post-content {
 			display: none;
 		}

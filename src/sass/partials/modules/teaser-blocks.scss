@@ -12,6 +12,7 @@ article.article-item {
 	}
 
 	img {
+		width: 100%;
 		position: relative;
 		z-index: 2;
 	}
@@ -89,6 +90,18 @@ article.article-item {
 			letter-spacing: 0.02em;
 		}
 		margin-bottom: $spacing-base / 3 !important;
+	}
+
+	// overlapped text
+	&.overlap-item {
+		.post-content,
+		.post-title {
+			@include breakpoint(large) {
+				width: 150%;
+				position: relative;
+				z-index: 9;
+			}
+		}
 	}
 }
 

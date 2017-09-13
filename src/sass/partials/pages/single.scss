@@ -24,6 +24,12 @@
 		height: 600px;
 		object-fit: cover;
 		object-position: 50% 30%;
+
+		&.overlap {
+			@include breakpoint(medium) {
+				height: 400px;
+			}
+		}
 	}
 	.more-posts article.article-item {
 		margin-bottom: 0;
@@ -31,6 +37,15 @@
 
 	.addtoany_share_save_container.addtoany_content_bottom {
 		text-align: center;
+	}
+
+	h1.overlap {
+		position: relative;
+
+		@include breakpoint(medium) {
+			width: 150%;
+			max-width: none;
+		}
 	}
 }
 
