@@ -1,33 +1,48 @@
-
 {% if field %}
 
-  {% if field == 'Spotify' %}
+  {% if field == 'spotify' %}
 
-  <i class="fa fa-spotify"><span>Spotify</span></i>
+  <i class="fa fa-spotify" aria-label="Spotify"></i>
 
-   {% elseif field == 'iTunes' %}
+   {% elseif field == 'itunes' %}
 
-  <i class="fa fa-music"><span>iTunes</span></i>
+  <i class="fa fa-music" aria-label="iTunes"></i>
 
-    {% elseif field == 'Apple Music' %}
+    {% elseif field == 'apple' %}
 
-  <i class="fa fa-apple"><span>Music</span></i>
+  <i class="fa fa-apple" aria-label="Apple Music"></i>
 
-    {% elseif field == 'Soundcloud' %}
+    {% elseif field == 'soundcloud' %}
 
-  <i class="fa fa-soundcloud"><span>Soundcloud</span></i>
+  <i class="fa fa-soundcloud" aria-label="Soundcloud"></i>
 
-    {% elseif field == 'YouTube' %}
+    {% elseif field == 'youtube' %}
 
-  <i class="fa fa-youtube-play"><span>Youtube</span></i>
+  <i class="fa fa-youtube-play" aria-label="Youtube"></i>
 
     {% elseif field == 'Amazon' %}
 
-  <i class="fa fa-amazon"><span>Amazon MP3</span></i>
+  <i class="fa fa-amazon" aria-label="Amazon MP3"></i>
 
     {% elseif field == 'Google Play' %}
 
-  <i class="fa fa-play"><span>Google Play</span></i>
+  <i class="fa fa-play" aria-label="Google Play"></i>
+
+    {% elseif field == 'facebook' %}
+
+  <i class="fa fa-facebook" aria-label="Facebook"></i>
+
+    {% elseif field == 'twitter' %}
+
+  <i class="fa fa-twitter" aria-label="Twitter"></i>
+
+    {% elseif field == 'website' %}
+
+  <i class="fa fa-globe" aria-label="Website"></i>
+
+    {% elseif field == 'tumblr' %}
+
+  <i class="fa fa-tumblr" aria-label="Tumblr"></i>
 
     {% else %}
 

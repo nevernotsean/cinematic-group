@@ -16294,34 +16294,6 @@ function addEventListeners() {
 	});
 }
 
-// function preLoadHoverVideo(vidEle) {
-// 	var hoverVideoLoaded = function() {
-// 			console.log('video loaded')
-// 		},
-// 		hoverVideoProgress = function(data) {
-// 			var total = data.total,
-// 				loaded = data.loaded,
-// 				pct = loaded / total * 100,
-// 				rounded = Math.floor(pct)
-
-// 			console.log('video loading: ', rounded)
-// 		},
-// 		hoverVideoPreloadSkip = function() {
-// 			console.log('video preload skip')
-// 		},
-// 		hoverVideoPreload = function() {
-// 			console.log('video preload')
-// 		}
-
-// 	var hoverVideo = new PreloadVideo(
-// 		vidEle,
-// 		hoverVideoProgress,
-// 		hoverVideoLoaded,
-// 		hoverVideoPreloadSkip,
-// 		hoverVideoPreload
-// 	)
-// }
-
 function normalize(v, vmin, vmax, tmin, tmax) {
 	var nv = Math.max(Math.min(v, vmax), vmin),
 	    dv = vmax - vmin,
@@ -16405,6 +16377,23 @@ function albumScripts() {
 			_$albumList.hide();
 
 			(0, _jquery2.default)('.albumlist-wrapper').append($albumclone);
+		}
+	}
+}
+
+function rosterScripts() {
+	if ((0, _jquery2.default)('.single-portfolio').length) {
+		var $image = (0, _jquery2.default)('.artist-image');
+		var $articleBody = (0, _jquery2.default)('.article-content .article-body');
+
+		if (_foundationSites2.default.MediaQuery.current == 'Small') {
+			$articleBody.css('max-height', 'none');
+			$articleBody.css('overflow-y', '');
+		} else {
+			var h = $image.height();
+
+			$articleBody.css('max-height', h);
+			$articleBody.css('overflow-y', 'scroll');
 		}
 	}
 }
@@ -16598,6 +16587,7 @@ function handleTransitionComplete() {
 	runSlick();
 	borderImages();
 	albumScripts();
+	rosterScripts();
 
 	// run foundation
 	(0, _jquery2.default)(document).foundation();

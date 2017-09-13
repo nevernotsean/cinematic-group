@@ -440,3 +440,37 @@ function cptui_register_my_taxes_radio_categories() {
 }
 
 add_action( 'init', 'cptui_register_my_taxes_radio_categories' );
+
+// add roster category 
+function cptui_register_my_taxes_roster_category() {
+
+	/**
+	 * Taxonomy: Roster Categories.
+	 */
+
+	$labels = array(
+		"name" => __( 'Roster Categories', '' ),
+		"singular_name" => __( 'Roster Category', '' ),
+	);
+
+	$args = array(
+		"label" => __( 'Roster Categories', '' ),
+		"labels" => $labels,
+		"public" => true,
+		"hierarchical" => false,
+		"label" => "Roster Categories",
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => array( 'slug' => 'roster_category', 'with_front' => true, ),
+		"show_admin_column" => false,
+		"show_in_rest" => false,
+		"rest_base" => "",
+		"show_in_quick_edit" => false,
+	);
+	register_taxonomy( "roster_category", array( "portfolio" ), $args );
+}
+
+add_action( 'init', 'cptui_register_my_taxes_roster_category' );
+

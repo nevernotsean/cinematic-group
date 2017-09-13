@@ -106,34 +106,6 @@ function addEventListeners() {
 	})
 }
 
-// function preLoadHoverVideo(vidEle) {
-// 	var hoverVideoLoaded = function() {
-// 			console.log('video loaded')
-// 		},
-// 		hoverVideoProgress = function(data) {
-// 			var total = data.total,
-// 				loaded = data.loaded,
-// 				pct = loaded / total * 100,
-// 				rounded = Math.floor(pct)
-
-// 			console.log('video loading: ', rounded)
-// 		},
-// 		hoverVideoPreloadSkip = function() {
-// 			console.log('video preload skip')
-// 		},
-// 		hoverVideoPreload = function() {
-// 			console.log('video preload')
-// 		}
-
-// 	var hoverVideo = new PreloadVideo(
-// 		vidEle,
-// 		hoverVideoProgress,
-// 		hoverVideoLoaded,
-// 		hoverVideoPreloadSkip,
-// 		hoverVideoPreload
-// 	)
-// }
-
 function normalize(v, vmin, vmax, tmin, tmax) {
 	var nv = Math.max(Math.min(v, vmax), vmin),
 		dv = vmax - vmin,
@@ -217,6 +189,23 @@ function albumScripts() {
 			$albumList.hide()
 
 			$('.albumlist-wrapper').append($albumclone)
+		}
+	}
+}
+
+function rosterScripts() {
+	if ($('.single-portfolio').length) {
+		let $image = $('.artist-image')
+		let $articleBody = $('.article-content .article-body')
+
+		if (Foundation.MediaQuery.current == 'Small') {
+			$articleBody.css('max-height', 'none')
+			$articleBody.css('overflow-y', '')
+		} else {
+			let h = $image.height()
+
+			$articleBody.css('max-height', h)
+			$articleBody.css('overflow-y', 'scroll')
 		}
 	}
 }
@@ -426,6 +415,7 @@ function handleTransitionComplete() {
 	runSlick()
 	borderImages()
 	albumScripts()
+	rosterScripts()
 
 	// run foundation
 	$(document).foundation()

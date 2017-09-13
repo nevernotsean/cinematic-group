@@ -7,14 +7,23 @@
 				<div class="grid-x grid-padding-x text-center post-header">
 					<div class="cell">
 						<h1 class="article-h1">{{ post.title }}</h1>
+						<div class="share-buttons">
+							<ul class="inline-flex menu simple">
+							{% for social, link in social_links %}
+								<li>
+									<a target="_blank" href="{{ link }}">{% include 'icons.twig' with { 'field': social } %}</a>
+								</li>
+							{% endfor %}
+							</ul>
+						</div>
 					</div>
 				</div>
 				<div class="post-body">
 					<div class="grid-x grid-padding-x">
-						<div class="cell medium-6">
-							<img class="single-hero-image" src="{{post.thumbnail | resize(1200) }}" alt="">
+						<div class="cell medium-5 medium-offset-1">
+							<img class="artist-image" src="{{post.thumbnail | resize(1200, 1200) }}" alt="">
 						</div>
-						<div class="cell medium-6">
+						<div class="cell medium-5">
 							<section class="article-content">
 								<div class="article-body">
 									{{post.content}}

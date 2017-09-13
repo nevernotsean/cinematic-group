@@ -29,6 +29,10 @@ hr.black {
 	opacity: 1 !important;
 }
 
+.inline-flex {
+	display: inline-flex;
+}
+
 // video
 iframe {
 	border: none;
@@ -64,5 +68,17 @@ video {
 		h1 {
 			font-size: 5em;
 		}
+	}
+}
+
+.share-buttons {
+	margin-top: 1rem;
+
+	span.a2a_svg {
+		background: none !important;
+	}
+
+	span.a2a_svg svg path {
+		fill: #000 !important;
 	}
 }

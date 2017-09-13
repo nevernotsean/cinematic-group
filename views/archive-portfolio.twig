@@ -4,6 +4,14 @@
 	<div class="content-wrapper">
 		<div class="post-header">
 			<h1 class="base-title text-center">Roster</h1>
+			<div class="grid-container">
+				<div class="post-categories text-center grid-x grid-padding-x">
+					<div class="cell shrink"><a href="{{ site.url }}/tv/">All</a></div>
+					{% for category in categories %}
+						<div class="cell shrink"><a href="{{ site.url }}/tv/{{ category | lower }}/">{{ category }}</a></div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 		<div class="grid-container post-body">
 			<div class="grid-x grid-padding-x grid-padding-y roster-logos">
