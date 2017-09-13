@@ -2,14 +2,25 @@ article.article-item {
 	margin-bottom: 80px;
 	position: relative;
 
-	img {
+	.thumbnail-container {
 		position: relative;
-		z-index: 2;
+		overflow: hidden;
 		border: 2px solid transparent;
 		&.border {
 			border: 2px solid #000;
 		}
-		&.hover {
+	}
+
+	img {
+		position: relative;
+		z-index: 2;
+	}
+	&.hoverable {
+		img,
+		.hover {
+			transition: opacity 300ms ease;
+		}
+		.hover {
 			position: absolute;
 			opacity: 0;
 			z-index: 1;
@@ -18,11 +29,11 @@ article.article-item {
 			width: 100%;
 			height: auto;
 		}
-	}
-	&.hoverable:hover {
-		img {
-			opacity: 0;
-			&.hover {
+		&:hover {
+			img {
+				opacity: 0;
+			}
+			.hover {
 				opacity: 1;
 			}
 		}
@@ -102,4 +113,11 @@ article.article-item {
 			font-weight: 600;
 		}
 	}
+}
+
+// video
+video.hover {
+	object-fit: cover;
+	object-position: center;
+	height: 100% !important;
 }

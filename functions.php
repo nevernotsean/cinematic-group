@@ -79,15 +79,15 @@ new StarterSite();
 if( function_exists('acf_add_local_field_group') ):
 
 acf_add_local_field_group(array (
-	'key' => 'group_59888a36b9b39',
-	'title' => 'Homepage Video',
+	'key' => 'group_597f93f9394b9',
+	'title' => 'TV',
 	'fields' => array (
 		array (
-			'key' => 'field_5988e0521f2be',
-			'label' => 'Vimeo link',
-			'name' => 'vimeo_link',
+			'key' => 'field_597f942e87567',
+			'label' => 'Youtube URL',
+			'name' => 'youtube_url',
 			'type' => 'url',
-			'instructions' => 'From your Vimeo Pro account, select the video > settings > Video File > "Access your video files" > High Def',
+			'instructions' => 'Provide the Youtube video link (i.e. https://youtu.be/Hmg9Ljz62pQ or https://www.youtube.com/watch?v=Hmg9Ljz62pQ)',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
@@ -95,16 +95,35 @@ acf_add_local_field_group(array (
 				'class' => '',
 				'id' => '',
 			),
-			'default_value' => '',
-			'placeholder' => 'https://player.vimeo.com/external/211015222.hd.mp4?s=06f330a7dcf6755400b63de0a9abb9a26b7bf33b&profile_id=174',
+			'default_value' => 'https://youtu.be/Hmg9Ljz62pQ',
+			'placeholder' => '',
+		),
+		array (
+			'key' => 'field_59b92406bb25a',
+			'label' => 'Hover Preview',
+			'name' => 'hover_preview',
+			'type' => 'file',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_size' => '',
+			'max_size' => '',
+			'mime_types' => 'mp4, webm, ogg',
 		),
 	),
 	'location' => array (
 		array (
 			array (
-				'param' => 'page',
+				'param' => 'post_type',
 				'operator' => '==',
-				'value' => '1928',
+				'value' => 'tv',
 			),
 		),
 	),

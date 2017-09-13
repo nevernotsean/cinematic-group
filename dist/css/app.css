@@ -8476,17 +8476,27 @@ article.article-item {
   position: relative;
 }
 
-article.article-item img {
+article.article-item .thumbnail-container {
   position: relative;
-  z-index: 2;
+  overflow: hidden;
   border: 2px solid transparent;
 }
 
-article.article-item img.border {
+article.article-item .thumbnail-container.border {
   border: 2px solid #000;
 }
 
-article.article-item img.hover {
+article.article-item img {
+  position: relative;
+  z-index: 2;
+}
+
+article.article-item.hoverable img,
+article.article-item.hoverable .hover {
+  transition: opacity 300ms ease;
+}
+
+article.article-item.hoverable .hover {
   position: absolute;
   opacity: 0;
   z-index: 1;
@@ -8500,7 +8510,7 @@ article.article-item.hoverable:hover img {
   opacity: 0;
 }
 
-article.article-item.hoverable:hover img.hover {
+article.article-item.hoverable:hover .hover {
   opacity: 1;
 }
 
@@ -8589,6 +8599,12 @@ article.article-item.post-type-muso-album .post-artist {
 .image-block .overlay p {
   font-size: 10px;
   font-weight: 600;
+}
+
+video.hover {
+  object-fit: cover;
+  object-position: center;
+  height: 100% !important;
 }
 
 .base-title {

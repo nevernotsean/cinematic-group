@@ -10,6 +10,7 @@
 {% if thumb is empty %}
   {% set thumb = post.thumbnail.src %}
 {% endif %}
+
 {% if blazy == false %}
   {% set blazy = '' %}
   {% set lazySrc = 'src' %}
@@ -24,34 +25,48 @@
 <article class="grid-y article-item post-type-{{post.type}} post-category-{{post.category}} {% if hover %}hoverable{% endif %}" id="post-{{post.ID}}" data-equalizer-watch>
   <div class="cell grow">
     <a href="{{post.link}}">
-      {% if square == true %}
-        <img class="{{ blazy }} square" {{ squarePH }} {{ lazySrc }}="{{ thumb | resize(500, 500) }}" alt="{{ post.title }}">
-      {% elseif wide == true %}
-        <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(640, 360) }}" alt="{{ post.title }}">
-      {% else %}
-        <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(400, 300) }}" alt="{{ post.title }}">
-      {% endif %}
-      {% if hover %}
-        <img class="{{ blazy }} hover" {{ lazySrc }}="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="">
-      {% endif %}
+      <div class="thumbnail-container">
+        {% if square == true %}
+          <img class="{{ blazy }} square" {{ squarePH }} {{ lazySrc }}="{{ thumb | resize(500, 500) }}" alt="{{ post.title }}">
+        {% elseif wide == true %}
+          <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(640, 360) }}" alt="{{ post.title }}">
+        {% else %}
+          <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(400, 300) }}" alt="{{ post.title }}">
+        {% endif %}
+
+        {% if hover %}
+          {% if post.type == 'tv' %}
+            <video class="hover" src="{{ post.get_field('hover_preview').url }}"></video>
+          {% else %}
+            <img class="{{ blazy }} hover" {{ lazySrc }}="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="">
+          {% endif %}
+        {% endif %}
+      </div>
       <header>
+
         {% if post.category %}
           <span class="post-category">{{post.category}}</span>
           <span class="divider"> | </span>
         {% endif %}
+
         {% if post.date %}
-        <span class="post-date">{{post.date|date('n.j.Y')}}</span>
+          <span class="post-date">{{post.date|date('n.j.Y')}}</span>
         {% endif %}
+
       </header>
+
       {% if post.title %}
         <h2 class="post-title">{{post.title|replace({'<i>': '','</i>': ''})}}</h2>
       {% endif %}
+
       {% if post.post_content %}
         <div class="post-content">{{ post.post_content|excerpt(15) }}</div>
       {% endif %}
+
       {% if post.type == 'muso-album' %}
         <p class="post-artist">{{ post.terms('artist') | first }}</p>
       {% endif %}
+
     </a>
   </div>
   <div class="cell">
