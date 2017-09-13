@@ -8506,11 +8506,11 @@ article.article-item.hoverable .hover {
   height: auto;
 }
 
-article.article-item.hoverable:hover img {
+article.article-item.hoverable.loaded:hover img {
   opacity: 0;
 }
 
-article.article-item.hoverable:hover .hover {
+article.article-item.hoverable.loaded:hover .hover {
   opacity: 1;
 }
 

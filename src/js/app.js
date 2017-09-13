@@ -78,17 +78,61 @@ function addEventListeners() {
 	}
 
 	// video thumbnails
-	function videoHoverIn() {
+	$('.post-type-tv.hoverable').each(function() {
 		var video = $(this).find('video.hover')[0]
-		video.play()
-	}
-	function videoHoverOut() {
-		var video = $(this).find('video.hover')[0]
-		video.pause()
-		video.currentTime = 0
-	}
-	$('.post-type-tv.hoverable').hover(videoHoverIn, videoHoverOut)
+
+		if (!video.src) return
+
+		video.addEventListener('canplay', function() {
+			$(video)
+				.parents('.hoverable')
+				.addClass('loaded')
+		})
+
+		function videoHoverIn() {
+			if (video.buffered) {
+				video.play()
+			} else {
+				video.load()
+			}
+		}
+		function videoHoverOut() {
+			var video = $(this).find('video.hover')[0]
+			video.pause()
+			video.currentTime = 0
+		}
+
+		$(this).hover(videoHoverIn, videoHoverOut)
+	})
 }
+
+// function preLoadHoverVideo(vidEle) {
+// 	var hoverVideoLoaded = function() {
+// 			console.log('video loaded')
+// 		},
+// 		hoverVideoProgress = function(data) {
+// 			var total = data.total,
+// 				loaded = data.loaded,
+// 				pct = loaded / total * 100,
+// 				rounded = Math.floor(pct)
+
+// 			console.log('video loading: ', rounded)
+// 		},
+// 		hoverVideoPreloadSkip = function() {
+// 			console.log('video preload skip')
+// 		},
+// 		hoverVideoPreload = function() {
+// 			console.log('video preload')
+// 		}
+
+// 	var hoverVideo = new PreloadVideo(
+// 		vidEle,
+// 		hoverVideoProgress,
+// 		hoverVideoLoaded,
+// 		hoverVideoPreloadSkip,
+// 		hoverVideoPreload
+// 	)
+// }
 
 function normalize(v, vmin, vmax, tmin, tmax) {
 	var nv = Math.max(Math.min(v, vmax), vmin),

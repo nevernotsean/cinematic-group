@@ -36,7 +36,7 @@
 
         {% if hover %}
           {% if post.type == 'tv' %}
-            <video class="hover" src="{{ post.get_field('hover_preview').url }}"></video>
+            <video class="hover" loop muted preload="none" src="{{ post.get_field('hover_preview').url }}"></video>
           {% else %}
             <img class="{{ blazy }} hover" {{ lazySrc }}="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="">
           {% endif %}

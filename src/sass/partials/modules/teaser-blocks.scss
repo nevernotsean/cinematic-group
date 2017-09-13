@@ -29,12 +29,14 @@ article.article-item {
 			width: 100%;
 			height: auto;
 		}
-		&:hover {
-			img {
-				opacity: 0;
-			}
-			.hover {
-				opacity: 1;
+		&.loaded {
+			&:hover {
+				img {
+					opacity: 0;
+				}
+				.hover {
+					opacity: 1;
+				}
 			}
 		}
 	}
