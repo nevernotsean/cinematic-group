@@ -64,8 +64,8 @@ function addEventListeners() {
 
 		$(window).on('scroll', function(e) {
 			st = window.scrollY
-			offset = normalize(st, 0, window.innerHeight, -100, 100)
-			op = 1 - normalize(st, 0, window.innerHeight, -1, 1)
+			offset = normalize(st, 0, window.innerHeight, -50, 100)
+			op = 1 - normalize(st, 0, window.innerHeight * 0.85, -1, 1)
 
 			op = op > 1 ? 1 : op
 
@@ -250,13 +250,14 @@ function runSlick() {
 
 function borderImages() {
 	$('.article-item, article').each(function() {
-		let image = $(this).find('.thumbnail-container')[0]
+		let container = $(this).find('.thumbnail-container')[0]
+		let image = $(this).find('img')[0]
 
 		if (!image) return false
 
 		getImageBrightness(image.src, function(br) {
 			if (br > 180) {
-				$(image).addClass('border')
+				$(container).addClass('border')
 			}
 		})
 	})

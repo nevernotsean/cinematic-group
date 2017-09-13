@@ -56,6 +56,15 @@
 	.more-posts {
 		@include whitespace-top;
 	}
+	.artist-social {
+		@include whitespace-top;
+		a {
+			@include bold-title;
+		}
+		li.divider:last-child {
+			display: none;
+		}
+	}
 }
 
 .single-muso-album {

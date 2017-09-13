@@ -8792,6 +8792,7 @@ video.hover {
   display: block;
   background: none;
   font-style: normal;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 .home .hero .mute i.fa-volume-off {
@@ -8998,6 +8999,20 @@ video.hover {
 
 .single-portfolio .more-posts {
   padding-top: 50px;
+}
+
+.single-portfolio .artist-social {
+  padding-top: 50px;
+}
+
+.single-portfolio .artist-social a {
+  font-family: 'FranchiseFree-Bold', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.single-portfolio .artist-social li.divider:last-child {
+  display: none;
 }
 
 .single-muso-album .post-header {

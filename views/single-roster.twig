@@ -6,16 +6,11 @@
 			<div class="grid-container">
 				<div class="grid-x grid-padding-x text-center post-header">
 					<div class="cell">
-						<h1 class="article-h1">{{ post.title }}</h1>
-						<div class="share-buttons">
-							<ul class="inline-flex menu simple">
-							{% for social, link in social_links %}
-								<li>
-									<a target="_blank" href="{{ link }}">{% include 'icons.twig' with { 'field': social } %}</a>
-								</li>
-							{% endfor %}
-							</ul>
-						</div>
+						{% if post.get_field('artist_logo') is empty %}
+							<h1 class="article-h1">{{ post.title }}</h1>
+						{% else %}
+							<h1 class="article-h1"><img style="width: 150px;" src="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="{{ post.title }}"><h1>
+						{% endif %}
 					</div>
 				</div>
 				<div class="post-body">
@@ -29,6 +24,16 @@
 									{{post.content}}
 								</div>
 							</section>
+						</div>
+						<div class="cell artist-social text-center">
+							<ul class="inline-flex menu simple">
+							{% for social, link in social_links %}
+								<li>
+									<a target="_blank" href="{{ link }}">{{ social }}</a>
+								</li>
+								<li class="divider">|</li>
+							{% endfor %}
+							</ul>
 						</div>
 					</div>
 					<div class="more-posts">

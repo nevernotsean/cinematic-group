@@ -16254,8 +16254,8 @@ function addEventListeners() {
 
 		(0, _jquery2.default)(window).on('scroll', function (e) {
 			st = window.scrollY;
-			offset = normalize(st, 0, window.innerHeight, -100, 100);
-			op = 1 - normalize(st, 0, window.innerHeight, -1, 1);
+			offset = normalize(st, 0, window.innerHeight, -50, 100);
+			op = 1 - normalize(st, 0, window.innerHeight * 0.85, -1, 1);
 
 			op = op > 1 ? 1 : op;
 
@@ -16432,13 +16432,14 @@ function runSlick() {
 
 function borderImages() {
 	(0, _jquery2.default)('.article-item, article').each(function () {
-		var image = (0, _jquery2.default)(this).find('.thumbnail-container')[0];
+		var container = (0, _jquery2.default)(this).find('.thumbnail-container')[0];
+		var image = (0, _jquery2.default)(this).find('img')[0];
 
 		if (!image) return false;
 
 		(0, _getImageBrightness2.default)(image.src, function (br) {
 			if (br > 180) {
-				(0, _jquery2.default)(image).addClass('border');
+				(0, _jquery2.default)(container).addClass('border');
 			}
 		});
 	});

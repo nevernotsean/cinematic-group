@@ -66,6 +66,7 @@
 				display: block;
 				background: none;
 				font-style: normal;
+				font-family: $body-font-family;
 				&.fa-volume-off {
 					text-decoration: line-through;
 				}
