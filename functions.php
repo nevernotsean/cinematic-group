@@ -466,36 +466,79 @@ function cptui_register_my_taxes_roster_category() {
 
 add_action( 'init', 'cptui_register_my_taxes_roster_category' );
 
+// Blog mapping
+Routes::map('blog', function($params){
+	$query = 'posts_per_page=12';
+    Routes::load('archive.php', null, $query, 200);
+});
+
+Routes::map('blog/page/:pg', function($params){
+	$query = 'posts_per_page=12&paged='.$params['pg'];
+    Routes::load('index.php', null, $query);
+});
+
 // TV mapping
+
 Routes::map('tv/:category', function($params){
-	$query = 'post_type=tv&tv_category=' . $params['category'];
-    Routes::load('archive-tv.php', null, $query, 200);
+	$exists = term_exists($params['category'], 'tv_category');
+	if ($exists == null) {
+		Routes::load('single.php');
+	} else {
+		$query = 'post_type=tv&tv_category=' . $params['category'];
+		Routes::load('archive-tv.php', null, $query, 200);
+	}
 });
 
 Routes::map('tv/:category/page/:pg', function($params){
-	$query = 'post_type=tv&tv_category=' . $params['category'] . '&paged='.$params['pg'];
-    Routes::load('archive-tv.php', null, $query);
+	$exists = term_exists($params['category'], 'tv_category');
+	if ($exists == null) {
+		Routes::load('single.php');
+	} else {
+		$query = 'post_type=tv&tv_category=' . $params['category'] . '&paged='.$params['pg'];
+		Routes::load('archive-tv.php', null, $query);
+	}
 });
 
 // Radio Mapping
+
 Routes::map('radio/:category', function($params){
-	$query = 'post_type=radio&radio_category=' . $params['category'];
-    Routes::load('archive-radio.php', null, $query, 200);
+	$exists = term_exists($params['category'], 'radio_category');
+	if ($exists == null) {
+		Routes::load('single.php');
+	} else {
+		$query = 'post_type=radio&radio_category=' . $params['category'];
+		Routes::load('archive-radio.php', null, $query, 200);
+	}
 });
 
 Routes::map('radio/:category/page/:pg', function($params){
-	$query = 'post_type=radio&radio_category=' . $params['category'] . '&paged='.$params['pg'];
-    Routes::load('archive-radio.php', null, $query);
+	$exists = term_exists($params['category'], 'radio_category');
+	if ($exists == null) {
+		Routes::load('single-portfolio.php');
+	} else {
+		$query = 'post_type=radio&radio_category=' . $params['category'] . '&paged='.$params['pg'];
+		Routes::load('archive-radio.php', null, $query);
+	}
 });
 
 // Portfolio (Roster) Mapping
 Routes::map('roster/:category', function($params){
-	$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'];
-    Routes::load('archive-portfolio.php', null, $query, 200);
+	$exists = term_exists($params['category'], 'roster_category');
+	if ($exists == null) {
+		Routes::load('single-portfolio.php');
+	} else {
+		$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'];
+		Routes::load('archive-portfolio.php', null, $query, 200);
+	}
 });
 
 Routes::map('roster/:category/page/:pg', function($params){
-	$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'] . '&paged='.$params['pg'];
-    Routes::load('archive-portfolio.php', null, $query);
+	$exists = term_exists($params['category'], 'roster_category');
+	if ($exists == null) {
+		Routes::load('single-portfolio.php');
+	} else {
+		$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'] . '&paged='.$params['pg'];
+		Routes::load('archive-portfolio.php', null, $query);
+	}
 });
 

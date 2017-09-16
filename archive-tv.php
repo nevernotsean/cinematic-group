@@ -18,7 +18,7 @@ $templates = array( 'archive.twig', 'index.twig' );
 
 $context = Timber::get_context();
 
-$context['title'] = 'Archive';
+$context['title'] = 'TV Archive';
 if ( is_day() ) {
 	$context['title'] = 'Archive: '.get_the_date( 'D M Y' );
 } else if ( is_month() ) {
