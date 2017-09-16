@@ -177,7 +177,7 @@ function albumScripts() {
 			$trackList.css('height', $albumArt.innerHeight() - 20)
 		}
 
-		if (Foundation.MediaQuery.current == 'Small') {
+		if (Foundation.MediaQuery.current == 'small') {
 			$trackList.css('max-height', 'none')
 		}
 
@@ -198,7 +198,7 @@ function rosterScripts() {
 		let $image = $('.artist-image')
 		let $articleBody = $('.article-content .article-body')
 
-		if (Foundation.MediaQuery.current == 'Small') {
+		if (Foundation.MediaQuery.current == 'small') {
 			$articleBody.css('max-height', 'none')
 			$articleBody.css('overflow-y', '')
 		} else {
@@ -351,6 +351,10 @@ function animateCurtain(delay) {
 function homeCurtainSetup() {
 	window.scrollTo(0, 0)
 
+	if (Foundation.MediaQuery.current == 'small') {
+		$('#loading-container').remove()
+	}
+
 	if ($('.curtain').length) {
 		$('html').css('overflow-y', 'hidden')
 		// $('#header').addClass('hidden')
@@ -362,7 +366,6 @@ function homeCurtainSetup() {
 	}
 
 	var homeHeroLoaded = function() {
-			console.log('video loaded')
 			$(video).css('background-color', '#000')
 			animateCurtain(10000)
 		},
@@ -372,16 +375,15 @@ function homeCurtainSetup() {
 				pct = loaded / total * 100,
 				rounded = Math.floor(pct)
 
-			// console.log('loaded: ', rounded)
-
 			if ($('#loading-container').length) {
 				animateLoadingBar(rounded)
 			}
 		},
 		homePreloadSkip = function() {
-			console.log('animate trigger')
-			animateLoadingBar(100)
-			animateCurtain(10000)
+			if ($('.curtain').length) {
+				animateLoadingBar(100)
+				animateCurtain(10000)
+			}
 		},
 		homePreload = function() {
 			$('#loading-bar').remove()
@@ -411,6 +413,9 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	fillscreen()
 	addEventListeners()
 	lazyLoadImages()
+
+	// run foundation
+	$(document).foundation()
 
 	homeCurtainSetup()
 }

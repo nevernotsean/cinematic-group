@@ -160,3 +160,14 @@ a.hdr-logo-link {
 		}
 	}
 }
+
+@media screen and (max-width: 800px) {
+	header#header .menu-links li + li {
+		margin-left: 30px;
+	}
+
+	header#header .menu-links {
+		width: 500px;
+		flex-wrap: nowrap;
+	}
+}

@@ -1,12 +1,24 @@
 {% if square is empty %}
   {% set square = false %}
 {% endif %}
+
 {% if wide is empty %}
   {% set wide = false %}
 {% endif %}
+
 {% if hover is empty %}
   {% set hover = false %}
+  {% set hoverable = '' %}
+{% else %}
+  {% set hoverable = 'hoverable' %}
 {% endif %}
+
+{% if gif is empty %}
+  {% set gif = '' %}
+{% else %}
+  {% set gif = 'gif-hover' %}
+{% endif %}
+
 {% if thumb is empty %}
   {% set thumb = post.thumbnail.src %}
 {% endif %}
@@ -22,7 +34,7 @@
   {% set squarePH = 'src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' %}
   {% set thumbPH = 'src=data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJCAQAAACRI2S5AAAAEElEQVR42mNkIAAYRxWAAQAG9gAKqv6+AwAAAABJRU5ErkJggg==' %}
 {% endif %}
-<article class="grid-y article-item post-type-{{post.type}} post-category-{{post.category}} {% if hover %}hoverable{% endif %}" id="post-{{post.ID}}" data-equalizer-watch>
+<article class="grid-y article-item post-type-{{post.type}} post-category-{{post.category}} {{ hoverable }} {{ gif }}" id="post-{{post.ID}}" data-equalizer-watch>
   <div class="cell grow">
     <a href="{{post.link}}">
       <div class="thumbnail-container">

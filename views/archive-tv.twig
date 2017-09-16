@@ -6,10 +6,12 @@
 			<h1 class="base-title text-center">Cinematic TV</h1>
 			<div class="grid-container">
 				<div class="post-categories text-center grid-x grid-padding-x">
-					<div class="cell shrink"><a href="{{ site.url }}/tv/">All</a></div>
-					{% for category in categories %}
-						<div class="cell shrink"><a href="{{ site.url }}/tv/{{ category | lower }}/">{{ category }}</a></div>
-					{% endfor %}
+					{% if categories | length > 0 %}
+						<div class="cell shrink"><a href="{{ site.url }}/tv/">All</a></div>
+						{% for category in categories %}
+							<div class="cell shrink"><a href="{{ site.url }}/tv/{{ category | lower }}/">{{ category }}</a></div>
+						{% endfor %}
+					{% endif %}
 				</div>
 			</div>
 		</div>

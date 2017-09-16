@@ -16365,7 +16365,7 @@ function albumScripts() {
 			$trackList.css('height', $albumArt.innerHeight() - 20);
 		}
 
-		if (_foundationSites2.default.MediaQuery.current == 'Small') {
+		if (_foundationSites2.default.MediaQuery.current == 'small') {
 			$trackList.css('max-height', 'none');
 		}
 
@@ -16386,7 +16386,7 @@ function rosterScripts() {
 		var $image = (0, _jquery2.default)('.artist-image');
 		var $articleBody = (0, _jquery2.default)('.article-content .article-body');
 
-		if (_foundationSites2.default.MediaQuery.current == 'Small') {
+		if (_foundationSites2.default.MediaQuery.current == 'small') {
 			$articleBody.css('max-height', 'none');
 			$articleBody.css('overflow-y', '');
 		} else {
@@ -16529,6 +16529,10 @@ function animateCurtain(delay) {
 function homeCurtainSetup() {
 	window.scrollTo(0, 0);
 
+	if (_foundationSites2.default.MediaQuery.current == 'small') {
+		(0, _jquery2.default)('#loading-container').remove();
+	}
+
 	if ((0, _jquery2.default)('.curtain').length) {
 		(0, _jquery2.default)('html').css('overflow-y', 'hidden');
 		// $('#header').addClass('hidden')
@@ -16540,7 +16544,6 @@ function homeCurtainSetup() {
 	}
 
 	var homeHeroLoaded = function homeHeroLoaded() {
-		console.log('video loaded');
 		(0, _jquery2.default)(video).css('background-color', '#000');
 		animateCurtain(10000);
 	},
@@ -16550,16 +16553,15 @@ function homeCurtainSetup() {
 		    pct = loaded / total * 100,
 		    rounded = Math.floor(pct);
 
-		// console.log('loaded: ', rounded)
-
 		if ((0, _jquery2.default)('#loading-container').length) {
 			animateLoadingBar(rounded);
 		}
 	},
 	    homePreloadSkip = function homePreloadSkip() {
-		console.log('animate trigger');
-		animateLoadingBar(100);
-		animateCurtain(10000);
+		if ((0, _jquery2.default)('.curtain').length) {
+			animateLoadingBar(100);
+			animateCurtain(10000);
+		}
 	},
 	    homePreload = function homePreload() {
 		(0, _jquery2.default)('#loading-bar').remove();
@@ -16583,6 +16585,9 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	fillscreen();
 	addEventListeners();
 	lazyLoadImages();
+
+	// run foundation
+	(0, _jquery2.default)(document).foundation();
 
 	homeCurtainSetup();
 }
