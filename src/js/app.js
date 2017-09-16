@@ -204,6 +204,10 @@ function rosterScripts() {
 		} else {
 			let h = $image.height()
 
+			if (h < 1) {
+				return rosterScripts()
+			}
+
 			$articleBody.css('max-height', h)
 			$articleBody.css('overflow-y', 'scroll')
 		}

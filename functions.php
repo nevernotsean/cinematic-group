@@ -1,4 +1,6 @@
 <?php
+include 'ChromePhp.php';
+// ChromePhp::log('Hello console! from functions.php line 1');
 
 if ( ! class_exists( 'Timber' ) ) {
 	add_action( 'admin_notices', function() {
@@ -24,8 +26,6 @@ class StarterSite extends TimberSite {
 		add_theme_support( 'html5', array( 'comment-list', 'comment-form', 'search-form', 'gallery', 'caption' ) );
 		add_filter( 'timber_context', array( $this, 'add_to_context' ) );
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
-		add_action( 'init', array( $this, 'register_post_types' ) );
-		add_action( 'init', array( $this, 'register_taxonomies' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'loadScripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'loadStyles' ) );
 		parent::__construct();
@@ -38,14 +38,6 @@ class StarterSite extends TimberSite {
 	function loadStyles() {
 		// Add main stylesheet
 		wp_enqueue_style( 'site', get_template_directory_uri() . '/dist/css/app.css');
-	}
-
-	function register_post_types() {
-		//this is where you can register custom post types
-	}
-
-	function register_taxonomies() {
-		//this is where you can register custom taxonomies
 	}
 
 	function add_to_context( $context ) {
@@ -347,7 +339,7 @@ function cptui_register_my_taxes_tv_category() {
 		"label" => __( 'TV Categories', '' ),
 		"labels" => $labels,
 		"public" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"label" => "TV Categories",
 		"show_ui" => true,
 		"show_in_menu" => true,
@@ -400,7 +392,7 @@ function cptui_register_my_cpts_radio() {
 		"rewrite" => array( "slug" => "radio", "with_front" => true ),
 		"query_var" => true,
 		"supports" => array( "title", "editor", "thumbnail", "trackbacks", "revisions", "author" ),
-		"taxonomies" => array( "radio_categories" ),
+		"taxonomies" => array( "radio_category" ),
 	);
 
 	register_post_type( "radio", $args );
@@ -409,7 +401,7 @@ function cptui_register_my_cpts_radio() {
 add_action( 'init', 'cptui_register_my_cpts_radio' );
 
 // add radio category
-function cptui_register_my_taxes_radio_categories() {
+function cptui_register_my_taxes_radio_category() {
 
 	/**
 	 * Taxonomy: Radio Categories.
@@ -424,26 +416,26 @@ function cptui_register_my_taxes_radio_categories() {
 		"label" => __( 'Radio Categories', '' ),
 		"labels" => $labels,
 		"public" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"label" => "Radio Categories",
 		"show_ui" => true,
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"query_var" => true,
-		"rewrite" => array( 'slug' => 'radio_categories', 'with_front' => true, ),
+		"rewrite" => array( 'slug' => 'radio_category', 'with_front' => true, ),
 		"show_admin_column" => false,
 		"show_in_rest" => false,
 		"rest_base" => "",
 		"show_in_quick_edit" => false,
 	);
-	register_taxonomy( "radio_categories", array( "radio" ), $args );
+	register_taxonomy( "radio_category", array( "radio" ), $args );
 }
 
-add_action( 'init', 'cptui_register_my_taxes_radio_categories' );
+add_action( 'init', 'cptui_register_my_taxes_radio_category' );
 
 // add roster category 
 function cptui_register_my_taxes_roster_category() {
-
+	
 	/**
 	 * Taxonomy: Roster Categories.
 	 */
@@ -457,7 +449,7 @@ function cptui_register_my_taxes_roster_category() {
 		"label" => __( 'Roster Categories', '' ),
 		"labels" => $labels,
 		"public" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"label" => "Roster Categories",
 		"show_ui" => true,
 		"show_in_menu" => true,
@@ -473,4 +465,37 @@ function cptui_register_my_taxes_roster_category() {
 }
 
 add_action( 'init', 'cptui_register_my_taxes_roster_category' );
+
+// TV mapping
+Routes::map('tv/:category', function($params){
+	$query = 'post_type=tv&tv_category=' . $params['category'];
+    Routes::load('archive-tv.php', null, $query, 200);
+});
+
+Routes::map('tv/:category/page/:pg', function($params){
+	$query = 'post_type=tv&tv_category=' . $params['category'] . '&paged='.$params['pg'];
+    Routes::load('archive-tv.php', null, $query);
+});
+
+// Radio Mapping
+Routes::map('radio/:category', function($params){
+	$query = 'post_type=radio&radio_category=' . $params['category'];
+    Routes::load('archive-radio.php', null, $query, 200);
+});
+
+Routes::map('radio/:category/page/:pg', function($params){
+	$query = 'post_type=radio&radio_category=' . $params['category'] . '&paged='.$params['pg'];
+    Routes::load('archive-radio.php', null, $query);
+});
+
+// Portfolio (Roster) Mapping
+Routes::map('roster/:category', function($params){
+	$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'];
+    Routes::load('archive-portfolio.php', null, $query, 200);
+});
+
+Routes::map('roster/:category/page/:pg', function($params){
+	$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'] . '&paged='.$params['pg'];
+    Routes::load('archive-portfolio.php', null, $query);
+});
 

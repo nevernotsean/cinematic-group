@@ -66,7 +66,14 @@ video {
 		z-index: -1;
 
 		h1 {
-			font-size: 5em;
+			white-space: nowrap;
+			font-size: 4em;
+			@include breakpoint(medium) {
+				font-size: 6em;
+			}
+			@include breakpoint(large) {
+				font-size: 9em;
+			}
 		}
 	}
 }

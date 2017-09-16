@@ -39,6 +39,4 @@ $context['posts'] = Timber::get_posts();
 $categories = Timber::get_terms(array('taxonomy' => 'radio_category', 'hide_empty' => true));
 $context['categories'] = $categories;
 
-echo "<script> console.dir(" . json_encode($context) . ")</script>";
-
 Timber::render( $templates, $context );

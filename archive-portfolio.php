@@ -35,10 +35,8 @@ if ( is_day() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-$context['posts'] = Timber::get_posts('post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC');
+$context['posts'] = Timber::get_posts();
 $categories = Timber::get_terms(array('taxonomy' => 'roster_category', 'hide_empty' => true));
 $context['categories'] = $categories;
-
-echo "<script> console.dir(" . json_encode($context) . ")</script>";
 
 Timber::render( $templates, $context );
