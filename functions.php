@@ -473,8 +473,11 @@ Routes::map('blog', function($params){
 });
 
 Routes::map('blog/page/:pg', function($params){
-	$query = 'posts_per_page=12&paged='.$params['pg'];
-    Routes::load('index.php', null, $query);
+	$query = array(
+		'posts_per_page' => 12,
+		'paged' => $params['pg']
+	);
+    Routes::load('archive.php', null, $query);
 });
 
 // TV mapping
@@ -485,7 +488,7 @@ Routes::map('tv/:category', function($params){
 		Routes::load('single.php');
 	} else {
 		$query = 'post_type=tv&tv_category=' . $params['category'];
-		Routes::load('archive-tv.php', null, $query, 200);
+		Routes::load('archive-tv.php', null, $query);
 	}
 });
 
@@ -507,7 +510,7 @@ Routes::map('radio/:category', function($params){
 		Routes::load('single.php');
 	} else {
 		$query = 'post_type=radio&radio_category=' . $params['category'];
-		Routes::load('archive-radio.php', null, $query, 200);
+		Routes::load('archive-radio.php', null, $query);
 	}
 });
 
@@ -522,22 +525,27 @@ Routes::map('radio/:category/page/:pg', function($params){
 });
 
 // Portfolio (Roster) Mapping
+Routes::map('roster', function($params){
+	$query = array(
+		'post_type' => 'portfolio',
+		'posts_per_page' => -1,
+		'orderby'=> 'title',
+		'order' => 'ASC',
+	);
+	Routes::load('archive-portfolio.php', null, $query);
+});
 Routes::map('roster/:category', function($params){
 	$exists = term_exists($params['category'], 'roster_category');
 	if ($exists == null) {
 		Routes::load('single-portfolio.php');
 	} else {
-		$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'];
-		Routes::load('archive-portfolio.php', null, $query, 200);
-	}
-});
-
-Routes::map('roster/:category/page/:pg', function($params){
-	$exists = term_exists($params['category'], 'roster_category');
-	if ($exists == null) {
-		Routes::load('single-portfolio.php');
-	} else {
-		$query = 'post_type=portfolio&posts_per_page=-1&orderby=title&order=ASC&roster_category=' . $params['category'] . '&paged='.$params['pg'];
+		$query = array(
+			'post_type' => 'portfolio',
+			'posts_per_page' => -1,
+			'orderby'=> 'title',
+			'order' => 'ASC',
+			'roster_category' =>  $params['category'],
+		);
 		Routes::load('archive-portfolio.php', null, $query);
 	}
 });

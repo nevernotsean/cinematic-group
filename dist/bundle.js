@@ -16396,8 +16396,11 @@ function rosterScripts() {
 				return rosterScripts();
 			}
 
+			window.addEventListener('resize', rosterScripts);
+
 			$articleBody.css('max-height', h);
 			$articleBody.css('overflow-y', 'scroll');
+			$articleBody.addClass('scrollable');
 		}
 	}
 }
@@ -16444,6 +16447,21 @@ function borderImages() {
 		(0, _getImageBrightness2.default)(image.src, function (br) {
 			if (br > 180) {
 				(0, _jquery2.default)(container).addClass('border');
+			}
+		});
+	});
+	(0, _jquery2.default)('.single-post').each(function () {
+		var title = (0, _jquery2.default)(this).find('.article-h1.overlap');
+		var image = (0, _jquery2.default)(this).find('.single-hero-image.overlap')[0];
+
+		if (!image) return false;
+
+		(0, _getImageBrightness2.default)(image.src, function (br) {
+			console.log(br);
+			if (br < 70) {
+				(0, _jquery2.default)(image).parents('.cell').addClass('faded-gradient');
+			} else if (br > 180) {
+				(0, _jquery2.default)(image).css('border', '2px solid #000');
 			}
 		});
 	});

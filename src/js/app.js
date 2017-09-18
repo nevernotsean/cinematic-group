@@ -208,8 +208,11 @@ function rosterScripts() {
 				return rosterScripts()
 			}
 
+			window.addEventListener('resize', rosterScripts)
+
 			$articleBody.css('max-height', h)
 			$articleBody.css('overflow-y', 'scroll')
+			$articleBody.addClass('scrollable')
 		}
 	}
 }
@@ -262,6 +265,23 @@ function borderImages() {
 		getImageBrightness(image.src, function(br) {
 			if (br > 180) {
 				$(container).addClass('border')
+			}
+		})
+	})
+	$('.single-post').each(function() {
+		let title = $(this).find('.article-h1.overlap')
+		let image = $(this).find('.single-hero-image.overlap')[0]
+
+		if (!image) return false
+
+		getImageBrightness(image.src, function(br) {
+			console.log(br)
+			if (br < 70) {
+				$(image)
+					.parents('.cell')
+					.addClass('faded-gradient')
+			} else if (br > 180) {
+				$(image).css('border', '2px solid #000')
 			}
 		})
 	})

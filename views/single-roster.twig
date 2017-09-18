@@ -16,16 +16,15 @@
 						<ul class="inline-flex menu simple">
 						{% for social, link in social_links %}
 							<li>
-								<a target="_blank" href="{{ link }}">{{ social }}</a>
+								<a target="_blank" href="{{ link }}">{% include 'icons.twig' with { field: social } %}</a>
 							</li>
-							<li class="divider">|</li>
 						{% endfor %}
 						</ul>
 					</div>
 				</div>
 				<div class="post-body">
 					<div class="grid-x grid-padding-x">
-						<div class="cell medium-5 medium-offset-1">
+						<div class="cell medium-3 medium-offset-2">
 							<img class="artist-image" src="{{post.thumbnail | resize(1200, 1200) }}" alt="">
 						</div>
 						<div class="cell medium-5">

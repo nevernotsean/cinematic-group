@@ -35,10 +35,10 @@ if ( is_day() ) {
 	array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
 }
 
-// global $paged;
-// if (!isset($paged) || !$paged){
-// 		$paged = 1;
-// }
+global $paged;
+if (!isset($paged) || !$paged){
+		$paged = 1;
+}
 
 $context['posts'] = Timber::get_posts();
 $categories = Timber::get_terms(array('taxonomy' => 'category', 'hide_empty' => true));

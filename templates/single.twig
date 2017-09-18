@@ -15,7 +15,7 @@
 				</div>
 			</div>
 			<div class="grid-container post-body">
-				<div class="grid-x grid-padding-x">
+				<div class="grid-x grid-padding-x align-middle">
 					<div class="cell hide-for-small-only medium-3">
 						<p class="blog-author">{{ post.date|date('n.j.Y') }}</p>
 						<h1 class="article-h1 overlap">{{ post.title }}</h1>
@@ -34,6 +34,11 @@
 								{{post.content}}
 							</div>
 						</section>
+					</div>
+					<div class="cell text-center">
+						<div class="share-buttons">
+							{{ function('do_shortcode', '[addtoany]') }}
+						</div>
 					</div>
 				</div>
 			</div>

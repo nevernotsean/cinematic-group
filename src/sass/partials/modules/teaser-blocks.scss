@@ -41,6 +41,16 @@ article.article-item {
 				}
 			}
 		}
+		&.gif-hover .hover {
+			left: 0;
+			right: 0;
+			margin: auto;
+			width: auto;
+			height: 100%;
+			padding: 10%;
+			object-fit: contain;
+			object-position: center;
+		}
 	}
 	header,
 	footer {
@@ -68,7 +78,7 @@ article.article-item {
 	}
 
 	.post-content {
-		font-size: 11px;
+		font-size: 13px;
 		padding: 20px 0 0 0;
 		letter-spacing: 0.02em;
 	}
@@ -98,7 +108,7 @@ article.article-item {
 		.post-content,
 		.post-title {
 			@include breakpoint(large) {
-				width: 150%;
+				width: 175%;
 				position: relative;
 				z-index: 9;
 			}

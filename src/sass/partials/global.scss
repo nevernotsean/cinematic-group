@@ -89,3 +89,10 @@ video {
 		fill: #000 !important;
 	}
 }
+
+// reveal modals
+.reveal,
+[data-open],
+[data-close] {
+	outline: none;
+}
