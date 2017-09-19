@@ -38,8 +38,57 @@
 			text-align: center;
 		}
 	}
+	article.article-item.post-type-portfolio {
+		header {
+			padding: 0;
+			height: 25px;
+		}
+	}
 }
 
 // releases page
 .page-template-timber-releases-page-custom {
+}
+
+// about page
+.page-title-About {
+	.article-body-wrapper {
+		h1,
+		h2,
+		h3,
+		h4 {
+			font-family: 'HelveticaNeue', sans-serif;
+			font-weight: bold;
+			text-transform: none;
+			line-height: 1.2;
+		}
+	}
+	.contact {
+		h1,
+		h2,
+		h3,
+		h4 {
+			font-size: 16px;
+			font-family: 'HelveticaNeue', sans-serif;
+			font-weight: bold;
+			text-transform: none;
+			line-height: 1.2;
+		}
+		a {
+			display: inline-block;
+			margin-bottom: 40px;
+			letter-spacing: 0;
+		}
+	}
+	@include breakpoint(large) {
+		.grid-x.separator .cell {
+			padding-right: 80px;
+		}
+
+		.grid-x.separator .cell + .cell {
+			padding-right: 0px;
+			padding-left: 80px;
+			border-left: 2px solid #e0e0e0;
+		}
+	}
 }

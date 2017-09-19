@@ -28,6 +28,9 @@ class StarterSite extends TimberSite {
 		add_filter( 'get_twig', array( $this, 'add_to_twig' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'loadScripts' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'loadStyles' ) );
+		
+		add_filter( 'admin_post_thumbnail_html',  array( $this, 'add_featured_image_message'), 9999, 1 );
+
 		parent::__construct();
 	}
 
@@ -49,6 +52,12 @@ class StarterSite extends TimberSite {
 		return $context;
 	}
 
+    function add_featured_image_message( $content ) {
+
+        return str_replace( 'Click the image to edit or update', 'Set slide image', $content );
+
+    }
+
 	function myfoo( $text ) {
 		$text .= ' bar!';
 		return $text;
@@ -66,6 +75,61 @@ new StarterSite();
 
 
 // ACF additions
+
+// about page contact field
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array (
+	'key' => 'group_59c07e6626bad',
+	'title' => 'About Page',
+	'fields' => array (
+		array (
+			'key' => 'field_59c07e6e43c52',
+			'label' => 'Contact info',
+			'name' => 'contact',
+			'type' => 'wysiwyg',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '<h3>General Contact</h3>
+								<a href="mailto:bookings@cinematicworldwide.com">bookings@cinematicworldwide.com</a>
+								<h3>Bookings Inquiries</h3>
+								<a href="mailto:bookings@cinematicworldwide.com">bookings@cinematicworldwide.com</a>
+								<h3>Licensing Requests</h3>
+								<a href="mailto:licensing@cinematicworldwide.com">licensing@cinematicworldwide.com</a>
+								<h3>Shop Contact</h3>
+								<a href="mailto:shop@cinematicworldwide.com">shop@cinematicworldwide.com</a>',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+			'delay' => 0,
+		),
+	),
+	'location' => array (
+		array (
+			array (
+				'param' => 'page',
+				'operator' => '==',
+				'value' => '1936',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'acf_after_title',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => 1,
+	'description' => '',
+));
+
+endif;
 
 // add homepage video fields
 if( function_exists('acf_add_local_field_group') ):

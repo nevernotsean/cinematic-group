@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="content-wrapper grid-container">
+		<article class="post-type-{{post.post_type}} page-title-{{post.title}}" id="post-{{post.ID}}">
+			<section class="article-content">
+				<h1 class="page-title article-h1 post-header">{{post.title}}</h1>
+				<div class="article-body post-body" rel="pagefill">
+					<div class="article-body-wrapper">
+						<div class="grid-x separator">
+							<div class="medium-7 large-7 medium-offset-1 cell">
+								{{post.content}}
+							</div>
+							<div class="medium-4 large-3 cell contact">
+								{{post.get_field('contact')}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+	</div><!-- /content-wrapper -->
+{% endblock %}

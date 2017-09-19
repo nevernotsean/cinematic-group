@@ -8767,6 +8767,56 @@ video.hover {
   text-align: center;
 }
 
+.post-type-archive-portfolio article.article-item.post-type-portfolio header {
+  padding: 0;
+  height: 25px;
+}
+
+.page-title-About .article-body-wrapper h1,
+.page-title-About .article-body-wrapper h2,
+.page-title-About .article-body-wrapper h3,
+.page-title-About .article-body-wrapper h4,
+.page-title-About .article-body-wrapper article.article-item.post-type-muso-album .post-title,
+article.article-item.post-type-muso-album
+.page-title-About .article-body-wrapper .post-title {
+  font-family: 'HelveticaNeue', sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  line-height: 1.2;
+}
+
+.page-title-About .contact h1,
+.page-title-About .contact h2,
+.page-title-About .contact h3,
+.page-title-About .contact h4,
+.page-title-About .contact article.article-item.post-type-muso-album .post-title,
+article.article-item.post-type-muso-album
+.page-title-About .contact .post-title {
+  font-size: 16px;
+  font-family: 'HelveticaNeue', sans-serif;
+  font-weight: bold;
+  text-transform: none;
+  line-height: 1.2;
+}
+
+.page-title-About .contact a {
+  display: inline-block;
+  margin-bottom: 40px;
+  letter-spacing: 0;
+}
+
+@media print, screen and (min-width: 64em) {
+  .page-title-About .grid-x.separator .cell {
+    padding-right: 80px;
+  }
+
+  .page-title-About .grid-x.separator .cell + .cell {
+    padding-right: 0px;
+    padding-left: 80px;
+    border-left: 2px solid #e0e0e0;
+  }
+}
+
 .home #content {
   margin-top: 0 !important;
 }
@@ -8797,9 +8847,11 @@ video.hover {
 
 .home .hero video#player {
   position: absolute;
-  width: 100%;
+  width: auto !important;
+  height: 130% !important;
   top: calc(50% + 50px);
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -8987,6 +9039,15 @@ video.hover {
   margin-bottom: 0;
 }
 
+.single .overlap-container .blog-author {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.single .overlap-container a.a2a_button_facebook {
+  margin-left: -10px;
+}
+
 .single .article-body {
   margin: 50px 0;
 }
@@ -9033,7 +9094,7 @@ video.hover {
   position: relative;
   z-index: 2;
   margin-top: -10px;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 @media print, screen and (min-width: 40em) {
@@ -9073,10 +9134,7 @@ video.hover {
 
 .single-portfolio .article-body {
   margin: 0;
-  padding: 10px 10px 50px 10px;
-  border: 2px solid black;
-  border-left: none;
-  border-right: none;
+  padding: 0px 0px 50px 0px;
 }
 
 .single-portfolio .article-body.scrollable:after {
@@ -9084,7 +9142,7 @@ video.hover {
   position: absolute;
   width: 100%;
   height: 150px;
-  bottom: 52px;
+  bottom: 50px;
   left: 0;
   background-image: linear-gradient(to top, white 0%, rgba(255, 255, 255, 0) 100%);
 }

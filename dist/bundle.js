@@ -16317,10 +16317,11 @@ function fillscreen() {
 		(0, _jquery2.default)('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight);
 
 		if ((0, _jquery2.default)('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
-			(0, _jquery2.default)('[rel="pagefill"]').addClass('abs-centered');
+			// debugger
+			// $('[rel="pagefill"]').addClass('abs-centered')
 		} else {
-			(0, _jquery2.default)('[rel="pagefill"]').removeClass('abs-centered');
-		}
+				// $('[rel="pagefill"]').removeClass('abs-centered')
+			}
 	} else {
 		(0, _jquery2.default)('[rel="fullscreen"]').css('min-height', wh * 0.9);
 	}
@@ -16458,7 +16459,7 @@ function borderImages() {
 
 		(0, _getImageBrightness2.default)(image.src, function (br) {
 			console.log(br);
-			if (br < 70) {
+			if (br < 85) {
 				(0, _jquery2.default)(image).parents('.cell').addClass('faded-gradient');
 			} else if (br > 180) {
 				(0, _jquery2.default)(image).css('border', '2px solid #000');

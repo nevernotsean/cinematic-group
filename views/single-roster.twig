@@ -9,7 +9,7 @@
 						{% if post.get_field('artist_logo') is empty %}
 							<h1 class="article-h1">{{ post.title }}</h1>
 						{% else %}
-							<h1 class="article-h1"><img style="width: 150px;" src="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="{{ post.title }}"><h1>
+							<h1 class="article-h1"><img style="width: 280px;" src="{{ TimberImage(post.get_field('artist_logo')).src }}" alt="{{ post.title }}"><h1>
 						{% endif %}
 					</div>
 					<div class="cell artist-social text-center">

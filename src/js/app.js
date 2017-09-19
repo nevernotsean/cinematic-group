@@ -129,9 +129,10 @@ function fillscreen() {
 		$('[rel="pagefill"]').css('min-height', fillHeight - pageTitleHeight)
 
 		if ($('[rel="pagefill"]').outerHeight() < fillHeight + 80) {
-			$('[rel="pagefill"]').addClass('abs-centered')
+			// debugger
+			// $('[rel="pagefill"]').addClass('abs-centered')
 		} else {
-			$('[rel="pagefill"]').removeClass('abs-centered')
+			// $('[rel="pagefill"]').removeClass('abs-centered')
 		}
 	} else {
 		$('[rel="fullscreen"]').css('min-height', wh * 0.9)
@@ -276,7 +277,7 @@ function borderImages() {
 
 		getImageBrightness(image.src, function(br) {
 			console.log(br)
-			if (br < 70) {
+			if (br < 85) {
 				$(image)
 					.parents('.cell')
 					.addClass('faded-gradient')

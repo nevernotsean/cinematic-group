@@ -16,7 +16,7 @@
 			</div>
 			<div class="grid-container post-body">
 				<div class="grid-x grid-padding-x align-middle">
-					<div class="cell hide-for-small-only medium-3">
+					<div class="cell hide-for-small-only medium-3 overlap-container">
 						<p class="blog-author">{{ post.date|date('n.j.Y') }}</p>
 						<h1 class="article-h1 overlap">{{ post.title }}</h1>
 						<div class="share-buttons">
@@ -24,7 +24,7 @@
 						</div>
 					</div>
 					<div class="cell medium-9">
-						<img class="single-hero-image overlap" src="{{post.thumbnail | resize(1200) }}" alt="">
+						<img class="single-hero-image overlap" src="{{post.thumbnail | resize(1200,900) }}" alt="">
 					</div>
 				</div>
 				<div class="grid-x grid-padding-x align-center">
