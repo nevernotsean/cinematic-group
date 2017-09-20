@@ -112,7 +112,7 @@
 		// background: white;
 		transition: all 500ms ease;
 
-		background: url(../img/logo-cinematic-diecut.svg) no-repeat center center;
+		background: url(../img/cinematic-logo-cinematic-diecut.svg) no-repeat center center;
 		background-size: $diesize + 5;
 		@include breakpoint(small only) {
 			background-size: $diesizesmall + 5;
