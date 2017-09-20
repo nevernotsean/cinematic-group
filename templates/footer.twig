@@ -1,16 +1,16 @@
 <div class="grid-container">
   <hr class="black">
   <div class="grid-x grid-padding-x grid-padding-y">
-    <div class="medium-5 cell">
+    <div class="medium-5 cell small-align-center">
       {% include 'subscribe-modal.twig' %}
     </div>
-    <div class="cell auto">
+    <div id="socialLinks" class="cell auto">
       <ul class="menu simple social">
         {% include 'social-links.twig' %}
       </ul>
     </div>
   </div>
-  <div class="grid-x grid-padding-x grid-padding-y sub-footer">
+  <div class="grid-x grid-padding-x grid-padding-y sub-footer small-align-center">
     <div class="small-12 cell medium-shrink">
       <span>© {{"now"|date('Y')}} Cinematic Music Group</span>
     </div>
@@ -18,9 +18,9 @@
       <span>All Rights Reserved</span>
     </div>
     <div class="small-12 cell medium-shrink">
-      <a href="#">PRIVACY POLICY / TERMS & CONDITIONS</a>
+      <a href="#">PRIVACY POLICY / TERMS &amp; CONDITIONS</a>
     </div>
-    <div class="auto cell text-right">
+    <div class="auto cell text-right small-align-center">
       <a href="http://www.never-not.com">Site By: <img class="footer-logo" src="{{theme.path}}/static/img/nn-logo.png" alt=""></a>
     </div>
   </div>
@@ -34,4 +34,3 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-

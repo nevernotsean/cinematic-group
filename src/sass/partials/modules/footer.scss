@@ -1,5 +1,20 @@
 #footer {
 	@include whitespace-top;
+
+	#socialLinks{
+	 	@include breakpoint(small only) {
+	 		height: 190px;
+			.social{
+				li{
+					width: 100%;
+					padding-left: 0px;
+					margin-left: 0px;
+					margin-bottom: 6px;
+					text-align: center;
+				}
+			}
+	 	}
+	}
 	.social {
 		justify-content: flex-end;
 		li {

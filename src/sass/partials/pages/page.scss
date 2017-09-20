@@ -78,6 +78,15 @@
 			display: inline-block;
 			margin-bottom: 40px;
 			letter-spacing: 0;
+			@include breakpoint(small only) {
+				margin-bottom: 0px;
+			}
+		}
+
+		@include breakpoint(small only) {
+			border-top: 2px solid #000;
+			padding-top: 20px;
+
 		}
 	}
 	@include breakpoint(large) {

@@ -12,6 +12,22 @@
 	}
 }
 
+
+.post-type-archive-tv{
+	@include breakpoint(small only) {
+		.base-title{
+			padding-top: 0px;
+		}
+		.arrow-link::after{
+			display: none;
+		}
+		.post-meta a{
+			margin-top: 0px!important;
+		}
+	}
+
+}
+
 // post nav
 .post-categories {
 	justify-content: center;

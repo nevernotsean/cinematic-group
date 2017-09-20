@@ -17,14 +17,14 @@
 				{% endif %}
 				<div class="slide-content grid-container">
 					<div class="grid-x grid-padding-x grid-padding-y">
-						<div class="cell small-6 medium-2 post-meta">
+						<div class="cell small-12 small-align-center medium-2 post-meta">
 							<span class="post-date">{{post.date|date('n.j.Y')}}</span>
 						</div>
 						<div class="cell auto post-content text-center">
 							<h2 class="post-title">{{post.title}}</h2>
 							<div class="post-excerpt">{{ post.post_content|excerpt(15) }}</div>
 						</div>
-						<div class="cell small-6 medium-2 post-meta text-right">
+						<div class="cell small-12 small-align-center medium-2 post-meta text-right">
 							<a href="{{ post.link }}">Read More</a>
 						</div>
 					</div>

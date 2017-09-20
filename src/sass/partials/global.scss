@@ -11,6 +11,14 @@ body {
 	}
 }
 
+.small-align-center{
+	@include breakpoint(small only) {
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
 .align-center {
 	align-items: center;
 	justify-content: center;
@@ -68,6 +76,11 @@ video {
 		h1 {
 			white-space: nowrap;
 			font-size: 4em;
+
+			@include breakpoint(small only) {
+				font-size: 3.2em;
+			}
+
 			@include breakpoint(medium) {
 				font-size: 6em;
 			}
