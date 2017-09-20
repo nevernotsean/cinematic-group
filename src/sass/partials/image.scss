@@ -117,3 +117,28 @@ img.border {
 	top: 50%;
 	left: 50%;
 }
+
+// image right gradient
+.faded-gradient {
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		width: 50%;
+		height: 100%;
+		bottom: 0;
+		top: 0;
+		left: 0;
+		opacity: 0.6;
+		background-image: linear-gradient(
+			to right,
+			rgba(255, 255, 255, 1) 0%,
+			rgba(255, 255, 255, 0) 100%
+		);
+	}
+	@include breakpoint(small only) {
+		&:after {
+			content: none;
+		}
+	}
+}

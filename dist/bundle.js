@@ -16267,6 +16267,30 @@ function addEventListeners() {
 		});
 	}
 
+	if ((0, _jquery2.default)('.post-category-Features').length) {
+		var featureBlock = (0, _jquery2.default)('.post-category-Features'),
+		    contentContainer = featureBlock.find('.content-container'),
+		    st,
+		    offset,
+		    op;
+
+		contentContainer.css('transform', 'translateY(100px)');
+
+		(0, _jquery2.default)(window).on('scroll', function (e) {
+			var st = window.scrollY,
+			    offset = normalize(st, 100, window.innerHeight, 100, 0),
+			    op = normalize(st, 0, window.innerHeight * 0.85, -1, 1);
+
+			op = op < 0 ? 0 : op;
+
+			contentContainer.css('transform', 'translateY(' + offset + 'px)');
+			contentContainer.css('opacity', op);
+			// if (st > window.innerHeight) {
+
+			// }
+		});
+	}
+
 	// video thumbnails
 	(0, _jquery2.default)('.post-type-tv.hoverable').each(function () {
 		var video = (0, _jquery2.default)(this).find('video.hover')[0];

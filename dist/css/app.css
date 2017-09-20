@@ -8042,6 +8042,28 @@ img.border {
   left: 50%;
 }
 
+.faded-gradient {
+  position: relative;
+}
+
+.faded-gradient:after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  background-image: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+@media screen and (max-width: 39.9375em) {
+  .faded-gradient:after {
+    content: none;
+  }
+}
+
 .cell.grow {
   flex: 1 0 auto;
 }
@@ -9031,6 +9053,10 @@ article.article-item.post-type-muso-album
   display: none;
 }
 
+.home article.article-item .thumbnail-container img {
+  z-index: 0;
+}
+
 .single .post-header {
   padding: 50px 0;
 }
@@ -9109,22 +9135,6 @@ article.article-item.post-type-muso-album
     width: 200%;
     font-size: 72px;
   }
-}
-
-.single .faded-gradient {
-  position: relative;
-}
-
-.single .faded-gradient:after {
-  content: '';
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  opacity: 0.6;
-  background-image: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .single-portfolio .article-content {

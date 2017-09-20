@@ -195,4 +195,7 @@
 			display: none;
 		}
 	}
+	article.article-item .thumbnail-container img {
+		z-index: 0;
+	}
 }

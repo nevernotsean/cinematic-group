@@ -159,7 +159,7 @@ acf_add_local_field_group(array (
 			'label' => 'Hover Preview',
 			'name' => 'hover_preview',
 			'type' => 'file',
-			'instructions' => '',
+			'instructions' => 'Please provide a 400 x 300 mp4 video under 1MB',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
@@ -170,7 +170,7 @@ acf_add_local_field_group(array (
 			'return_format' => 'array',
 			'library' => 'all',
 			'min_size' => '',
-			'max_size' => '',
+			'max_size' => '1000 KB',
 			'mime_types' => 'mp4, webm, ogg',
 		),
 	),
