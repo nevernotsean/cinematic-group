@@ -97,3 +97,9 @@ header#header .menu-item * {
 header#header .social-menu-expand {
 	letter-spacing: 0.1em;
 }
+// footer
+#footer{
+	.social li a:hover{
+		@include hover-link;
+	}
+}
