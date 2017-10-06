@@ -14,8 +14,8 @@
 									<span class="post-date">{{post.date|date('n.j.Y')}}</span>
 								</div>
 								<div class="cell auto post-content text-center">
-									<h2 class="post-title">{{post.title}}</h2>
-									<div class="post-excerpt">{{ post.post_content|excerpt(15) }}</div>
+									<a href="{{ post.link }}"><h2 class="post-title">{{post.title}}</h2>
+									<div class="post-excerpt">{{ post.post_content|excerpt(15) }}</div></a>
 								</div>
 								<div class="cell shrink post-meta">
 									<a href="{{ post.link }}">Read More</a>
