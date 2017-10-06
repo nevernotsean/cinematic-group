@@ -15,9 +15,11 @@
 					<div class="cell artist-social text-center">
 						<ul class="inline-flex menu simple">
 						{% for social, link in social_links %}
+							{% if link %}
 							<li>
 								<a target="_blank" href="{{ link }}">{% include 'icons.twig' with { field: social } %}</a>
 							</li>
+							{% endif %}
 						{% endfor %}
 						</ul>
 					</div>

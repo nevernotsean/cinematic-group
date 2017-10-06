@@ -24,6 +24,7 @@ $context['related_albums'] = $related_albums;
 $context['social_links'] = array();
 
 $context['social_links']['facebook'] = $post->facebook;
+$context['social_links']['instagram'] = $post->instagram;
 $context['social_links']['twitter'] = $post->twitter;
 $context['social_links']['tumblr'] = $post->tumblr;
 $context['social_links']['soundcloud'] = $post->soundcloud;
