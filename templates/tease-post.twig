@@ -38,12 +38,19 @@
   <div class="cell grow">
     <a href="{{post.link}}">
       <div class="thumbnail-container">
+
+        {% if post.get_field('blog_post_thumbnail') %}
+        <img {{ lazySrc }}="{{ TimberImage(post.get_field('blog_post_thumbnail')).src }}" alt="">
+        {% else %}
+
         {% if square == true %}
           <img class="{{ blazy }} square" {{ squarePH }} {{ lazySrc }}="{{ thumb | resize(500, 500) }}" alt="{{ post.title }}">
         {% elseif wide == true %}
           <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(640, 360) }}" alt="{{ post.title }}">
         {% else %}
           <img class="{{ blazy }}" {{ thumbPH }} {{ lazySrc }}="{{ thumb | resize(400, 300) }}" alt="{{ post.title }}">
+        {% endif %}
+        
         {% endif %}
 
         {% if hover %}
