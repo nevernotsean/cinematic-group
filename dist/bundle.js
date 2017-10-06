@@ -16291,6 +16291,28 @@ function addEventListeners() {
 		});
 	}
 
+	// Blog Post Single parrallax fade
+	if ((0, _jquery2.default)('.overlap-container').length) {
+		var st,
+		    offset,
+		    op,
+		    $plx = (0, _jquery2.default)('.overlap-container');
+
+		(0, _jquery2.default)(window).on('scroll', function (e) {
+			st = window.scrollY;
+			offset = normalize(st, 0, window.innerHeight, 0, -100);
+			op = 1 - normalize(st, 0, window.innerHeight * 0.30, -1, 1);
+
+			op = op > 1 ? 1 : op;
+
+			$plx.css('transform', 'translateY(' + offset + '%)');
+			$plx.css('opacity', op);
+			// if (st > window.innerHeight) {
+
+			// }
+		});
+	}
+
 	// video thumbnails
 	(0, _jquery2.default)('.post-type-tv.hoverable').each(function () {
 		var video = (0, _jquery2.default)(this).find('video.hover')[0];

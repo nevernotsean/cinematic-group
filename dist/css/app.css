@@ -7939,6 +7939,21 @@ header#header .social-menu-expand {
   letter-spacing: 0.1em;
 }
 
+#footer .social li a:hover {
+  position: relative;
+}
+
+#footer .social li a:hover:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.25em;
+  width: 100%;
+  width: calc(100% - 3px);
+  height: 1px;
+  background: #000;
+}
+
 .object-fit {
   object-fit: cover;
 }
@@ -9130,6 +9145,10 @@ article.article-item.post-type-muso-album
   }
 }
 
+.single .overlap-container {
+  z-index: 2;
+}
+
 .single .overlap-container .blog-author {
   font-size: 14px;
   font-weight: bold;
@@ -9164,7 +9183,7 @@ article.article-item.post-type-muso-album
 
 .single .single-hero-image {
   width: 100%;
-  height: 600px;
+  height: 500px;
   object-fit: cover;
   object-position: 50% 30%;
   height: auto;
@@ -9172,7 +9191,7 @@ article.article-item.post-type-muso-album
 
 @media print, screen and (min-width: 40em) {
   .single .single-hero-image.overlap {
-    height: 400px;
+    height: 500px;
   }
 }
 
