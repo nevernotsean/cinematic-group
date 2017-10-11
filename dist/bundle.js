@@ -16301,7 +16301,7 @@ function addEventListeners() {
 		(0, _jquery2.default)(window).on('scroll', function (e) {
 			st = window.scrollY;
 			offset = normalize(st, 0, window.innerHeight, 0, -100);
-			op = 1 - normalize(st, 0, window.innerHeight * 0.30, -1, 1);
+			op = 1 - normalize(st, 0, window.innerHeight * 0.3, -1, 1);
 
 			op = op > 1 ? 1 : op;
 
@@ -16497,21 +16497,6 @@ function borderImages() {
 			}
 		});
 	});
-	(0, _jquery2.default)('.single-post').each(function () {
-		var title = (0, _jquery2.default)(this).find('.article-h1.overlap');
-		var image = (0, _jquery2.default)(this).find('.single-hero-image.overlap')[0];
-
-		if (!image) return false;
-
-		(0, _getImageBrightness2.default)(image.src, function (br) {
-			console.log(br);
-			if (br < 85) {
-				(0, _jquery2.default)(image).parents('.cell').addClass('faded-gradient');
-			} else if (br > 180) {
-				(0, _jquery2.default)(image).css('border', '2px solid #000');
-			}
-		});
-	});
 }
 
 function reflowEqualizer(parent) {
@@ -16636,6 +16621,10 @@ function homeCurtainSetup() {
 	var homePageVideo = new _videoPreloader2.default(homeHeroVideo, homeHeroProgress, homeHeroLoaded, homePreloadSkip, homePreload);
 }
 
+function addToAnyRefresh() {
+	window.a2a && a2a.init_all('page');
+}
+
 // Page transition Callbacks
 function handleLinkClicked(el, evt) {
 	(0, _jquery2.default)('.hdr-logo-link').addClass('loading');
@@ -16650,9 +16639,12 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	fillscreen();
 	addEventListeners();
 	lazyLoadImages();
+	addToAnyRefresh();
 
 	// run foundation
-	(0, _jquery2.default)(document).foundation();
+	if (!_jquery2.default.isFunction((0, _jquery2.default)(document).foundation)) {
+		(0, _jquery2.default)(document).foundation();
+	}
 
 	homeCurtainSetup();
 }
@@ -16665,10 +16657,13 @@ function handleTransitionComplete() {
 	rosterScripts();
 
 	// run foundation
-	(0, _jquery2.default)(document).foundation();
+	if (!_jquery2.default.isFunction((0, _jquery2.default)(document).foundation)) {
+		(0, _jquery2.default)(document).foundation();
+	}
 }
 
 (0, _jquery2.default)(document).ready(function () {
+	(0, _jquery2.default)(document).foundation();
 	handleNewPageReady();
 	handleTransitionComplete();
 

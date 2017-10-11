@@ -101,27 +101,27 @@ function addEventListeners() {
 		})
 	}
 
-// Blog Post Single parrallax fade
-		if ($('.overlap-container').length) {
-			var st,
-				offset,
-				op,
-				$plx = $('.overlap-container')
+	// Blog Post Single parrallax fade
+	if ($('.overlap-container').length) {
+		var st,
+			offset,
+			op,
+			$plx = $('.overlap-container')
 
-			$(window).on('scroll', function(e) {
-				st = window.scrollY
-				offset = normalize(st, 0, window.innerHeight, 0, -100)
-				op = 1 - normalize(st, 0, window.innerHeight * 0.30, -1, 1)
+		$(window).on('scroll', function(e) {
+			st = window.scrollY
+			offset = normalize(st, 0, window.innerHeight, 0, -100)
+			op = 1 - normalize(st, 0, window.innerHeight * 0.3, -1, 1)
 
-				op = op > 1 ? 1 : op
+			op = op > 1 ? 1 : op
 
-				$plx.css('transform', `translateY(${offset}%)`)
-				$plx.css('opacity', op)
-				// if (st > window.innerHeight) {
+			$plx.css('transform', `translateY(${offset}%)`)
+			$plx.css('opacity', op)
+			// if (st > window.innerHeight) {
 
-				// }
-			})
-		}
+			// }
+		})
+	}
 
 	// video thumbnails
 	$('.post-type-tv.hoverable').each(function() {
@@ -315,23 +315,6 @@ function borderImages() {
 			}
 		})
 	})
-	$('.single-post').each(function() {
-		let title = $(this).find('.article-h1.overlap')
-		let image = $(this).find('.single-hero-image.overlap')[0]
-
-		if (!image) return false
-
-		getImageBrightness(image.src, function(br) {
-			console.log(br)
-			if (br < 85) {
-				$(image)
-					.parents('.cell')
-					.addClass('faded-gradient')
-			} else if (br > 180) {
-				$(image).css('border', '2px solid #000')
-			}
-		})
-	})
 }
 
 function reflowEqualizer(parent) {
@@ -466,6 +449,10 @@ function homeCurtainSetup() {
 	)
 }
 
+function addToAnyRefresh() {
+	window.a2a && a2a.init_all('page')
+}
+
 // Page transition Callbacks
 function handleLinkClicked(el, evt) {
 	$('.hdr-logo-link').addClass('loading')
@@ -480,9 +467,12 @@ function handleNewPageReady(current, prev, elCont, newPageRawHTML) {
 	fillscreen()
 	addEventListeners()
 	lazyLoadImages()
+	addToAnyRefresh()
 
 	// run foundation
-	$(document).foundation()
+	if (!$.isFunction($(document).foundation)) {
+		$(document).foundation()
+	}
 
 	homeCurtainSetup()
 }
@@ -495,10 +485,13 @@ function handleTransitionComplete() {
 	rosterScripts()
 
 	// run foundation
-	$(document).foundation()
+	if (!$.isFunction($(document).foundation)) {
+		$(document).foundation()
+	}
 }
 
 $(document).ready(function() {
+	$(document).foundation()
 	handleNewPageReady()
 	handleTransitionComplete()
 
