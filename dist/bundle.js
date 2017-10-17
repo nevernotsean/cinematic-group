@@ -16586,6 +16586,7 @@ function homeCurtainSetup() {
 	if ((0, _jquery2.default)('.curtain').length) {
 		(0, _jquery2.default)('html').css('overflow-y', 'hidden');
 		// $('#header').addClass('hidden')
+		(0, _jquery2.default)('#loading-bar').css('background-color', '#666');
 		(0, _jquery2.default)('#content').css('margin-top', 0);
 	} else {
 		(0, _jquery2.default)('body').css('overflow-y', '');
@@ -16595,6 +16596,7 @@ function homeCurtainSetup() {
 
 	var homeHeroLoaded = function homeHeroLoaded() {
 		(0, _jquery2.default)(video).css('background-color', '#000');
+
 		animateCurtain(10000);
 	},
 	    homeHeroProgress = function homeHeroProgress(data) {

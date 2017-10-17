@@ -408,6 +408,7 @@ function homeCurtainSetup() {
 	if ($('.curtain').length) {
 		$('html').css('overflow-y', 'hidden')
 		// $('#header').addClass('hidden')
+		$('#loading-bar').css('background-color', '#666')
 		$('#content').css('margin-top', 0)
 	} else {
 		$('body').css('overflow-y', '')
@@ -417,6 +418,7 @@ function homeCurtainSetup() {
 
 	var homeHeroLoaded = function() {
 			$(video).css('background-color', '#000')
+
 			animateCurtain(10000)
 		},
 		homeHeroProgress = function(data) {
