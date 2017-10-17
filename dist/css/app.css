@@ -7965,6 +7965,14 @@ header#header .social-menu-expand {
   min-height: 450px;
 }
 
+@media print, screen and (min-width: 64em) {
+  .bg,
+  .bg-cover,
+  .bg-contain {
+    min-height: 650px;
+  }
+}
+
 .bg-cover {
   background-size: cover;
 }

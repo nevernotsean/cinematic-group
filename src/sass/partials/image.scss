@@ -8,6 +8,9 @@
 .bg {
 	background: url() center center no-repeat;
 	min-height: 450px;
+	@include breakpoint(large) {
+		min-height: 650px;
+	}
 	&-cover {
 		@extend .bg;
 		background-size: cover;
