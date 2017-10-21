@@ -16273,22 +16273,26 @@ function addEventListeners() {
 		    st,
 		    offset,
 		    op;
+		if (_foundationSites2.default.MediaQuery.current == 'small') {
+			contentContainer.css('transform', 'translateY(0)');
+			contentContainer.css('opacity', '1');
+		} else {
+			contentContainer.css('transform', 'translateY(100px)');
 
-		contentContainer.css('transform', 'translateY(100px)');
+			(0, _jquery2.default)(window).on('scroll', function (e) {
+				var st = window.scrollY,
+				    offset = normalize(st, 100, window.innerHeight, 100, 0),
+				    op = normalize(st, 0, window.innerHeight * 0.85, -1, 1);
 
-		(0, _jquery2.default)(window).on('scroll', function (e) {
-			var st = window.scrollY,
-			    offset = normalize(st, 100, window.innerHeight, 100, 0),
-			    op = normalize(st, 0, window.innerHeight * 0.85, -1, 1);
+				op = op < 0 ? 0 : op;
 
-			op = op < 0 ? 0 : op;
+				contentContainer.css('transform', 'translateY(' + offset + 'px)');
+				contentContainer.css('opacity', op);
+				// if (st > window.innerHeight) {
 
-			contentContainer.css('transform', 'translateY(' + offset + 'px)');
-			contentContainer.css('opacity', op);
-			// if (st > window.innerHeight) {
-
-			// }
-		});
+				// }
+			});
+		}
 	}
 
 	// Blog Post Single parrallax fade

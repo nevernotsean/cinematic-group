@@ -7809,6 +7809,12 @@ video {
   top: -3em;
 }
 
+@media screen and (max-width: 39.9375em) {
+  .parallax-container {
+    height: 0px;
+  }
+}
+
 .parallax-container .parallax {
   position: absolute;
   width: 100%;

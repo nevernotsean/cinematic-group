@@ -11,7 +11,7 @@ body {
 	}
 }
 
-.small-align-center{
+.small-align-center {
 	@include breakpoint(small only) {
 		text-align: center;
 		align-items: center;
@@ -66,6 +66,10 @@ video {
 	position: relative;
 	height: 100px;
 	top: -3em;
+
+	@include breakpoint(small only) {
+		height: 0px;
+	}
 
 	.parallax {
 		position: absolute;
