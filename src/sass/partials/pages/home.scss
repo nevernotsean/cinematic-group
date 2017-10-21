@@ -42,6 +42,8 @@
 			video#player {
 				position: static;
 				transform: none;
+				width: 100vw !important;
+				height: auto !important;
 			}
 		}
 		margin-bottom: 50px;

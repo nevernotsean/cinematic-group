@@ -8967,6 +8967,8 @@ article.article-item.post-type-muso-album
   .home .hero video#player {
     position: static;
     transform: none;
+    width: 100vw !important;
+    height: auto !important;
   }
 }
 
