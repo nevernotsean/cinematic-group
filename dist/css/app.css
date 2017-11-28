@@ -8107,6 +8107,12 @@ img.border {
   }
 }
 
+.image-block img {
+  max-width: none;
+  width: 100%;
+  height: auto;
+}
+
 .cell.grow {
   flex: 1 0 auto;
 }
@@ -8337,6 +8343,11 @@ a.hdr-logo-link.loading img.static {
 @media screen and (max-width: 39.9375em) {
   header#header.hidden {
     transform: none;
+  }
+
+  div#oc-content {
+    position: absolute;
+    top: 0;
   }
 }
 
@@ -8803,7 +8814,7 @@ video.hover {
 .post-categories .cell:not(:last-child):after {
   content: '';
   position: absolute;
-  margin-top: -0.3em;
+  margin-top: -0.25em;
   top: 50%;
   right: 0;
   height: 0.8em;

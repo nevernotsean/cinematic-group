@@ -16670,11 +16670,26 @@ function handleTransitionComplete() {
 
 (0, _jquery2.default)(document).ready(function () {
 	(0, _jquery2.default)(document).foundation();
+	// addFoundationsHandlers()
 	handleNewPageReady();
 	handleTransitionComplete();
 
 	(0, _barbaConfig2.default)(handleLinkClicked, handleInitStateChange, handleNewPageReady, handleTransitionComplete);
 });
+
+// function addFoundationsHandlers() {
+// 	// Foundation.transitionend()
+// 	$('[data-off-canvas]').on('toggle.zf.trigger', function(){
+// 		$('#header').css('position', 'absolute')
+// 	});
+// 	// $('[data-off-canvas]').on('close.zf.trigger', function(){
+// 	// });
+// 	$('.off-canvas-content').on(Foundation.transitionend(), function(){
+// 		if ( !$(this).hasClass('is-open-right') ) {
+// 			$('#header').css('position', 'fixed')
+// 		}
+// 	})
+// }
 
 /***/ }),
 /* 22 */

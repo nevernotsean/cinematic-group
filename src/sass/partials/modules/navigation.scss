@@ -120,6 +120,10 @@ a.hdr-logo-link {
 	header#header.hidden {
 		transform: none;
 	}
+	div#oc-content {
+		position: absolute;
+		top: 0;
+	}
 }
 .mobile-top-bar {
 	position: relative;

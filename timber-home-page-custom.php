@@ -6,8 +6,16 @@
 
 $context = Timber::get_context();
 $context['page'] = Timber::get_post();
-$context['posts'] = Timber::get_posts('numberposts=3&category__not_in=19');
 $context['radio'] = Timber::get_posts('post_type=radio&numberposts=1');
 $context['features'] = Timber::get_posts('category_name=features&numberposts=1');
-// echo "<script> console.dir(" . json_encode($context) . ")</script>";
+
+$featureID = $context['features'][0]->ID;
+$context['posts'] = Timber::get_posts(
+    array(
+        'numberposts' => 3,
+        'post__not_in' => array($featureID)
+    )
+);
+
+echo "<script> console.dir(" . json_encode($featureID) . ")</script>";
 Timber::render( array( 'page-home.twig' ), $context );
