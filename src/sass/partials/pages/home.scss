@@ -119,7 +119,7 @@
 			center center;
 		background-size: auto $diesize + 20;
 		@include breakpoint(small only) {
-			background-size: $diesizesmall + 5;
+			background-size: $diesizesmall + 805;
 			background-position: center 10%;
 		}
 

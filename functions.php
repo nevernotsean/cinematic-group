@@ -697,6 +697,7 @@ Routes::map('roster', function($params){
 		'posts_per_page' => -1,
 		'orderby'=> 'title',
 		'order' => 'ASC',
+		'post__not_in' => array(31816)
 	);
 	Routes::load('archive-portfolio.php', null, $query);
 });

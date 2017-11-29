@@ -498,7 +498,6 @@ function handleTransitionComplete() {
 
 $(document).ready(function() {
 	$(document).foundation()
-	// addFoundationsHandlers()
 	handleNewPageReady()
 	handleTransitionComplete()
 
@@ -509,18 +508,3 @@ $(document).ready(function() {
 		handleTransitionComplete
 	)
 })
-
-
-// function addFoundationsHandlers() {
-// 	// Foundation.transitionend()
-// 	$('[data-off-canvas]').on('toggle.zf.trigger', function(){
-// 		$('#header').css('position', 'absolute')
-// 	});
-// 	// $('[data-off-canvas]').on('close.zf.trigger', function(){
-// 	// });
-// 	$('.off-canvas-content').on(Foundation.transitionend(), function(){
-// 		if ( !$(this).hasClass('is-open-right') ) {
-// 			$('#header').css('position', 'fixed')
-// 		}
-// 	})
-// }

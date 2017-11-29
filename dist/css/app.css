@@ -8211,7 +8211,7 @@ header#header.fixed {
 }
 
 header#header.fixed + #content {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 @media print, screen and (min-width: 40em) {
@@ -8861,6 +8861,12 @@ video.hover {
   margin: 0;
 }
 
+@media screen and (max-width: 39.9375em) {
+  .post-type-archive-portfolio .base-title {
+    padding: 40px 0 25px 0;
+  }
+}
+
 .post-type-archive-portfolio .roster-logos {
   margin-bottom: 50px;
 }
@@ -9057,7 +9063,7 @@ article.article-item.post-type-muso-album
 
 @media screen and (max-width: 39.9375em) {
   .home .curtain {
-    background-size: 155px;
+    background-size: 955px;
     background-position: center 10%;
   }
 }
