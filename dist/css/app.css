@@ -8944,6 +8944,15 @@ article.article-item.post-type-muso-album
   }
 }
 
+body::before {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url("/wp-content/themes/cg-nn-theme/dist/img/cinematic-logo-cinematic-diecut-wide.png");
+}
+
 .home #content {
   margin-top: 0 !important;
 }
@@ -8975,7 +8984,7 @@ article.article-item.post-type-muso-album
 .home .hero video#player {
   position: absolute;
   width: auto !important;
-  height: 130% !important;
+  height: auto !important;
   top: calc(50% + 50px);
   left: 50%;
   transform: translate(-50%, -50%);

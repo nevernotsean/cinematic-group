@@ -1,3 +1,9 @@
+// preload curtain die cut 
+body::before{
+    position:absolute; width:0; height:0; overflow:hidden; z-index:-1;
+    content:url('/wp-content/themes/cg-nn-theme/dist/img/cinematic-logo-cinematic-diecut-wide.png');
+}
+
 // home page
 .home {
 	#content {
@@ -29,7 +35,7 @@
 		video#player {
 			position: absolute;
 			width: auto !important;
-			height: 130% !important;
+			height: auto !important;
 			top: calc(50% + 50px);
 			left: 50%;
 			transform: translate(-50%, -50%);
@@ -37,7 +43,7 @@
 
 		@include breakpoint(small only) {
 			padding-top: 40px;
-			height: auto;
+			height: auto; 
 
 			video#player {
 				position: static;
