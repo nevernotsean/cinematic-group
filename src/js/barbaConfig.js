@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Barba from 'barba.js'
+import Barba from 'barba.js/dist/barba.min.js'
 import FadeTransition from './barbaAnimations/FadeTransition.js'
 // import StaggeredFadeTransition from './barbaAnimations/StaggeredFadeTransition.js'
 

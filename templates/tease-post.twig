@@ -90,7 +90,13 @@
   </div>
   <div class="cell">
     <footer>
-      <a href="{{post.link}}">Read More</a>
+      <a href="{{post.link}}">
+        {% if post.type == 'tv' %}
+          Watch Now
+        {% else %}
+          Read More
+        {% endif %}
+      </a>
     </footer>
   </div>
 </article>
