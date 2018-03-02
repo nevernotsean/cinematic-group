@@ -1,0 +1,4 @@
+[13-Jun-2017 19:52:37 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/cinematc/public_html/blog/wp-content/themes/stanley-cinematic/images/single.php on line 16
+[03-Jul-2017 22:47:34 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/cinematc/public_html/blog/wp-content/themes/stanley-cinematic/images/single.php on line 16
+[09-Jul-2017 09:28:58 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/cinematc/public_html/blog/wp-content/themes/stanley-cinematic/images/single.php on line 16
+[10-Jul-2017 16:04:58 UTC] PHP Fatal error:  Call to undefined function get_header() in /home/cinematc/public_html/blog/wp-content/themes/stanley-cinematic/images/single.php on line 16
