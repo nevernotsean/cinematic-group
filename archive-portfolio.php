@@ -39,4 +39,14 @@ $context['posts'] = Timber::get_posts();
 $categories = Timber::get_terms(array('taxonomy' => 'roster_category', 'hide_empty' => true));
 $context['categories'] = $categories;
 
+$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+
+if ( $term ) {
+	$context['current_term'] = $term->slug;
+} else {
+	$context['current_term'] = false;
+}
+
+echo '<script>console.log('. json_encode($context['current_term']) .')</script>';
+
 Timber::render( $templates, $context );

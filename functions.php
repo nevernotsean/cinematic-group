@@ -446,6 +446,54 @@ acf_add_local_field_group(array (
 
 endif;
 
+// add Archive Hide
+if( function_exists('acf_add_local_field_group') ):
+
+	acf_add_local_field_group(array (
+		'key' => 'group_5b0e02d47200d',
+		'title' => 'Hide from Archive',
+		'fields' => array (
+			array (
+				'key' => 'field_5b0e02eccaa01',
+				'label' => 'Hide from \'All\' Archive Page',
+				'name' => 'hide_from_all',
+				'type' => 'true_false',
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array (
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
+				'message' => '',
+				'default_value' => 0,
+				'ui' => 0,
+				'ui_on_text' => '',
+				'ui_off_text' => '',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'portfolio',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'side',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => 1,
+		'description' => '',
+	));
+	
+endif;
+
 // add tv post type
 function cptui_register_my_cpts_tv() {
 
